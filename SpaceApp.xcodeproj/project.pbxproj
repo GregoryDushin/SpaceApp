@@ -10,7 +10,6 @@
 		D7F5CC6E2F0D4BFDEEB89CBB /* Pods_SpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */; };
 		F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */; };
 		F37AA75328F5CC8400F1ADB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */; };
-		F37AA75528F5CC8400F1ADB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA75428F5CC8400F1ADB9 /* ViewController.swift */; };
 		F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */; };
 		F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */; };
 		F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */; };
@@ -30,7 +29,6 @@
 		F37AA74D28F5CC8400F1ADB9 /* SpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F37AA75428F5CC8400F1ADB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F37AA75C28F5CC8700F1ADB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F37AA75E28F5CC8700F1ADB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 				C2219D34D3BE59D88769D09B /* Pods-SpaceApp.debug.xcconfig */,
 				FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -74,6 +71,49 @@
 				7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F341BDCB28F69A5900D32DEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
+				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F341BDCC28F69A6200D32DEA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
+				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F341BDCD28F69A7300D32DEA /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
+				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		F341BDCE28F69A8600D32DEA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F341BDCF28F69A8D00D32DEA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA77228F5CCF000F1ADB9 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F37AA74428F5CC8400F1ADB9 = {
@@ -97,17 +137,13 @@
 		F37AA74F28F5CC8400F1ADB9 /* SpaceApp */ = {
 			isa = PBXGroup;
 			children = (
-				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
-				F37AA77228F5CCF000F1ADB9 /* Constants.swift */,
-				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
-				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
-				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
-				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
-				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
-				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
+				F341BDCB28F69A5900D32DEA /* Models */,
+				F341BDCC28F69A6200D32DEA /* ViewControllers */,
+				F341BDCD28F69A7300D32DEA /* Presenters */,
+				F341BDCF28F69A8D00D32DEA /* Helpers */,
+				F341BDCE28F69A8600D32DEA /* Cells */,
 				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
 				F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */,
-				F37AA75428F5CC8400F1ADB9 /* ViewController.swift */,
 				F37AA77428F5CCF800F1ADB9 /* Main.storyboard */,
 				F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */,
 				F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */,
@@ -233,7 +269,6 @@
 			files = (
 				F37AA77128F5CCE300F1ADB9 /* CollectionViewCell.swift in Sources */,
 				F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */,
-				F37AA75528F5CC8400F1ADB9 /* ViewController.swift in Sources */,
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
 				F37AA76928F5CCB800F1ADB9 /* RocketViewController.swift in Sources */,
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
