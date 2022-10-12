@@ -64,15 +64,22 @@ extension LaunchViewController : UICollectionViewDelegateFlowLayout, UICollectio
         cell.layer.cornerRadius = 12
         
         cell.rocketNameLable.text = launches[indexPath.row].name
-        cell.dateOfLaunchLable.text  = dateFormatter(utcDate: launches[indexPath.row].date_utc)
+        cell.dateOfLaunchLable.text  = dateFormatter(utcDate: launches[indexPath.row].dateUtc)
+       
+
         
+         
+        
+        // TODO упростить в одну строчку
         
         if launches[indexPath.row].success == true {
             
+         //   cell.isSucsessImage.image = UIImage(named: true ? "true" : "false")
+            
             cell.isSucsessImage.image = UIImage(named: "true")
-            
+
         } else {
-            
+
             cell.isSucsessImage.image = UIImage(named: "false")
             
         }

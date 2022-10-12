@@ -26,7 +26,10 @@ class RocketLoader{
                     return
                 }
                 do {
-                    let json = try JSONDecoder().decode([RocketModelElement].self, from: data!)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    
+                    let json = try! decoder.decode([RocketModelElement].self, from: data!)
                     
                     rockets = json
    

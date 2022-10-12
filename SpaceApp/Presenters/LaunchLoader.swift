@@ -27,7 +27,11 @@ class LaunchLoader {
                     return
                 }
                 do {
-                    let json = try JSONDecoder().decode([LaunchModelElement].self, from: data!)
+                    
+                    let decoder = JSONDecoder()
+                   decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    
+                  let json = try decoder.decode([LaunchModelElement].self, from: data!)
                     
                     for el in json {
                         if el.rocket == id {
