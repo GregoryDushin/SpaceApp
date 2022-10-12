@@ -9,7 +9,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rocketNameLable: UILabel!
-    
     @IBOutlet weak var dateOfLaunchLable: UILabel!
     @IBOutlet weak var isSucsessImage: UIImageView!
 }
+
