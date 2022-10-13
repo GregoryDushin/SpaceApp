@@ -11,41 +11,32 @@ import Foundation
 
 class LaunchLoader {
     
-    func launchDataLoad(id: String , completition: @escaping ([LaunchModelElement]) -> Void){
-        
+    func launchDataLoad(id: String , completion: @escaping ([LaunchModelElement]) -> Void){
         
         var launches : [LaunchModelElement] = []
         
         let session = URLSession.shared
-        let url = URL(string: launchUrl)!
+        
+        guard let url = URL(string: Url.launchUrl.rawValue) else {return}
+        
         let task = session.dataTask(with: url) { (data, responce, error) in
             
-            DispatchQueue.main.async{
-                
-                guard error == nil else{
-                    print("Error")
-                    return
-                }
                 do {
-                    
                     let decoder = JSONDecoder()
                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     
-                  let json = try decoder.decode([LaunchModelElement].self, from: data!)
+                    if let data = data {
+                        
+                  let json = try decoder.decode([LaunchModelElement].self, from: data)
                     
-                    for el in json {
-                        if el.rocket == id {
-                            launches.append(el)
-                        }
-                    }
+                        launches = json.filter{$0.rocket == id}
+         
+                    completion(launches)
                     
-                    completition(launches)
+                    }} catch let error as NSError{
                     
-                }catch{
-                    
-                    print("wrong url")
+                    print(error.localizedDescription)
                 }
-            }
             
         }
         task.resume()

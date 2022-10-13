@@ -11,35 +11,25 @@ import Foundation
 
 class RocketLoader{
     
-    func rocketDataLoad(completition: @escaping ([RocketModelElement]) -> Void){
-        
-        var rockets : [RocketModelElement] = []
+    func rocketDataLoad(completion: @escaping ([RocketModelElement]) -> Void){
         
         let session = URLSession.shared
-        let url = URL(string: rocketUrl)!
+        guard let url = URL(string: Url.rocketUrl.rawValue) else {return}
         let task = session.dataTask(with: url) { (data, responce, error) in
             
-            DispatchQueue.main.async{
-                
-                guard error == nil else{
-                    print("Error")
-                    return
-                }
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     
-                    let json = try! decoder.decode([RocketModelElement].self, from: data!)
-                    
-                    rockets = json
+                    if let data = data {
+                    let json = try decoder.decode([RocketModelElement].self, from: data)
    
-                    completition(rockets)
+                    completion(json)
                     
-                }catch{
+                } }catch let error as NSError{
                     
-                    print("wrong url")
+                    print(error.localizedDescription)
                 }
-            }
             
         }
         task.resume()

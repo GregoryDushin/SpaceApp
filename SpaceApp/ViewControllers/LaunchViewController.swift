@@ -9,7 +9,7 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     
-    @IBOutlet weak var LaunchCollectionView: UICollectionView!
+    @IBOutlet weak var launchCollectionView: UICollectionView!
     
     var launches: [LaunchModelElement] = []
     
@@ -18,17 +18,16 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Falcon 1"
         
-        LaunchLoader().launchDataLoad(id: id) { launches in
-            self.launches = launches
-            self.LaunchCollectionView.reloadData()
-        }
+        title = "Falcon 1"
+      launchLoader(id: id)
         
     }
     
     //MARK: Date formatter from UTC to Local
-    
+    // TODO пусть функция возвращает DateFormatter, сделай его свойством
+    // private lazy var dateFormatter = makeDateFormatter()
+    // dateFormatter.date(from: ...) ?? ""
     func dateFormatter (utcDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -37,8 +36,16 @@ class LaunchViewController: UIViewController {
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter.string(from: result!)
     }
+    
+    func launchLoader(id: String){
+        LaunchLoader().launchDataLoad(id: id) { launches in
+            DispatchQueue.main.async{
+            self.launches = launches
+            self.launchCollectionView.reloadData()
+        }
+        }
 }
-
+}
     //MARK:  - Collection View Data Source & CollectionViewDelegateFlowLayout
 
 extension LaunchViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
@@ -62,27 +69,10 @@ extension LaunchViewController : UICollectionViewDelegateFlowLayout, UICollectio
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 12
-        
         cell.rocketNameLable.text = launches[indexPath.row].name
         cell.dateOfLaunchLable.text  = dateFormatter(utcDate: launches[indexPath.row].dateUtc)
-       
-
-        
-         
-        
-        // TODO упростить в одну строчку
-        
-        if launches[indexPath.row].success == true {
+        cell.isSucsessImage.image = UIImage(named: launches[indexPath.row].success! ? "true" : "false")
             
-         //   cell.isSucsessImage.image = UIImage(named: true ? "true" : "false")
-            
-            cell.isSucsessImage.image = UIImage(named: "true")
-
-        } else {
-
-            cell.isSucsessImage.image = UIImage(named: "false")
-            
-        }
         
         return cell
     }

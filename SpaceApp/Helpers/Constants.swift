@@ -7,5 +7,7 @@
 
 import Foundation
 
-let rocketUrl = "https://api.spacexdata.com/v4/rockets"
-let launchUrl = "https://api.spacexdata.com/v4/launches"
+ enum Url: String {
+    case rocketUrl = "https://api.spacexdata.com/v4/rockets"
+    case launchUrl = "https://api.spacexdata.com/v4/launches"
+}

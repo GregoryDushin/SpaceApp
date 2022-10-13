@@ -27,9 +27,10 @@ class RocketViewController: UIViewController, UIScrollViewDelegate {
     //MARK: Recieving data from parsing loaders through escaping clousers
         
         RocketLoader().rocketDataLoad { rockets in
+            DispatchQueue.main.async{
             self.rockets = rockets
             self.testLabel.text = rockets[0].name
-            
+            }
         }
         
         
