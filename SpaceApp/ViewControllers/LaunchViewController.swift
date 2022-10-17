@@ -22,26 +22,13 @@ class LaunchViewController: UIViewController {
         title = "Falcon 1"
       launchLoader(id: id)
         
-    }
-    
-    //MARK: Date formatter from UTC to Local
-    // TODO пусть функция возвращает DateFormatter, сделай его свойством
-    // private lazy var dateFormatter = makeDateFormatter()
-    // dateFormatter.date(from: ...) ?? ""
-    func dateFormatter (utcDate: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let result = dateFormatter.date(from: utcDate)
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        return dateFormatter.string(from: result!)
-    }
-    
+    }    
     func launchLoader(id: String){
         LaunchLoader().launchDataLoad(id: id) { launches in
             DispatchQueue.main.async{
             self.launches = launches
             self.launchCollectionView.reloadData()
+                print(launches[0].dateUtc)
         }
         }
 }
@@ -69,11 +56,8 @@ extension LaunchViewController : UICollectionViewDelegateFlowLayout, UICollectio
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 12
-        cell.rocketNameLable.text = launches[indexPath.row].name
-        cell.dateOfLaunchLable.text  = dateFormatter(utcDate: launches[indexPath.row].dateUtc)
-        cell.isSucsessImage.image = UIImage(named: launches[indexPath.row].success! ? "true" : "false")
-            
-        
+        cell.configure(rocket: launches[indexPath.row])
+                    
         return cell
     }
     
