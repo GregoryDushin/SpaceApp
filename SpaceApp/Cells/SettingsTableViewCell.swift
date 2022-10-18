@@ -10,11 +10,10 @@ import UIKit
 class SettingsTableViewCell: UITableViewCell {
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var settingsSegmentedControl: UISegmentedControl!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    var onSettingChanged : ((Int) -> ())?
+    var onSettingChanged:((Int) -> ())?
 }

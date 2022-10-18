@@ -5,11 +5,9 @@ import Foundation
 
 struct LaunchModelElement: Decodable {
     let success: Bool?
-    let name : String
+    let name: String
     let dateUtc: String
-    let dateLocal : String
-    let rocket : String
-    
-
+    let dateLocal: String
+    let rocket: String
     }
 

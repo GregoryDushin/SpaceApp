@@ -18,7 +18,9 @@ class SettingsTableViewController: UIViewController {
     
     let settingsArray = ["Высота","Диаметр","Масса","Полезная нагрузка"]
     let settingValues = [["m","ft"],["m","ft"],["kg","lb"],["kg","lb"]]
+   
     let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
