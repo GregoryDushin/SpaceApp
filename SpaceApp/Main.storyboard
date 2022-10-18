@@ -17,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M76-LS-hON">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="UhF-cF-t9E"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="F7a-3A-7mj"/>
-                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="b5g-uX-Uv9">
                                 <rect key="frame" x="149" y="786" width="116" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,7 +68,6 @@
                     <navigationItem key="navigationItem" id="qCv-cS-vkF"/>
                     <connections>
                         <outlet property="pageControll" destination="b5g-uX-Uv9" id="xMD-QN-vwC"/>
-                        <outlet property="scrollView" destination="M76-LS-hON" id="Svp-6S-UdY"/>
                         <outlet property="testLabel" destination="drH-oj-WpE" id="LYt-x7-ZWT"/>
                     </connections>
                 </viewController>
@@ -201,6 +194,9 @@
                                                         <segment title=""/>
                                                         <segment title=""/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="switchSettings:" destination="tkL-XM-jbf" eventType="valueChanged" id="lQw-s1-t8G"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
