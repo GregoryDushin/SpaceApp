@@ -15,9 +15,5 @@ class DataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayLabel.text = displayText
-      
     }
-    
-
-    
 }

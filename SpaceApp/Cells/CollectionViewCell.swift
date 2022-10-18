@@ -11,12 +11,10 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rocketNameLable: UILabel!
     @IBOutlet weak var dateOfLaunchLable: UILabel!
     @IBOutlet weak var isSucsessImage: UIImageView!
-    
      func configure(rocket: LaunchModelElement) {
         rocketNameLable.text = rocket.name
         isSucsessImage.image = UIImage(named: rocket.success! ? "true" : "false")
         dateOfLaunchLable.text = dateFormatter(utcDate: rocket.dateUtc)
-        
      }
     private  func dateFormatter (utcDate: String) -> String {
         let dateFormatter = DateFormatter()
@@ -26,7 +24,4 @@ class CollectionViewCell: UICollectionViewCell {
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter.string(from: result!)
     }
-   
-  
 }
-

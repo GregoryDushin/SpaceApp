@@ -15,5 +15,5 @@ class SettingsTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    var onSettingChanged:((Int) -> ())?
+    var onSettingChanged: ((Int) -> ())?
 }
