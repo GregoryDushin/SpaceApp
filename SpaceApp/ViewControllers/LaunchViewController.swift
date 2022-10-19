@@ -10,7 +10,6 @@ import UIKit
 class LaunchViewController: UIViewController {
     @IBOutlet weak var launchCollectionView: UICollectionView!
     var launches: [LaunchModelElement] = []
-    
     var id = "5e9d0d95eda69955f709d1eb"   // just for testing (Falcon 1)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +21,6 @@ class LaunchViewController: UIViewController {
             DispatchQueue.main.async {
                 self.launches = launches
                 self.launchCollectionView.reloadData()
-                print(launches[0].dateUtc)
             }
         }
     }
