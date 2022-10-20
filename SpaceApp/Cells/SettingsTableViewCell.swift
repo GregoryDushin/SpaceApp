@@ -8,8 +8,8 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
-    @IBOutlet weak var settingsLabel: UILabel!
-    @IBOutlet weak var settingsSegmentedControl: UISegmentedControl!
+    @IBOutlet var settingsLabel: UILabel!
+    @IBOutlet var settingsSegmentedControl: UISegmentedControl!
 //    func cellConfigure(settingsNames: [String], settingsValues: [[String]], index: Int) {
 //        settingsLabel.text = settingsNames[index]
 //        settingsSegmentedControl.setTitle(settingsValues[0], forSegmentAt: 0)

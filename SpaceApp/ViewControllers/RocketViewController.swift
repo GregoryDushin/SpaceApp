@@ -8,11 +8,12 @@
 import UIKit
 
 class RocketViewController: UIViewController {
-    @IBOutlet weak var contentView: UIView!
-    var dataSource = ["Rocket_1", "Rocket_2", "Rocket_3", "Rocket_4"]
-    var currentViewControllerIndex = 0
+    @IBOutlet var contentView: UIView!
+    private var dataSource = ["Rocket_1", "Rocket_2", "Rocket_3", "Rocket_4"]
+    private var currentViewControllerIndex = 0
+
     // MARK: Arrays for recieving data from parsing loaders
-    var rockets: [RocketModelElement] = []
+    private var rockets: [RocketModelElement] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: Recieving data from parsing loaders through escaping clousers
@@ -48,7 +49,7 @@ class RocketViewController: UIViewController {
         contentView.addSubview(pageViewController.view)
         let views: [String: Any] = ["pageView": pageViewController.view]
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[pageView]-0-|",
-                                                                   options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                                  options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                                                                   metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[pageView]-0-|",
                                                                   options: NSLayoutConstraint.FormatOptions(rawValue: 0),

@@ -9,7 +9,7 @@ import UIKit
 
 class DataViewController: UIViewController {
 
-    @IBOutlet weak var displayLabel: UILabel!
+    @IBOutlet var displayLabel: UILabel!
     var displayText: String?
     var index: Int = 0
     override func viewDidLoad() {
