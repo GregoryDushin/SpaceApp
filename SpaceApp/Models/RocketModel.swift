@@ -25,7 +25,6 @@ struct RocketModelElement: Decodable {
     let wikipedia: String
     let description: String
     let id: String
-
 }
 
 // MARK: - Diameter

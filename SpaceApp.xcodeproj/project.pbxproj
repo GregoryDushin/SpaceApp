@@ -26,6 +26,7 @@
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
 		F385E7A828FEA3340081166F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* DataViewController.swift */; };
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
+		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F385E7A728FEA3340081166F /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
+		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 			children = (
 				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
 				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
+				F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
 				F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */,
 				F37AA76928F5CCB800F1ADB9 /* RocketViewController.swift in Sources */,
+				F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */,
 				F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */,
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
 				F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */,

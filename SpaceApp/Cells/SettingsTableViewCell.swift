@@ -10,10 +10,16 @@ import UIKit
 class SettingsTableViewCell: UITableViewCell {
     @IBOutlet var settingsLabel: UILabel!
     @IBOutlet var settingsSegmentedControl: UISegmentedControl!
-//    func cellConfigure(settingsNames: [String], settingsValues: [[String]], index: Int) {
-//        settingsLabel.text = settingsNames[index]
-//        settingsSegmentedControl.setTitle(settingsValues[0], forSegmentAt: 0)
-//        settingsSegmentedControl.setTitle(settingsValues[index][1], forSegmentAt: 1)
-//    }
+
+    func cellConfigure(settings: Setting) {
+        settingsLabel.text = settings.title
+        settingsSegmentedControl.setTitle(settings.values[0], forSegmentAt: 0)
+        settingsSegmentedControl.setTitle(settings.values[1], forSegmentAt: 1)
+        settingsSegmentedControl.addTarget(self, action: #selector(changed), for: .valueChanged)
+    }
     var onSettingChanged: ((Int) -> ())?
+
+    @objc private func changed() {
+        onSettingChanged?(settingsSegmentedControl.selectedSegmentIndex)
+    }
 }

@@ -11,12 +11,12 @@ class RocketViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     private var dataSource = ["Rocket_1", "Rocket_2", "Rocket_3", "Rocket_4"]
     private var currentViewControllerIndex = 0
-
+    
     // MARK: Arrays for recieving data from parsing loaders
     private var rockets: [RocketModelElement] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: Recieving data from parsing loaders through escaping clousers
+    // MARK: Recieving data from parsing loaders through escaping clousers
         RocketLoader().rocketDataLoad { rockets in
             DispatchQueue.main.async {
                 self.rockets = rockets

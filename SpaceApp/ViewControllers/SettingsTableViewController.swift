@@ -11,29 +11,18 @@ class SettingsTableViewController: UIViewController {
     @IBAction func switchSettings(_ sender: Any) {
     }
     @IBOutlet var settingsTableView: UITableView!
+
+    let settingsArray = [
+        Setting(title: "Высота", key: PersistanceKeys.heightKey.rawValue, values: ["m", "ft"]),
+        Setting(title: "Диаметр", key: PersistanceKeys.diameterKey.rawValue, values: ["m", "ft"]),
+        Setting(title: "Масса", key: PersistanceKeys.massKey.rawValue, values: ["kg", "lb"]),
+        Setting(title: "Полезная нагрузка", key: PersistanceKeys.capacityKey.rawValue, values: ["kg", "lb"])
+    ]
     private var selectedIndexPath: Int = 0
-    private let settingsArray = ["Высота", "Диаметр", "Масса", "Полезная нагрузка"]
-    private let settingValues = [["m", "ft"], ["m", "ft"], ["kg", "lb"], ["kg", "lb"]]
     private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    @objc private func segmentAction(sender: UISegmentedControl) {
-        let text = sender.titleForSegment(at: sender.selectedSegmentIndex)
-        switch selectedIndexPath {
-        case 0:
-            defaults.set(text, forKey: "Persistance.heightKey")
-        case 1:
-            defaults.set(text, forKey: "Persistance.diameterKey")
-        case 2:
-            defaults.set(text, forKey: "Persistance.massKey")
-        case 3:
-            defaults.set(text, forKey: "Persistance.capacityKey")
-        default:
-            print("error")
-        }
     }
 }
 
@@ -44,13 +33,11 @@ extension SettingsTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: "Cell" ) as! SettingsTableViewCell
-        cell.settingsLabel.text = settingsArray[indexPath.row]
-        cell.settingsSegmentedControl.setTitle(settingValues[indexPath.row ][0], forSegmentAt: 0)
-        cell.settingsSegmentedControl.setTitle(settingValues[indexPath.row][1], forSegmentAt: 1)
+
+        cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [self] selectedIndex in
-            self.selectedIndexPath = selectedIndex
+            defaults.set(settingsArray[indexPath.row].values[selectedIndex], forKey: settingsArray[indexPath.row].key)
         }
-        cell.settingsSegmentedControl.addTarget(self, action: #selector (segmentAction), for: .valueChanged)
         return cell
     }
 }

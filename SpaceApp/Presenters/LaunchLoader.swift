@@ -27,7 +27,6 @@ class LaunchLoader {
                     print(json[0].dateUtc)
                     let launches = json.filter { $0.rocket == id }
                     completion(launches)
-                    print(launches[0].dateUtc)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)

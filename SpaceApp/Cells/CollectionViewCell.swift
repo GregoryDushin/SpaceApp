@@ -12,17 +12,12 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var dateOfLaunchLable: UILabel!
     @IBOutlet var isSucsessImage: UIImageView!
 
-     func configure(rocket: LaunchModelElement) {
+    func configure(rocket: LaunchModelElement, dates: String) {
         rocketNameLable.text = rocket.name
         isSucsessImage.image = UIImage(named: rocket.success! ? "true" : "false")
-        dateOfLaunchLable.text = dateFormatter(utcDate: rocket.dateUtc)
+        dateOfLaunchLable.text = dates
+        layer.masksToBounds = true
         layer.masksToBounds = true
         layer.cornerRadius = 12
      }
-
-    private  func dateFormatter (utcDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY/MM/dd"
-        return dateFormatter.string(from: utcDate)
-    }
 }

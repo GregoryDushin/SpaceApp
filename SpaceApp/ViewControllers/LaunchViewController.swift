@@ -11,13 +11,13 @@ class LaunchViewController: UIViewController {
     @IBOutlet var launchCollectionView: UICollectionView!
     private var launches: [LaunchModelElement] = []
     private var id = "5e9d0d95eda69955f709d1eb"   // just for testing (Falcon 1)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Falcon 1"
         launchLoader(id: id)
     }
-
+    
     private func launchLoader(id: String) {
         LaunchLoader().launchDataLoad(id: id) { launches in
             DispatchQueue.main.async {
@@ -27,12 +27,14 @@ class LaunchViewController: UIViewController {
         }
     }
 }
-// MARK:  - Collection View Data Source & CollectionViewDelegateFlowLayout
 
-extension LaunchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+// MARK: - CollectionViewDelegateFlowLayout
+
+extension LaunchViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
-                        UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        UICollectionViewLayout, sizeForItemAt indexPath:
+                        IndexPath) -> CGSize {
         let widthCell = UIScreen.main.bounds.width - 40
         return CGSize(width: widthCell, height: 100)
     }
@@ -40,10 +42,24 @@ extension LaunchViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return launches.count
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
-        cell.configure(rocket: launches[indexPath.row])
+// MARK: - Collection View Data Source
+extension LaunchViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
+                        IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                                                        String(describing: CollectionViewCell.self), for:
+                                                        indexPath) as! CollectionViewCell
+
+        func dateFormatter (utcDate: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/YY"
+            return dateFormatter.string(from: utcDate)
+        }
+        let dates = dateFormatter(utcDate: launches[indexPath.row].dateUtc)
+        cell.configure(rocket: launches[indexPath.row], dates: dates)
         return cell
     }
 }
