@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
     @IBOutlet var settingsLabel: UILabel!
     @IBOutlet var settingsSegmentedControl: UISegmentedControl!
 

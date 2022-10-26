@@ -11,7 +11,7 @@ import Foundation
 
 class LaunchLoader {
     private let decoder = JSONDecoder()
-    
+
     func launchDataLoad(id: String, completion: @escaping ([LaunchModelElement]) -> Void) {
         // MARK: DateFormatter
         let dateFormatter = DateFormatter()

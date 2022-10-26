@@ -9,15 +9,17 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     @IBOutlet var launchCollectionView: UICollectionView!
-    private var launches: [LaunchModelElement] = []
-    private var id = "5e9d0d95eda69955f709d1eb"   // just for testing (Falcon 1)
     
+    private var launches: [LaunchModelElement] = []
+    var newId = ""
+    var newTitle = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Falcon 1"
-        launchLoader(id: id)
+        title = newTitle
+        launchLoader(id: newId)
     }
-    
+
     private func launchLoader(id: String) {
         LaunchLoader().launchDataLoad(id: id) { launches in
             DispatchQueue.main.async {
