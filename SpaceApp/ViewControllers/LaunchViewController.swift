@@ -7,9 +7,8 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
+final class LaunchViewController: UIViewController {
     @IBOutlet var launchCollectionView: UICollectionView!
-    
     private var launches: [LaunchModelElement] = []
     var newId = ""
     var newTitle = ""

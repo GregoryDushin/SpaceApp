@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RocketViewController: UIViewController {
+final class RocketViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     private var currentViewControllerIndex = 0
 

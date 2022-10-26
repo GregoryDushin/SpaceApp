@@ -7,8 +7,7 @@
 
 import UIKit
 
-class DataViewController: UIViewController {
-
+final class DataViewController: UIViewController {
     @IBOutlet var displayLabel: UILabel!
     var displayText: String?
     var index: Int = 0
