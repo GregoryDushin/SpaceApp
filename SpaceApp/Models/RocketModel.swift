@@ -1,7 +1,6 @@
 import Foundation
 
 // MARK: - CodableRocketModel
-
 struct RocketModelElement: Decodable {
     let height: Diameter
     let diameter: Diameter

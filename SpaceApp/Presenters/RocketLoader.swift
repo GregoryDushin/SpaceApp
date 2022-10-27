@@ -11,20 +11,20 @@ import Foundation
 
 class RocketLoader {
     private let decoder = JSONDecoder()
-
-    func rocketDataLoad(completion: @escaping ([RocketModelElement]) -> Void) {
+    
+    func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
         let session = URLSession.shared
         guard let url = URL(string: Url.rocketUrl.rawValue) else {return}
         let task = session.dataTask(with: url) { (data, _, error) in
-            do {
-                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let data = data {
+            self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+            if let data = data {
+                do {
                     let json = try self.decoder.decode([RocketModelElement].self, from: data)
-                    completion(json)
+                    completion(.success(json))
+                } catch {
+                    completion(.failure(error))
                 }
-            } catch let error as NSError {
-                    print(error.localizedDescription)
-                }
+            }
         }
         task.resume()
     }

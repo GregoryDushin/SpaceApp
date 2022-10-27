@@ -11,7 +11,6 @@ final class SettingsTableViewController: UIViewController {
     @IBAction func switchSettings(_ sender: Any) {
     }
     @IBOutlet var settingsTableView: UITableView!
-
     let settingsArray = [
         Setting(title: "Высота", key: PersistanceKeys.heightKey.rawValue, values: ["m", "ft"]),
         Setting(title: "Диаметр", key: PersistanceKeys.diameterKey.rawValue, values: ["m", "ft"]),
@@ -33,7 +32,6 @@ extension SettingsTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: String(describing: SettingsTableViewCell.self)) as! SettingsTableViewCell
-
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [self] selectedIndex in
             defaults.set(settingsArray[indexPath.row].values[selectedIndex], forKey: settingsArray[indexPath.row].key)

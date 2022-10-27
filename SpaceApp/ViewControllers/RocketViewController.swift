@@ -10,27 +10,34 @@ import UIKit
 final class RocketViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     private var currentViewControllerIndex = 0
-
-    // MARK: Arrays for recieving data from parsing loaders
     private var rockets: [RocketModelElement] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    // MARK: Recieving data from parsing loaders through escaping clousers
-        RocketLoader().rocketDataLoad { rockets in
-            DispatchQueue.main.async {
+
+    RocketLoader().rocketDataLoad { rockets in
+        DispatchQueue.main.async {
+            switch rockets {
+            case .success(let rockets):
                 self.rockets = rockets
                 self.configurePageViewController()
+            case .failure(let error):
+                self.showAlert(error.localizedDescription)
             }
         }
     }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+
     func configurePageViewController() {
         guard let pageViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: CustomPageViewController.self))
@@ -39,7 +46,6 @@ final class RocketViewController: UIViewController {
         }
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        // add ChildView
         addChild(pageViewController)
         pageViewController.didMove(toParent: self)
         pageViewController.view.backgroundColor = UIColor.lightGray
@@ -48,6 +54,7 @@ final class RocketViewController: UIViewController {
         guard let startingViewController = detailViewControllerAt(index: currentViewControllerIndex) else { return }
         pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true)
     }
+
     func detailViewControllerAt(index: Int) -> DataViewController? {
         if index >= rockets.count || rockets.count == 0 {return nil}
         guard let dataViewController =
@@ -57,15 +64,27 @@ final class RocketViewController: UIViewController {
         dataViewController.id = rockets[index].id
         return dataViewController
     }
+
+    func showAlert(_ error: String) {
+       let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+       let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+       alertWindow.rootViewController = UIViewController()
+       alertWindow.windowLevel = UIWindow.Level.alert + 1
+       alertWindow.makeKeyAndVisible()
+       alertWindow.rootViewController?.present(alert, animated: true)
+   }
 }
 
 extension RocketViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return currentViewControllerIndex
     }
+
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return rockets.count
     }
+
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let dataViewController = viewController as? DataViewController
@@ -79,6 +98,7 @@ extension RocketViewController: UIPageViewControllerDelegate, UIPageViewControll
         currentIndex -= 1
         return detailViewControllerAt(index: currentIndex)
     }
+
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let dataViewController = viewController as? DataViewController

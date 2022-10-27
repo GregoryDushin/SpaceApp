@@ -8,9 +8,9 @@
 import UIKit
 
 final class CustomPageViewController: UIPageViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 }
