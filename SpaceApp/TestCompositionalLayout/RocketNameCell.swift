@@ -8,9 +8,9 @@
 import UIKit
 
 final class RocketNameCell: UICollectionViewCell {
-    @IBOutlet weak var rocketNameLable: UILabel!
-    @IBOutlet weak var rocketSettingsButton: UIButton!
-    
+    @IBOutlet var rocketNameLable: UILabel!
+    @IBOutlet var rocketSettingsButton: UIButton!
+
     func setup(title: String) {
         rocketNameLable.text = title
     }

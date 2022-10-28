@@ -8,9 +8,9 @@
 import UIKit
 
 final class RocketDescriptionCell: UICollectionViewCell {
-    @IBOutlet weak var mainParametrLable: UILabel!
-    @IBOutlet weak var valueParametrLable: UILabel!
-    
+    @IBOutlet var mainParametrLable: UILabel!
+    @IBOutlet var valueParametrLable: UILabel!
+
     func setup(title1: String, title2: String) {
         mainParametrLable.text = title1
         valueParametrLable.text = title2

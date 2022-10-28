@@ -8,5 +8,5 @@
 import UIKit
 
 final class RocketLaunchButton: UICollectionViewCell {
-    @IBOutlet weak var launchButton: UIButton!
+    @IBOutlet var launchButton: UIButton!
 }

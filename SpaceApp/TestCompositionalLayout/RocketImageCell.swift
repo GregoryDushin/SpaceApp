@@ -8,8 +8,8 @@
 import UIKit
 
 final class RocketImageCell: UICollectionViewCell {
-    @IBOutlet weak var rocketImage: UIImageView!
-    
+    @IBOutlet var rocketImage: UIImageView!
+
     func setup(title: String) {
         rocketImage.image = UIImage(named: "rocket")
     }

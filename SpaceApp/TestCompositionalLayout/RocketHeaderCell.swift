@@ -8,8 +8,8 @@
 import UIKit
 
 final class RocketHeaderCell: UICollectionReusableView {
-    @IBOutlet weak var rocketHeaderLable: UILabel!
-    
+    @IBOutlet var rocketHeaderLable: UILabel!
+
     func setup(title: String) {
         rocketHeaderLable.text = title
     }

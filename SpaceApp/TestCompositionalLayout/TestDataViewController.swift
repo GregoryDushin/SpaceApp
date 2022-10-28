@@ -10,7 +10,7 @@ import UIKit
 final class DataViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
-    
+
     var displayText: String?
     var index: Int = 0
     var id = ""
@@ -22,6 +22,8 @@ final class DataViewController: UIViewController {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
     }
+
+    // MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
@@ -79,7 +81,6 @@ final class DataViewController: UIViewController {
                 // section
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-
                 return section
             case .seven:
                 // item
@@ -92,9 +93,16 @@ final class DataViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - Creating section headers
+
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
+
+
+    // MARK: - Data transfer to the launch VC
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showLaunch" else { return }
         guard let destination = segue.destination as? LaunchViewController else { return }
@@ -102,7 +110,61 @@ final class DataViewController: UIViewController {
         destination.title = displayText
     }
 }
-extension DataViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+// MARK: - UICollectionViewDataSource
+
+extension DataViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch sections[indexPath.section] {
+        case .one(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketImageCell.self), for: indexPath) as! RocketImageCell
+            cell.setup(title: items[0].image)
+            return cell
+        case .two:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketNameCell.self), for: indexPath) as! RocketNameCell
+            cell.setup(title: dataArray[index].name)
+            return cell
+        case .three(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketDescriptionCell.self), for: indexPath) as! RocketDescriptionCell
+            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
+            cell.layer.masksToBounds = true
+            cell.layer.cornerRadius = 12
+            return cell
+        case .four(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketAnotherInfoCell.self), for: indexPath) as! RocketAnotherInfoCell
+            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
+            return cell
+        case .five(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketAnotherInfoCell.self), for: indexPath) as! RocketAnotherInfoCell
+            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
+            return cell
+        case .six(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketAnotherInfoCell.self), for: indexPath) as! RocketAnotherInfoCell
+            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
+            return cell
+        case .seven:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: RocketLaunchButton.self), for: indexPath) as! RocketLaunchButton
+            return cell
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: RocketHeaderCell.self), for: indexPath) as! RocketHeaderCell
+            header.setup(title: sections[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+}
+
+// MARK: - CollectionViewDelegate
+
+extension DataViewController: UICollectionViewDelegate {
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
@@ -111,51 +173,9 @@ extension DataViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return sections[section].count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch sections[indexPath.section] {
-        case .one(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketImageCell", for: indexPath) as! RocketImageCell
-            cell.setup(title: items[0].image)
-            return cell
-        case .two:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketNameCell", for: indexPath) as! RocketNameCell
-            cell.setup(title: dataArray[index].name)
-            return cell
-        case .three(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketDescriptionCell
-            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
-            cell.layer.masksToBounds = true
-            cell.layer.cornerRadius = 12
-            return cell
-        case .four(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketAnotherInfoCell
-            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
-            return cell
-        case .five(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketAnotherInfoCell
-            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
-            return cell
-        case .six(let items):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketAnotherInfoCell
-            cell.setup(title1: items[indexPath.row].title1, title2: items[indexPath.row].title2)
-            return cell
-        case .seven:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketLaunchButton", for: indexPath) as! RocketLaunchButton
-            return cell
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "RocketHeaderCell", for: indexPath) as! RocketHeaderCell
-            header.setup(title: sections[indexPath.section].title)
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
 }
+
+// MARK: - Test Data Model
 
 struct ListItem {
     var title1: String
@@ -171,7 +191,6 @@ enum ListSection {
     case five([ListItem])
     case six([ListItem])
     case seven([ListItem])
-
     var items: [ListItem] {
         switch self {
         case .one(let items),
@@ -184,11 +203,9 @@ enum ListSection {
             return items
         }
     }
-
     var count: Int {
         return items.count
     }
-
     var title: String {
         switch self {
         case .one:
@@ -211,41 +228,40 @@ enum ListSection {
 
 struct MockData {
     static let shared = MockData()
-
-     var one: ListSection = {
+    var one: ListSection = {
         .one([.init(title1: "", title2: "", image: "rocket")])
     }()
-     var two: ListSection = {
+    var two: ListSection = {
         .two([.init(title1: "FalconHeavy", title2: "", image: "")])
     }()
-     var three: ListSection = {
+    var three: ListSection = {
         .three([.init(title1: "Высота", title2: "229", image: ""),
-                     .init(title1: "Диаметр", title2: "39", image: ""),
-                     .init(title1: "Масса", title2: "3125000", image: ""),
-                     .init(title1: "Нагрузка", title2: "140660", image: "")
+                .init(title1: "Диаметр", title2: "39", image: ""),
+                .init(title1: "Масса", title2: "3125000", image: ""),
+                .init(title1: "Нагрузка", title2: "140660", image: "")
         ])
     }()
-     var four: ListSection = {
+    var four: ListSection = {
         .four([.init(title1: "Первый запуск", title2: "7 февраля", image: ""),
-                     .init(title1: "Страна", title2: "USA", image: ""),
-                     .init(title1: "Стоимость запуска", title2: "90$", image: "")
+               .init(title1: "Страна", title2: "USA", image: ""),
+               .init(title1: "Стоимость запуска", title2: "90$", image: "")
         ])
     }()
-     var five: ListSection = {
+    var five: ListSection = {
         .five([.init(title1: "Количество двигателей", title2: "27", image: ""),
                .init(title1: "Количество топлива", title2: "308", image: ""),
                .init(title1: "Время сгорания", title2: "593", image: "")
-  ])
+        ])
     }()
-     var six: ListSection = {
+    var six: ListSection = {
         .six([.init(title1: "Количество двигателей", title2: "1", image: ""),
               .init(title1: "Количество топлива", title2: "243", image: ""),
               .init(title1: "Время сгорания", title2: "397", image: "")
- ])
+        ])
     }()
     var seven: ListSection = {
         .seven([.init(title1: "", title2: "", image: "")
-        ])
+               ])
     }()
     var pageData: [ListSection] {
         [one, two, three, four, five, six, seven]
