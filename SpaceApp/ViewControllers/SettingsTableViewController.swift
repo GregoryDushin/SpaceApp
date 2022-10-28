@@ -8,8 +8,7 @@
 import UIKit
 
 final class SettingsTableViewController: UIViewController {
-    @IBAction func switchSettings(_ sender: Any) {
-    }
+
     @IBOutlet var settingsTableView: UITableView!
     let settingsArray = [
         Setting(title: "Высота", key: PersistanceKeys.heightKey.rawValue, values: ["m", "ft"]),

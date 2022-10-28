@@ -1,21 +1,28 @@
 //
-//  ViewController.swift
-//  CompositionalLayoutChallenge
+//  DataViewController.swift
+//  SpaceApp
 //
-//  Created by Григорий Душин on 25.10.2022.
+//  Created by Григорий Душин on 18.10.2022.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+final class DataViewController: UIViewController {
+
+    @IBOutlet var collectionView: UICollectionView!
     
+    var displayText: String?
+    var index: Int = 0
+    var id = ""
+    var dataArray: [RocketModelElement] = []
+    var data = MockData()
     private let sections = MockData.shared.pageData
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
     }
+
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
             guard let self = self else {
@@ -88,8 +95,14 @@ class ViewController: UIViewController {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showLaunch" else { return }
+        guard let destination = segue.destination as? LaunchViewController else { return }
+        destination.newId = id
+        destination.title = displayText
+    }
 }
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DataViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
@@ -104,9 +117,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketImageCell", for: indexPath) as! RocketImageCell
             cell.setup(title: items[0].image)
             return cell
-        case .two(let items):
+        case .two:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketNameCell", for: indexPath) as! RocketNameCell
-            cell.setup(title: items[0].title1)
+            cell.setup(title: dataArray[index].name)
             return cell
         case .three(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketDescriptionCell
@@ -145,9 +158,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 struct ListItem {
-    let title1: String
-    let title2: String
-    let image: String
+    var title1: String
+    var title2: String
+    var image: String
 }
 
 enum ListSection {
@@ -199,38 +212,38 @@ enum ListSection {
 struct MockData {
     static let shared = MockData()
 
-    private let one: ListSection = {
+     var one: ListSection = {
         .one([.init(title1: "", title2: "", image: "rocket")])
     }()
-    private let two: ListSection = {
+     var two: ListSection = {
         .two([.init(title1: "FalconHeavy", title2: "", image: "")])
     }()
-    private let three: ListSection = {
+     var three: ListSection = {
         .three([.init(title1: "Высота", title2: "229", image: ""),
                      .init(title1: "Диаметр", title2: "39", image: ""),
                      .init(title1: "Масса", title2: "3125000", image: ""),
                      .init(title1: "Нагрузка", title2: "140660", image: "")
         ])
     }()
-    private let four: ListSection = {
+     var four: ListSection = {
         .four([.init(title1: "Первый запуск", title2: "7 февраля", image: ""),
                      .init(title1: "Страна", title2: "USA", image: ""),
                      .init(title1: "Стоимость запуска", title2: "90$", image: "")
         ])
     }()
-    private let five: ListSection = {
+     var five: ListSection = {
         .five([.init(title1: "Количество двигателей", title2: "27", image: ""),
                .init(title1: "Количество топлива", title2: "308", image: ""),
                .init(title1: "Время сгорания", title2: "593", image: "")
   ])
     }()
-    private let six: ListSection = {
+     var six: ListSection = {
         .six([.init(title1: "Количество двигателей", title2: "1", image: ""),
               .init(title1: "Количество топлива", title2: "243", image: ""),
               .init(title1: "Время сгорания", title2: "397", image: "")
  ])
     }()
-    private let seven: ListSection = {
+    var seven: ListSection = {
         .seven([.init(title1: "", title2: "", image: "")
         ])
     }()

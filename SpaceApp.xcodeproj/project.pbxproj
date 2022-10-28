@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D7F5CC6E2F0D4BFDEEB89CBB /* Pods_SpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */; };
 		F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */; };
-		F30E40CF290A9F8A0046189B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40CE290A9F8A0046189B /* TestViewController.swift */; };
 		F30E40DA290AB28B0046189B /* RocketNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D9290AB28B0046189B /* RocketNameCell.swift */; };
 		F30E40DB290AB28B0046189B /* RocketAnotherInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D8290AB28B0046189B /* RocketAnotherInfoCell.swift */; };
 		F30E40DC290AB28B0046189B /* RocketHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D4290AB28B0046189B /* RocketHeaderCell.swift */; };
@@ -31,7 +30,7 @@
 		F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77228F5CCF000F1ADB9 /* Constants.swift */; };
 		F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA77428F5CCF800F1ADB9 /* Main.storyboard */; };
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
-		F385E7A828FEA3340081166F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* DataViewController.swift */; };
+		F385E7A828FEA3340081166F /* TestDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* TestDataViewController.swift */; };
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2219D34D3BE59D88769D09B /* Pods-SpaceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.debug.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		F30E40CE290A9F8A0046189B /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F30E40D4290AB28B0046189B /* RocketHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketHeaderCell.swift; sourceTree = "<group>"; };
 		F30E40D5290AB28B0046189B /* RocketImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketImageCell.swift; sourceTree = "<group>"; };
 		F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchButtonCell.swift; sourceTree = "<group>"; };
@@ -64,7 +62,7 @@
 		F37AA77228F5CCF000F1ADB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37AA77428F5CCF800F1ADB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		F385E7A728FEA3340081166F /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		F385E7A728FEA3340081166F /* TestDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataViewController.swift; sourceTree = "<group>"; };
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,13 +100,13 @@
 		F30E40CD290A9F700046189B /* TestCompositionalLayout */ = {
 			isa = PBXGroup;
 			children = (
-				F30E40CE290A9F8A0046189B /* TestViewController.swift */,
 				F30E40D8290AB28B0046189B /* RocketAnotherInfoCell.swift */,
 				F30E40D7290AB28B0046189B /* RocketDescriptionCell.swift */,
 				F30E40D4290AB28B0046189B /* RocketHeaderCell.swift */,
 				F30E40D5290AB28B0046189B /* RocketImageCell.swift */,
 				F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */,
 				F30E40D9290AB28B0046189B /* RocketNameCell.swift */,
+				F385E7A728FEA3340081166F /* TestDataViewController.swift */,
 			);
 			path = TestCompositionalLayout;
 			sourceTree = "<group>";
@@ -129,7 +127,6 @@
 				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
 				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
-				F385E7A728FEA3340081166F /* DataViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
 			);
 			path = ViewControllers;
@@ -346,7 +343,6 @@
 			files = (
 				F37AA77128F5CCE300F1ADB9 /* CollectionViewCell.swift in Sources */,
 				F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */,
-				F30E40CF290A9F8A0046189B /* TestViewController.swift in Sources */,
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
 				F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */,
 				F37AA76928F5CCB800F1ADB9 /* RocketViewController.swift in Sources */,
@@ -359,7 +355,7 @@
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
 				F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */,
 				F30E40DB290AB28B0046189B /* RocketAnotherInfoCell.swift in Sources */,
-				F385E7A828FEA3340081166F /* DataViewController.swift in Sources */,
+				F385E7A828FEA3340081166F /* TestDataViewController.swift in Sources */,
 				F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */,
 				F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */,
 				F30E40DD290AB28B0046189B /* RocketDescriptionCell.swift in Sources */,

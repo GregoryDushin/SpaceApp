@@ -11,21 +11,21 @@ final class RocketViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    RocketLoader().rocketDataLoad { rockets in
-        DispatchQueue.main.async {
-            switch rockets {
-            case .success(let rockets):
-                self.rockets = rockets
-                self.configurePageViewController()
-            case .failure(let error):
-                self.showAlert(error.localizedDescription)
+        RocketLoader().rocketDataLoad { rockets in
+            DispatchQueue.main.async {
+                switch rockets {
+                case .success(let rockets):
+                    self.rockets = rockets
+                    self.configurePageViewController()
+                case .failure(let error):
+                    self.showAlert(error.localizedDescription)
+                }
             }
         }
-    }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,9 +56,10 @@ final class RocketViewController: UIViewController {
     }
 
     func detailViewControllerAt(index: Int) -> DataViewController? {
-        if index >= rockets.count || rockets.count == 0 {return nil}
+        if index >= rockets.count, rockets.count == 0 {return nil}
         guard let dataViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: DataViewController.self)) as? DataViewController else {return nil}
+        dataViewController.dataArray = rockets
         dataViewController.index = index
         dataViewController.displayText = rockets[index].name
         dataViewController.id = rockets[index].id
@@ -66,24 +67,18 @@ final class RocketViewController: UIViewController {
     }
 
     func showAlert(_ error: String) {
-       let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-       let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-       alertWindow.rootViewController = UIViewController()
-       alertWindow.windowLevel = UIWindow.Level.alert + 1
-       alertWindow.makeKeyAndVisible()
-       alertWindow.rootViewController?.present(alert, animated: true)
-   }
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindow.Level.alert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true)
+    }
 }
 
-extension RocketViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+// MARK: - UIPageViewDataSource
 
-    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return currentViewControllerIndex
-    }
-
-    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return rockets.count
-    }
+extension RocketViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -105,11 +100,24 @@ extension RocketViewController: UIPageViewControllerDelegate, UIPageViewControll
         guard var currentIndex = dataViewController?.index else {
             return nil
         }
-        if currentIndex == rockets.count {
+        if currentIndex == rockets.count - 1 {
             return nil
         }
         currentIndex += 1
         currentViewControllerIndex = currentIndex
         return detailViewControllerAt(index: currentIndex)
     }
+}
+
+// MARK: - UIPageViewControllerDelegate
+
+extension RocketViewController: UIPageViewControllerDelegate {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return currentViewControllerIndex
+    }
+
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return rockets.count
+    }
+
 }

@@ -15,5 +15,4 @@ class RocketAnotherInfoCell: UICollectionViewCell {
         nameSettingsLable.text = title1
         valueSettingsLable.text = title2
     }
-    
 }

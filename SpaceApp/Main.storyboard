@@ -9,13 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="2f5-oL-okw">
+        <!--Data View Controller-->
+        <scene sceneID="XCk-LB-YQl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eOO-JR-bY9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="MdP-6e-wEY" customClass="ViewController" customModule="SpaceApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="52Z-00-WPi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                <viewController restorationIdentifier="DataViewController" storyboardIdentifier="DataViewController" id="WhI-rz-Rt5" customClass="DataViewController" customModule="SpaceApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M7Y-tZ-ng0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KXy-5S-5N7">
@@ -97,6 +96,9 @@
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Launches"/>
+                                                    <connections>
+                                                        <segue destination="bJC-i8-hzT" kind="show" identifier="showLaunch" id="jNc-zu-2lJ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -164,6 +166,9 @@
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Settings"/>
+                                                    <connections>
+                                                        <segue destination="tkL-XM-jbf" kind="show" id="kk7-Aq-n4v"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -202,92 +207,16 @@
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
-                                    <outlet property="dataSource" destination="MdP-6e-wEY" id="ZC1-Mb-oLH"/>
-                                    <outlet property="delegate" destination="MdP-6e-wEY" id="KMJ-AU-yQr"/>
+                                    <outlet property="dataSource" destination="WhI-rz-Rt5" id="c0w-YH-ckK"/>
+                                    <outlet property="delegate" destination="WhI-rz-Rt5" id="6aZ-uf-Zug"/>
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="VgO-qD-Qzu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ZT6-Mm-ugc"/>
-                    <connections>
-                        <outlet property="collectionView" destination="KXy-5S-5N7" id="krF-Xx-rPE"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="-829" y="-758"/>
-        </scene>
-        <!--Data View Controller-->
-        <scene sceneID="XCk-LB-YQl">
-            <objects>
-                <viewController restorationIdentifier="DataViewController" storyboardIdentifier="DataViewController" id="WhI-rz-Rt5" customClass="DataViewController" customModule="SpaceApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="M7Y-tZ-ng0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Meo-jS-gg8">
-                                <rect key="frame" x="157.5" y="157.5" width="99" height="581"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thL-m1-WNd">
-                                <rect key="frame" x="20" y="758.5" width="374" height="34.5"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34.5" id="ZI4-oa-TTG"/>
-                                </constraints>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="LAUNCHES"/>
-                                <connections>
-                                    <segue destination="bJC-i8-hzT" kind="show" identifier="showLaunch" id="mDE-ni-SMF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJk-tt-MCK">
-                                <rect key="frame" x="20" y="813" width="374" height="34"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="LnY-ct-jyF"/>
-                                </constraints>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="SETTINGS"/>
-                                <connections>
-                                    <segue destination="tkL-XM-jbf" kind="show" id="nvs-9J-NpV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixk-Vx-4Rn">
-                                <rect key="frame" x="182" y="523" width="52" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Test"/>
-                                <connections>
-                                    <segue destination="MdP-6e-wEY" kind="show" id="Pud-fW-nbK"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="yb8-ML-dVr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="qJk-tt-MCK" firstAttribute="top" secondItem="thL-m1-WNd" secondAttribute="bottom" constant="20" id="3wy-1p-yqp"/>
-                            <constraint firstItem="yb8-ML-dVr" firstAttribute="trailing" secondItem="qJk-tt-MCK" secondAttribute="trailing" constant="20" id="5bR-5S-ctV"/>
-                            <constraint firstItem="Meo-jS-gg8" firstAttribute="centerY" secondItem="M7Y-tZ-ng0" secondAttribute="centerY" id="8HS-b5-Nxh"/>
-                            <constraint firstItem="thL-m1-WNd" firstAttribute="leading" secondItem="yb8-ML-dVr" secondAttribute="leading" constant="20" id="H0l-qo-KxN"/>
-                            <constraint firstItem="yb8-ML-dVr" firstAttribute="trailing" secondItem="thL-m1-WNd" secondAttribute="trailing" constant="20" id="HJV-gG-yaJ"/>
-                            <constraint firstItem="qJk-tt-MCK" firstAttribute="leading" secondItem="yb8-ML-dVr" secondAttribute="leading" constant="20" id="NV2-nq-C3m"/>
-                            <constraint firstItem="yb8-ML-dVr" firstAttribute="bottom" secondItem="qJk-tt-MCK" secondAttribute="bottom" constant="15" id="gSc-Gy-YOA"/>
-                            <constraint firstItem="qJk-tt-MCK" firstAttribute="centerX" secondItem="M7Y-tZ-ng0" secondAttribute="centerX" id="iAq-yi-hNs"/>
-                            <constraint firstItem="thL-m1-WNd" firstAttribute="top" secondItem="Meo-jS-gg8" secondAttribute="bottom" constant="20" id="s3S-jl-Ts7"/>
-                            <constraint firstItem="Meo-jS-gg8" firstAttribute="centerX" secondItem="M7Y-tZ-ng0" secondAttribute="centerX" id="tjZ-Wf-A4B"/>
-                            <constraint firstItem="thL-m1-WNd" firstAttribute="centerX" secondItem="M7Y-tZ-ng0" secondAttribute="centerX" id="ytf-6h-9eI"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="displayLabel" destination="Meo-jS-gg8" id="fB2-C6-8Lk"/>
+                        <outlet property="collectionView" destination="KXy-5S-5N7" id="cYQ-n6-L2W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bp-H7-DtO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -331,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.92753623188412" y="53.571428571428569"/>
+            <point key="canvasLocation" x="793" y="54"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="fSA-Vm-xgY">
