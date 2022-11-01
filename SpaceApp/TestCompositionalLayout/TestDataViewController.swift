@@ -17,10 +17,13 @@ final class DataViewController: UIViewController {
     var dataArray: [RocketModelElement] = []
     var data = MockData()
     private let sections = MockData.shared.pageData
+    private let sections1 = [Section]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
+        collectionView.reloadData()
+        mapRocketToSections(rocket: dataArray[index])
     }
 
     // MARK: - Creating sections using CompositionalLayout
@@ -158,6 +161,34 @@ extension DataViewController: UICollectionViewDataSource {
             return UICollectionReusableView()
         }
     }
+   private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
+        [
+            Section(sectionType: .image, title: nil, items: [.image(URL(fileURLWithPath: rocket.flickrImages[0])), .title(rocket.name)]),
+
+            Section(sectionType: .horizontal, title: nil, items:
+                        [.info(title: "Высота", value: String(rocket.height.meters ?? 0.0)),
+                         .info(title: "Диаметр", value: String(rocket.diameter.meters ?? 0.0)),
+                         .info(title: "Масса", value: String(rocket.mass.kg)),
+                         .info(title: "Масса", value: String(rocket.payloadWeights[0].kg))
+                        ]),
+            Section(sectionType: .vertical, title: nil, items:
+                        [.info(title: "Первый запуск", value: rocket.firstFlight),
+                         .info(title: "Страна", value: "США"),
+                         .info(title: "Стоимость запуска", value: String(rocket.costPerLaunch))
+                         ]),
+            Section(sectionType: .vertical, title: nil, items:
+                        [.info(title: "Количество двигателей", value: String(rocket.firstStage.engines)),
+                         .info(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons)),
+                         .info(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSEC ?? 0))
+                         ]),
+            Section(sectionType: .vertical, title: nil, items:
+                        [.info(title: "Количество двигателей", value: String(rocket.secondStage.engines)),
+                         .info(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons)),
+                         .info(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSEC ?? 0))
+                         ])
+
+        ]
+    }
 }
 
 // MARK: - CollectionViewDelegate
@@ -267,7 +298,7 @@ struct MockData {
     }
 }
 
-    //New version
+    // New version
 
 enum ListItem1 {
     case image(URL)
@@ -285,35 +316,4 @@ struct Section {
     let sectionType: SectionType
     let title: String?
     let items: [ListItem1]
-}
-
-let sections = [Section]()
-
-func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
-    [
-        Section(sectionType: .image, title: nil, items: [.image(URL(fileURLWithPath: rocket.flickrImages[0])), .title(rocket.name)]),
-
-        Section(sectionType: .horizontal, title: nil, items:
-                    [.info(title: "Высота", value: String(rocket.height.meters!)),
-                     .info(title: "Диаметр", value: String(rocket.diameter.meters!)),
-                     .info(title: "Масса", value: String(rocket.mass.kg)),
-                     .info(title: "Масса", value: String(rocket.payloadWeights[0].kg))
-                    ]),
-        Section(sectionType: .vertical, title: nil, items:
-                    [.info(title: "Первый запуск", value: rocket.firstFlight),
-                     .info(title: "Страна", value: "США"),
-                     .info(title: "Стоимость запуска", value: String(rocket.costPerLaunch))
-                     ]),
-        Section(sectionType: .vertical, title: nil, items:
-                    [.info(title: "Количество двигателей", value: String(rocket.firstStage.engines)),
-                     .info(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons)),
-                     .info(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSEC!))
-                     ]),
-        Section(sectionType: .vertical, title: nil, items:
-                    [.info(title: "Количество двигателей", value: String(rocket.secondStage.engines)),
-                     .info(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons)),
-                     .info(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSEC!))
-                     ])
-
-    ]
 }

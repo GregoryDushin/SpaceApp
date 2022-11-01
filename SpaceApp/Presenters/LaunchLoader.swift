@@ -11,16 +11,19 @@ import Foundation
 
 class LaunchLoader {
     private let decoder = JSONDecoder()
-    
-    func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
+
+    init() {
         let dateFormatter = DateFormatter()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    }
+
+    func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
         let session = URLSession.shared
         guard let url = URL(string: Url.launchUrl.rawValue) else {return}
         let task = session.dataTask(with: url) { (data, _, error) in
-            self.decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let data = data {
+            guard let data = data else {return}
                     do {
                         let json = try self.decoder.decode([LaunchModelElement].self, from: data)
                         let launches = json.filter { $0.rocket == id }
@@ -28,7 +31,6 @@ class LaunchLoader {
                     } catch {
                         completion(.failure(error))
                     }
-                }
             }
             task.resume()
         }
