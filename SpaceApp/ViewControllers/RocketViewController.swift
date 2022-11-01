@@ -11,7 +11,7 @@ final class RocketViewController: UIViewController {
     @IBOutlet var contentView: UIView!
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
