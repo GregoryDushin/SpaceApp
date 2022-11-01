@@ -100,7 +100,6 @@ final class DataViewController: UIViewController {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 
-
     // MARK: - Data transfer to the launch VC
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -266,4 +265,55 @@ struct MockData {
     var pageData: [ListSection] {
         [one, two, three, four, five, six, seven]
     }
+}
+
+    //New version
+
+enum ListItem1 {
+    case image(URL)
+    case title(String)
+    case info(title: String, value: String)
+}
+
+enum SectionType {
+    case image
+    case horizontal
+    case vertical
+}
+
+struct Section {
+    let sectionType: SectionType
+    let title: String?
+    let items: [ListItem1]
+}
+
+let sections = [Section]()
+
+func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
+    [
+        Section(sectionType: .image, title: nil, items: [.image(URL(fileURLWithPath: rocket.flickrImages[0])), .title(rocket.name)]),
+
+        Section(sectionType: .horizontal, title: nil, items:
+                    [.info(title: "Высота", value: String(rocket.height.meters!)),
+                     .info(title: "Диаметр", value: String(rocket.diameter.meters!)),
+                     .info(title: "Масса", value: String(rocket.mass.kg)),
+                     .info(title: "Масса", value: String(rocket.payloadWeights[0].kg))
+                    ]),
+        Section(sectionType: .vertical, title: nil, items:
+                    [.info(title: "Первый запуск", value: rocket.firstFlight),
+                     .info(title: "Страна", value: "США"),
+                     .info(title: "Стоимость запуска", value: String(rocket.costPerLaunch))
+                     ]),
+        Section(sectionType: .vertical, title: nil, items:
+                    [.info(title: "Количество двигателей", value: String(rocket.firstStage.engines)),
+                     .info(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons)),
+                     .info(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSEC!))
+                     ]),
+        Section(sectionType: .vertical, title: nil, items:
+                    [.info(title: "Количество двигателей", value: String(rocket.secondStage.engines)),
+                     .info(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons)),
+                     .info(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSEC!))
+                     ])
+
+    ]
 }
