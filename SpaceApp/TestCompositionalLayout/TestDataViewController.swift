@@ -50,8 +50,8 @@ final class DataViewController: UIViewController {
     
     private func applySnapshot() {
         snapshot = DataSourseSnapshot()
-        snapshot.appendSections([Section])
-        snapshot.appendItems([ListItem])
+     //   snapshot.appendSections([Section])
+      //  snapshot.appendItems([ListItem])
     }
     
     override func viewDidLoad() {
