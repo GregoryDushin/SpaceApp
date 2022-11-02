@@ -300,7 +300,7 @@ struct MockData {
 
     // New version
 
-enum ListItem1 {
+enum ListItem1 : Hashable {
     case image(URL)
     case title(String)
     case info(title: String, value: String)
