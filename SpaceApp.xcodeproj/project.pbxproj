@@ -32,6 +32,7 @@
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
 		F385E7A828FEA3340081166F /* TestDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* TestDataViewController.swift */; };
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
+		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F385E7A728FEA3340081166F /* TestDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataViewController.swift; sourceTree = "<group>"; };
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
+		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 				F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */,
 				F30E40D9290AB28B0046189B /* RocketNameCell.swift */,
 				F385E7A728FEA3340081166F /* TestDataViewController.swift */,
+				F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */,
 			);
 			path = TestCompositionalLayout;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				F30E40DE290AB28B0046189B /* RocketImageCell.swift in Sources */,
 				F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */,
 				F30E40DF290AB28B0046189B /* RocketLaunchButtonCell.swift in Sources */,
+				F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */,
 				F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */,
 				F30E40DC290AB28B0046189B /* RocketHeaderCell.swift in Sources */,
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
