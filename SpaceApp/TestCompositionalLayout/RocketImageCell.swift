@@ -6,17 +6,21 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 final class RocketImageCell: UICollectionViewCell {
     @IBOutlet var rocketImage: UIImageView!
     @IBOutlet var rocketNameLabel: UILabel!
     @IBOutlet var rocketView: UIView!
-    
-    func setup(url: URL, rocketName: String) {
-//        if let data = try? Data(contentsOf: url) {
-//            rocketImage.image = UIImage(data: data)
-//        }
-        rocketImage.image = UIImage(named: "rocket")
+
+    func setup(url: URL?, rocketName: String) {
+        if let imageUrl = url {
+            rocketImage.af.setImage(withURL: imageUrl)
+        } else {
+            rocketImage.image = UIImage(named: "rocket")
+        }
+
         rocketNameLabel.text = rocketName
     }
 }
