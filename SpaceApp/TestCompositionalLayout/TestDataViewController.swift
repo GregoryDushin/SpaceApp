@@ -8,7 +8,7 @@
 import UIKit
 
 final class DataViewController: UIViewController {
-    
+
     @IBOutlet var collectionView: UICollectionView!
     
     var displayText: String?
@@ -16,20 +16,20 @@ final class DataViewController: UIViewController {
     var id = ""
     var dataArray: [RocketModelElement] = []
     var sections = [Section]()
-    
+
     typealias DataSourse = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourseSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
-    
+
     private var dataSourse: DataSourse!
     private var snapshot = DataSourseSnapshot()
-    
+
     private func configureCollectionViewDataSource() {
         dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
             self.sections[indexPath.section].items[indexPath.row]
             switch listItem {
             case let .image(url, rocketName):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketImageCell", for: indexPath) as! RocketImageCell
-                cell.setup(url: "url", rocketName: rocketName)
+                cell.setup(url: url, rocketName: rocketName)
                 return cell
             case let .horizontalInfo(title, value):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketDescriptionCell
@@ -45,7 +45,7 @@ final class DataViewController: UIViewController {
             }
         })
     }
-    
+
     private func applySnapshot() {
         snapshot = DataSourseSnapshot()
         for section in sections {
@@ -58,8 +58,11 @@ final class DataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //collectionView.collectionViewLayout = createLayout()
-        collectionView.reloadData()
+
         sections =  mapRocketToSections(rocket: dataArray[index])
+        configureCollectionViewDataSource()
+        applySnapshot()
+        collectionView.reloadData()
     }
     // MARK: - Creating sections using CompositionalLayout
     

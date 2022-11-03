@@ -12,7 +12,10 @@ final class RocketImageCell: UICollectionViewCell {
     @IBOutlet var rocketNameLabel: UILabel!
     @IBOutlet var rocketView: UIView!
     
-    func setup(url: String, rocketName: String ) {
+    func setup(url: URL, rocketName: String) {
+//        if let data = try? Data(contentsOf: url) {
+//            rocketImage.image = UIImage(data: data)
+//        }
         rocketImage.image = UIImage(named: "rocket")
         rocketNameLabel.text = rocketName
     }
