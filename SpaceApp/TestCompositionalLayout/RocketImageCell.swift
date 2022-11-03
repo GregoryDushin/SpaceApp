@@ -9,8 +9,11 @@ import UIKit
 
 final class RocketImageCell: UICollectionViewCell {
     @IBOutlet var rocketImage: UIImageView!
-
-    func setup(title: String) {
+    @IBOutlet var rocketNameLabel: UILabel!
+    @IBOutlet var rocketView: UIView!
+    
+    func setup(url: String, rocketName: String ) {
         rocketImage.image = UIImage(named: "rocket")
+        rocketNameLabel.text = rocketName
     }
 }

@@ -8,8 +8,7 @@
 import Foundation
 
 enum ListItem: Hashable {
-    case image(URL)
-    case title(String)
+    case image(url: URL, rocketName: String)
     case verticalInfo(title: String, value: String)
     case horizontalInfo(title: String, value: String)
     case button
@@ -19,6 +18,7 @@ enum SectionType {
     case image
     case horizontal
     case vertical
+    case button
 }
 
 struct Section: Hashable {

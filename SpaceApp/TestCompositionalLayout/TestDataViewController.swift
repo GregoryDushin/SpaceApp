@@ -10,7 +10,7 @@ import UIKit
 final class DataViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
-   
+    
     var displayText: String?
     var index: Int = 0
     var id = ""
@@ -25,21 +25,19 @@ final class DataViewController: UIViewController {
     
     private func configureCollectionViewDataSource() {
         dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
+            self.sections[indexPath.section].items[indexPath.row]
             switch listItem {
-            case .image:
+            case let .image(url, rocketName):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketImageCell", for: indexPath) as! RocketImageCell
+                cell.setup(url: "url", rocketName: rocketName)
                 return cell
-            case .title:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketNameCell", for: indexPath) as! RocketNameCell
-                
-                return cell
-            case .horizontalInfo:
+            case let .horizontalInfo(title, value):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketDescriptionCell
-                
+                cell.setup(title1: title, title2: value)
                 return cell
-            case .verticalInfo:
+            case let .verticalInfo(title, value):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketAnotherInfoCell
-                cell.setup(title1: "hz", title2: "hz")
+                cell.setup(title1: title, title2: value)
                 return cell
             case .button:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketLaunchButton", for: indexPath) as! RocketLaunchButton
@@ -50,10 +48,13 @@ final class DataViewController: UIViewController {
     
     private func applySnapshot() {
         snapshot = DataSourseSnapshot()
-     //   snapshot.appendSections([Section])
-      //  snapshot.appendItems([ListItem])
+        for section in sections {
+            snapshot.appendSections([section])
+            snapshot.appendItems(section.items, toSection: section)
+        }
+        dataSourse.apply(snapshot)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //collectionView.collectionViewLayout = createLayout()
@@ -133,7 +134,7 @@ final class DataViewController: UIViewController {
     
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
         [
-            Section(sectionType: .image, title: nil, items: [.image(URL(fileURLWithPath: rocket.flickrImages[0])), .title(rocket.name)]),
+            Section(sectionType: .image, title: nil, items: [.image(url: URL(fileURLWithPath: rocket.flickrImages[0]), rocketName: rocket.name)]),
             
             Section(sectionType: .horizontal, title: nil, items:
                         [.horizontalInfo(title: "Высота", value: String(rocket.height.meters ?? 0.0)),
@@ -155,7 +156,9 @@ final class DataViewController: UIViewController {
                         [.verticalInfo(title: "Количество двигателей", value: String(rocket.secondStage.engines)),
                          .verticalInfo(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons)),
                          .verticalInfo(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSEC ?? 0))
-                        ])
+                         
+                        ]),
+            Section(sectionType: .button, title: nil, items: [.button])
             
         ]
     }
