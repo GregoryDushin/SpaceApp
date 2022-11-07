@@ -9,4 +9,9 @@ import UIKit
 
 final class RocketLaunchButton: UICollectionViewCell {
     @IBOutlet var launchButton: UIButton!
+
+    func setup() {
+        launchButton.layer.masksToBounds = true
+        launchButton.layer.cornerRadius = 20
+    }
 }

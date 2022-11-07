@@ -14,5 +14,7 @@ final class RocketDescriptionCell: UICollectionViewCell {
     func setup(title1: String, title2: String) {
         mainParametrLable.text = title1
         valueParametrLable.text = title2
+        layer.masksToBounds = true
+        layer.cornerRadius = 60
     }
 }

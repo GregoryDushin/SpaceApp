@@ -22,5 +22,8 @@ final class RocketImageCell: UICollectionViewCell {
         }
 
         rocketNameLabel.text = rocketName
+        rocketView.layer.masksToBounds = true
+        rocketView.layer.cornerRadius = 20
     }
+
 }

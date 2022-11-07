@@ -8,21 +8,21 @@
 import UIKit
 
 final class DataViewController: UIViewController {
-    
+
     @IBOutlet var collectionView: UICollectionView!
-    
+
     var displayText: String?
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
     var sections = [Section]()
-    
+
     typealias DataSourse = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourseSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
-    
+
     private var dataSourse: DataSourse!
     private var snapshot = DataSourseSnapshot()
-    
+
     private func configureCollectionViewDataSource() {
         dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
             self.sections[indexPath.section].items[indexPath.row]
@@ -41,6 +41,7 @@ final class DataViewController: UIViewController {
                 return cell
             case .button:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketLaunchButton", for: indexPath) as! RocketLaunchButton
+                cell.setup()
                 return cell
             }
         })
@@ -74,45 +75,29 @@ final class DataViewController: UIViewController {
             switch section {
             case .image:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                // group
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(425)), subitems: [item])
-                // section
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6)), subitems: [item])
                 return NSCollectionLayoutSection(group: group)
-                
             case .horizontal:
-                
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                // group
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(150), heightDimension: .absolute(150)), subitems: [item])
-                // section
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 5
                 section.contentInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
                 return section
-                
             case .vertical:
-                
-                // item
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60)))
-                // group
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(130)), subitems: [item])
-                // section
                 return NSCollectionLayoutSection(group: group)
-                
             case .button:
-                
-                // item
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                // group
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(90)), subitems: [item])
-                // section
                 return NSCollectionLayoutSection(group: group)
-        
+
             }
         }
     }
-    
+
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
         [
             Section(sectionType: .image, title: nil, items: [.image(url: URL(string: rocket.flickrImages[0])!, rocketName: rocket.name)]),
@@ -120,7 +105,7 @@ final class DataViewController: UIViewController {
                         [.horizontalInfo(title: "Высота", value: String(rocket.height.meters ?? 0.0)),
                          .horizontalInfo(title: "Диаметр", value: String(rocket.diameter.meters ?? 0.0)),
                          .horizontalInfo(title: "Масса", value: String(rocket.mass.kg)),
-                         .horizontalInfo(title: "Полезная нагрузка", value: String(rocket.payloadWeights[0].kg))
+                         .horizontalInfo(title: "Нагрузка", value: String(rocket.payloadWeights[0].kg))
                         ]),
             Section(sectionType: .vertical, title: nil, items:
                         [.verticalInfo(title: "Первый запуск", value: rocket.firstFlight),

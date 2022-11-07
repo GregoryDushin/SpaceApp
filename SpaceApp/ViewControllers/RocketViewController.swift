@@ -48,7 +48,7 @@ final class RocketViewController: UIViewController {
         pageViewController.dataSource = self
         addChild(pageViewController)
         pageViewController.didMove(toParent: self)
-        pageViewController.view.backgroundColor = UIColor.lightGray
+        pageViewController.view.backgroundColor = UIColor.black
         contentView.addSubview(pageViewController.view)
 
         guard let startingViewController = detailViewControllerAt(index: currentViewControllerIndex) else { return }

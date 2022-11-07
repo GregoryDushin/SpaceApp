@@ -11,7 +11,6 @@ import Foundation
 
 class RocketLoader {
     private let decoder = JSONDecoder()
-    
     init() {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
