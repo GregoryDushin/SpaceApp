@@ -16,8 +16,8 @@ final class RocketImageCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super .awakeFromNib()
-        layer.masksToBounds = true
-        layer.cornerRadius = 20
+        rocketView.layer.masksToBounds = true
+        rocketView.layer.cornerRadius = 20
     }
 
     func setup(url: URL?, rocketName: String) {

@@ -12,8 +12,8 @@ final class RocketLaunchButton: UICollectionViewCell {
 
     override func awakeFromNib() {
         super .awakeFromNib()
-        layer.masksToBounds = true
-        layer.cornerRadius = 20
+        launchButton.layer.masksToBounds = true
+        launchButton.layer.cornerRadius = 20
     }
 
 }

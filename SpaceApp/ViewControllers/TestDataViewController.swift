@@ -13,11 +13,13 @@ final class DataViewController: UIViewController {
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
-    var sections = [Section]()
     typealias DataSourse = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourseSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
+    private var sections = [Section]()
     private var dataSourse: DataSourse!
     private var snapshot = DataSourseSnapshot()
+
+// MARK: - Configure CollectionView DataSource
 
     private func configureCollectionViewDataSource() {
         dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
@@ -42,6 +44,8 @@ final class DataViewController: UIViewController {
         })
     }
 
+// MARK: - Configure Snapshot
+
     private func applySnapshot() {
         snapshot = DataSourseSnapshot()
         for section in sections {
@@ -59,7 +63,7 @@ final class DataViewController: UIViewController {
         applySnapshot()
         collectionView.reloadData()
     }
-    // MARK: - Creating sections using CompositionalLayout
+// MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
@@ -84,7 +88,7 @@ final class DataViewController: UIViewController {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60)))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(130)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-//hz                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                //hz                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
             case .button:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -95,18 +99,22 @@ final class DataViewController: UIViewController {
         }
     }
 
+// MARK: - Creating Item Headers
+
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
+
+// MARK: - Implementing data from URL into items
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
         [
             Section(sectionType: .image, title: nil, items: [.image(url: URL(string: rocket.flickrImages[0])!, rocketName: rocket.name)]),
             Section(sectionType: .horizontal, title: nil, items:
-                        [.horizontalInfo(title: "Высота", value: String(rocket.height.meters ?? 0.0)),
-                         .horizontalInfo(title: "Диаметр", value: String(rocket.diameter.meters ?? 0.0)),
-                         .horizontalInfo(title: "Масса", value: String(rocket.mass.kg)),
-                         .horizontalInfo(title: "Нагрузка", value: String(rocket.payloadWeights[0].kg))
+                        [.horizontalInfo(title: "Высота, ft", value: String(rocket.height.meters ?? 0.0)),
+                         .horizontalInfo(title: "Диаметр, ft", value: String(rocket.diameter.meters ?? 0.0)),
+                         .horizontalInfo(title: "Масса, lb", value: String(rocket.mass.kg)),
+                         .horizontalInfo(title: "Нагрузка, lb", value: String(rocket.payloadWeights[0].kg))
                         ]),
             Section(sectionType: .vertical, title: nil, items:
                         [.verticalInfo(title: "Первый запуск", value: rocket.firstFlight, id: UUID()),
@@ -115,19 +123,18 @@ final class DataViewController: UIViewController {
                         ]),
             Section(sectionType: .vertical, title: "Первая ступень", items:
                         [.verticalInfo(title: "Количество двигателей", value: String(rocket.firstStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Количество топлива", value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн", id: UUID()),
                          .verticalInfo(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек", id: UUID())
                         ]),
             Section(sectionType: .vertical, title: "Вторая ступень", items:
                         [.verticalInfo(title: "Количество двигателей", value: String(rocket.secondStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Количество топлива", value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн", id: UUID()),
                          .verticalInfo(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек", id: UUID())
                         ]),
             Section(sectionType: .button, title: nil, items: [.button])
         ]
     }
-
-    // MARK: - Data transfer to the launch VC
+// MARK: - Data transfer to the launch VC
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showLaunch" else { return }
@@ -136,6 +143,7 @@ final class DataViewController: UIViewController {
         destination.title = displayText
     }
 }
+// MARK: - UICollectionViewDelegate
 extension DataViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
