@@ -111,17 +111,17 @@ final class DataViewController: UIViewController {
             Section(sectionType: .vertical, title: nil, items:
                         [.verticalInfo(title: "Первый запуск", value: rocket.firstFlight, id: UUID()),
                          .verticalInfo(title: "Страна", value: "США", id: UUID()),
-                         .verticalInfo(title: "Стоимость запуска", value: String(rocket.costPerLaunch), id: UUID())
+                         .verticalInfo(title: "Стоимость запуска", value: "$" + String((rocket.costPerLaunch)/1000000) + " млн", id: UUID())
                         ]),
             Section(sectionType: .vertical, title: "Первая ступень", items:
                         [.verticalInfo(title: "Количество двигателей", value: String(rocket.firstStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons), id: UUID()),
-                         .verticalInfo(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSec ?? 0), id: UUID())
+                         .verticalInfo(title: "Количество топлива", value: String(rocket.firstStage.fuelAmountTons) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек", id: UUID())
                         ]),
             Section(sectionType: .vertical, title: "Вторая ступень", items:
                         [.verticalInfo(title: "Количество двигателей", value: String(rocket.secondStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons), id: UUID()),
-                         .verticalInfo(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSec ?? 0), id: UUID())
+                         .verticalInfo(title: "Количество топлива", value: String(rocket.secondStage.fuelAmountTons) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек", id: UUID())
                         ]),
             Section(sectionType: .button, title: nil, items: [.button])
         ]
