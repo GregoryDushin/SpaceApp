@@ -10,9 +10,15 @@ import Alamofire
 import AlamofireImage
 
 final class RocketImageCell: UICollectionViewCell {
-    @IBOutlet var rocketImage: UIImageView!
-    @IBOutlet var rocketNameLabel: UILabel!
-    @IBOutlet var rocketView: UIView!
+    @IBOutlet private var rocketImage: UIImageView!
+    @IBOutlet private var rocketNameLabel: UILabel!
+    @IBOutlet private var rocketView: UIView!
+
+    override func awakeFromNib() {
+        super .awakeFromNib()
+        layer.masksToBounds = true
+        layer.cornerRadius = 20
+    }
 
     func setup(url: URL?, rocketName: String) {
         if let imageUrl = url {
@@ -22,8 +28,6 @@ final class RocketImageCell: UICollectionViewCell {
         }
 
         rocketNameLabel.text = rocketName
-        rocketView.layer.masksToBounds = true
-        rocketView.layer.cornerRadius = 20
     }
 
 }

@@ -8,14 +8,15 @@
 import UIKit
 
 final class RocketViewController: UIViewController {
-    @IBOutlet var contentView: UIView!
+    @IBOutlet private var contentView: UIView!
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
-    
+    private let rocketLoader = RocketLoader()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        RocketLoader().rocketDataLoad { rockets in
+        rocketLoader.rocketDataLoad { rockets in
             DispatchQueue.main.async {
                 switch rockets {
                 case .success(let rockets):
@@ -38,7 +39,7 @@ final class RocketViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    func configurePageViewController() {
+   private func configurePageViewController() {
         guard let pageViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: CustomPageViewController.self))
                 as? CustomPageViewController else {
@@ -55,7 +56,7 @@ final class RocketViewController: UIViewController {
         pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true)
     }
 
-    func detailViewControllerAt(index: Int) -> DataViewController? {
+   private func detailViewControllerAt(index: Int) -> DataViewController? {
         if index >= rockets.count, rockets.count == 0 {return nil}
         guard let dataViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: DataViewController.self)) as? DataViewController else {return nil}
@@ -66,13 +67,9 @@ final class RocketViewController: UIViewController {
         return dataViewController
     }
 
-    func showAlert(_ error: String) {
+    private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindow.Level.alert + 1
-        alertWindow.makeKeyAndVisible()
-        alertWindow.rootViewController?.present(alert, animated: true)
+        self.present(alert, animated: true)
     }
 }
 

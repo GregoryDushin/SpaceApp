@@ -8,9 +8,7 @@
 import UIKit
 
 final class DataViewController: UIViewController {
-    
-    @IBOutlet var collectionView: UICollectionView!
-    
+    @IBOutlet private var collectionView: UICollectionView!
     var displayText: String?
     var index: Int = 0
     var id = ""
@@ -20,6 +18,7 @@ final class DataViewController: UIViewController {
     typealias DataSourseSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     private var dataSourse: DataSourse!
     private var snapshot = DataSourseSnapshot()
+
     private func configureCollectionViewDataSource() {
         dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
             self.sections[indexPath.section].items[indexPath.row]
@@ -29,16 +28,15 @@ final class DataViewController: UIViewController {
                 cell.setup(url: url, rocketName: rocketName)
                 return cell
             case let .horizontalInfo(title, value):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketDescriptionCell
-                cell.setup(title1: title, title2: value)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketHorizontalInfoCell
+                cell.setup(title: title, value: value)
                 return cell
             case let .verticalInfo(title, value, _):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketAnotherInfoCell
-                cell.setup(title1: title, title2: value)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketVerticalInfoCell
+                cell.setup(title: title, value: value)
                 return cell
             case .button:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketLaunchButton", for: indexPath) as! RocketLaunchButton
-                cell.setup()
                 return cell
             }
         })

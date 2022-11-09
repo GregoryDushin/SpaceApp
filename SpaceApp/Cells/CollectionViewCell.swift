@@ -8,19 +8,19 @@
 import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var rocketNameLable: UILabel!
-    @IBOutlet var dateOfLaunchLable: UILabel!
-    @IBOutlet var isSucsessImage: UIImageView!
-    
+    @IBOutlet private var rocketNameLabel: UILabel!
+    @IBOutlet private var dateOfLaunchLabel: UILabel!
+    @IBOutlet private var isSucsessImage: UIImageView!
+
     override func awakeFromNib() {
         super .awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = 12
     }
-    
+
     func configure(rocket: LaunchModelElement, dates: String) {
-        rocketNameLable.text = rocket.name
-        dateOfLaunchLable.text = dates
+        rocketNameLabel.text = rocket.name
+        dateOfLaunchLabel.text = dates
         if let launchingResult = rocket.success {
             isSucsessImage.image = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess).rawValue)
         } else {

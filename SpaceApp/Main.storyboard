@@ -84,7 +84,7 @@
                                             <outlet property="rocketView" destination="s1Z-zl-kK2" id="URK-la-KA2"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketDescriptionCell" reuseIdentifier="RocketDescriptionCell" id="cTo-35-eIg" customClass="RocketDescriptionCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketDescriptionCell" reuseIdentifier="RocketDescriptionCell" id="cTo-35-eIg" customClass="RocketHorizontalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="286" y="50" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OoK-Uo-dNa">
@@ -113,8 +113,8 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.1058823466" green="0.1058823466" blue="0.1058823466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
-                                            <outlet property="mainParametrLable" destination="5t3-XN-Wth" id="axt-52-rgA"/>
-                                            <outlet property="valueParametrLable" destination="kfu-lr-pbK" id="xnL-um-KdE"/>
+                                            <outlet property="mainParametrLabel" destination="5t3-XN-Wth" id="axt-52-rgA"/>
+                                            <outlet property="valueParametrLabel" destination="kfu-lr-pbK" id="xnL-um-KdE"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketLaunchButton" reuseIdentifier="RocketLaunchButton" id="i3r-fd-1nZ" customClass="RocketLaunchButton" customModule="SpaceApp" customModuleProvider="target">
@@ -148,7 +148,7 @@
                                             <outlet property="launchButton" destination="5hd-BA-fd2" id="GnS-X2-W8s"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketAnotherInfoCell" reuseIdentifier="RocketAnotherInfoCell" id="Vjl-CR-p2O" customClass="RocketAnotherInfoCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketAnotherInfoCell" reuseIdentifier="RocketAnotherInfoCell" id="Vjl-CR-p2O" customClass="RocketVerticalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="274" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lHe-fg-qSr">
@@ -177,8 +177,8 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="64"/>
                                         <connections>
-                                            <outlet property="nameSettingsLable" destination="35n-f0-uh6" id="R4C-t9-9dt"/>
-                                            <outlet property="valueSettingsLable" destination="0mp-FV-JbE" id="maq-r0-jR1"/>
+                                            <outlet property="nameSettingsLabel" destination="35n-f0-uh6" id="R4C-t9-9dt"/>
+                                            <outlet property="valueSettingsLabel" destination="0mp-FV-JbE" id="maq-r0-jR1"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -195,7 +195,7 @@
                                         </label>
                                     </subviews>
                                     <connections>
-                                        <outlet property="hui" destination="iwJ-Jb-zSG" id="I5K-p7-UMF"/>
+                                        <outlet property="headerLabel" destination="iwJ-Jb-zSG" id="I5K-p7-UMF"/>
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
@@ -317,9 +317,9 @@
                                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="414" height="117"/>
                                         <connections>
-                                            <outlet property="dateOfLaunchLable" destination="5iW-X9-Zov" id="qYh-uo-IQJ"/>
+                                            <outlet property="dateOfLaunchLabel" destination="5iW-X9-Zov" id="qYh-uo-IQJ"/>
                                             <outlet property="isSucsessImage" destination="Mca-aE-tcZ" id="x30-64-mrt"/>
-                                            <outlet property="rocketNameLable" destination="qx0-8o-eDa" id="bE9-N9-Wfg"/>
+                                            <outlet property="rocketNameLabel" destination="qx0-8o-eDa" id="bE9-N9-Wfg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -488,7 +488,7 @@
                                             <outlet property="rocketImage" destination="Nl8-9O-I7r" id="4c4-wA-35h"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketDescriptionCell" id="b6F-fJ-qru" customClass="RocketDescriptionCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketDescriptionCell" id="b6F-fJ-qru" customClass="RocketHorizontalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="286" y="50" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GkH-Js-5sp">
@@ -517,8 +517,8 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.96470469240000001" green="0.86573368309999998" blue="0.8762157559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="mainParametrLable" destination="Eby-ho-ppd" id="jAQ-aF-ovA"/>
-                                            <outlet property="valueParametrLable" destination="wwD-lQ-b5i" id="xaX-cj-xpC"/>
+                                            <outlet property="mainParametrLabel" destination="Eby-ho-ppd" id="jAQ-aF-ovA"/>
+                                            <outlet property="valueParametrLabel" destination="wwD-lQ-b5i" id="xaX-cj-xpC"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketLaunchButton" id="4GI-er-f83" customClass="RocketLaunchButton" customModule="SpaceApp" customModuleProvider="target">
@@ -549,7 +549,7 @@
                                             <outlet property="launchButton" destination="dqz-Rl-XvW" id="gNv-n3-U8C"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketAnotherInfoCell" id="Raf-dd-pTS" customClass="RocketAnotherInfoCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketAnotherInfoCell" id="Raf-dd-pTS" customClass="RocketVerticalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="274" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NMP-ch-SFq">
@@ -578,8 +578,8 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="64"/>
                                         <connections>
-                                            <outlet property="nameSettingsLable" destination="eYt-Jl-yrr" id="TsW-cZ-8yE"/>
-                                            <outlet property="valueSettingsLable" destination="PDX-n3-bT1" id="57y-tA-OLV"/>
+                                            <outlet property="nameSettingsLabel" destination="eYt-Jl-yrr" id="TsW-cZ-8yE"/>
+                                            <outlet property="valueSettingsLabel" destination="PDX-n3-bT1" id="57y-tA-OLV"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketNameCell" id="JL4-Eg-t1W" customClass="RocketNameCell" customModule="SpaceApp" customModuleProvider="target">

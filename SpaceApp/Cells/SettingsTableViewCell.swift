@@ -8,8 +8,8 @@
 import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
-    @IBOutlet var settingsLabel: UILabel!
-    @IBOutlet var settingsSegmentedControl: UISegmentedControl!
+    @IBOutlet private var settingsLabel: UILabel!
+    @IBOutlet private var settingsSegmentedControl: UISegmentedControl!
 
     func cellConfigure(settings: Setting) {
         settingsLabel.text = settings.title

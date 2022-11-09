@@ -7,11 +7,10 @@
 
 import UIKit
 
-class HeaderCell: UICollectionReusableView {
-        
-    @IBOutlet var hui: UILabel!
- 
+final class HeaderCell: UICollectionReusableView {
+    @IBOutlet private var headerLabel: UILabel!
+
     func setup(title: String) {
-        hui.text = title
+        headerLabel.text = title
     }
 }

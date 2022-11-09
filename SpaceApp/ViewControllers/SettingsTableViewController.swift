@@ -9,7 +9,7 @@ import UIKit
 
 final class SettingsTableViewController: UIViewController {
 
-    @IBOutlet var settingsTableView: UITableView!
+    @IBOutlet private var settingsTableView: UITableView!
     let settingsArray = [
         Setting(title: "Высота", key: PersistanceKeys.heightKey.rawValue, values: ["m", "ft"]),
         Setting(title: "Диаметр", key: PersistanceKeys.diameterKey.rawValue, values: ["m", "ft"]),
@@ -23,6 +23,8 @@ final class SettingsTableViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension SettingsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
