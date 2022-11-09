@@ -11,11 +11,9 @@ final class LaunchViewController: UIViewController {
     @IBOutlet var launchCollectionView: UICollectionView!
     private var launches: [LaunchModelElement] = []
     var newId = ""
-    var newTitle = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = newTitle
         launchLoader(id: newId)
     }
 
@@ -34,13 +32,9 @@ final class LaunchViewController: UIViewController {
         }
     }
 
-    func showAlert(_ error: String) {
+    private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindow.Level.alert + 1
-        alertWindow.makeKeyAndVisible()
-        alertWindow.rootViewController?.present(alert, animated: true)
+        self.present(alert, animated: true)
     }
 }
 

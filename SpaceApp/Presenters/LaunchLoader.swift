@@ -11,7 +11,6 @@ import Foundation
 
 class LaunchLoader {
     private let decoder = JSONDecoder()
-
     init() {
         let dateFormatter = DateFormatter()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)

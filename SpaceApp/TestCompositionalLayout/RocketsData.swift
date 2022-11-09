@@ -9,7 +9,7 @@ import Foundation
 
 enum ListItem: Hashable {
     case image(url: URL, rocketName: String)
-    case verticalInfo(title: String, value: String)
+    case verticalInfo(title: String, value: String, id: UUID)
     case horizontalInfo(title: String, value: String)
     case button
 }
