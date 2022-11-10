@@ -5,4 +5,4 @@ struct LaunchModelElement: Decodable {
     let name: String
     let dateUtc: Date
     let rocket: String
-    }
+}

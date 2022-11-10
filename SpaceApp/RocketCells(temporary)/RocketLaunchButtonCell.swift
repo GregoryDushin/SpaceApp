@@ -8,10 +8,10 @@
 import UIKit
 
 final class RocketLaunchButton: UICollectionViewCell {
-    @IBOutlet private var launchButton: UIButton!
+ @IBOutlet private var launchButton: UIButton!
 
     override func awakeFromNib() {
-        super .awakeFromNib()
+     super .awakeFromNib()
         launchButton.layer.masksToBounds = true
         launchButton.layer.cornerRadius = 20
     }

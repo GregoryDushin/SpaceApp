@@ -17,6 +17,7 @@ final class CollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
         layer.cornerRadius = 12
     }
+    
 
     func configure(rocket: LaunchModelElement, dates: String) {
         rocketNameLabel.text = rocket.name

@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: JSON ROCKET PARSING
 
-class RocketLoader {
+final class RocketLoader {
     private let decoder = JSONDecoder()
+    private let session = URLSession.shared
     init() {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 
     func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
-        let session = URLSession.shared
         guard let url = URL(string: Url.rocketUrl) else {return}
         let task = session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {return}

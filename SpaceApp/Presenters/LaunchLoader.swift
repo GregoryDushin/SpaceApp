@@ -9,8 +9,9 @@ import Foundation
 
 // MARK: JSON LAUNCH PARSING
 
-class LaunchLoader {
+final class LaunchLoader {
     private let decoder = JSONDecoder()
+    private let session = URLSession.shared
     init() {
         let dateFormatter = DateFormatter()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
@@ -19,7 +20,6 @@ class LaunchLoader {
     }
 
     func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
-        let session = URLSession.shared
         guard let url = URL(string: Url.launchUrl) else {return}
         let task = session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {return}

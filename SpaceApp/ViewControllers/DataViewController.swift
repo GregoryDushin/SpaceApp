@@ -59,7 +59,7 @@ final class DataViewController: UIViewController {
     func configureHeader() {
         dataSource?.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-                header.setup(title: self.sections[indexPath.section].title ?? "hueta")
+                header.setup(title: self.sections[indexPath.section].title ?? "")
                 return header
             }
         }
@@ -68,8 +68,8 @@ final class DataViewController: UIViewController {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
         sections =  mapRocketToSections(rocket: dataArray[index])
-        configureHeader()
         configureCollectionViewDataSource()
+        configureHeader()
         applySnapshot()
         collectionView.reloadData()
 
@@ -100,12 +100,9 @@ final class DataViewController: UIViewController {
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(130)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 // HEADER TROUBLE
-                let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                              heightDimension: .estimated(44))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerFooterSize,
-                    elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-//                section.boundarySupplementaryItems = [sectionHeader]
+                let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                section.boundarySupplementaryItems = [sectionHeader]
                 return section
             case .button:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
