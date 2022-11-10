@@ -11,10 +11,10 @@ final class SettingsTableViewController: UIViewController {
 
     @IBOutlet private var settingsTableView: UITableView!
     let settingsArray = [
-        Setting(title: "Высота", key: PersistanceKeys.heightKey.rawValue, values: ["m", "ft"]),
-        Setting(title: "Диаметр", key: PersistanceKeys.diameterKey.rawValue, values: ["m", "ft"]),
-        Setting(title: "Масса", key: PersistanceKeys.massKey.rawValue, values: ["kg", "lb"]),
-        Setting(title: "Полезная нагрузка", key: PersistanceKeys.capacityKey.rawValue, values: ["kg", "lb"])
+        Setting(title: "Высота", key: PersistanceKeys.heightKey, values: ["m", "ft"]),
+        Setting(title: "Диаметр", key: PersistanceKeys.diameterKey, values: ["m", "ft"]),
+        Setting(title: "Масса", key: PersistanceKeys.massKey, values: ["kg", "lb"]),
+        Setting(title: "Полезная нагрузка", key: PersistanceKeys.capacityKey, values: ["kg", "lb"])
     ]
     private var selectedIndexPath: Int = 0
     private let defaults = UserDefaults.standard

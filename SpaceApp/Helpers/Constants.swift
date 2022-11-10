@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum Url: String {
-    case rocketUrl = "https://api.spacexdata.com/v4/rockets"
-    case launchUrl = "https://api.spacexdata.com/v4/launches"
+enum Url {
+    static let rocketUrl = "https://api.spacexdata.com/v4/rockets"
+    static let launchUrl = "https://api.spacexdata.com/v4/launches"
 }
-enum PersistanceKeys: String {
-    case heightKey = "Persistance.heightKey"
-    case diameterKey = "Persistance.diameterKey"
-    case massKey = "Persistance.massKey"
-    case capacityKey = "Persistance.capaciryKey"
+enum PersistanceKeys {
+    static let heightKey = "Persistance.heightKey"
+    static let diameterKey = "Persistance.diameterKey"
+    static let massKey = "Persistance.massKey"
+    static let capacityKey = "Persistance.capaciryKey"
 }
-enum LaunchImages: String {
-    case success = "true"
-    case unsucsess = "false"
+enum LaunchImages {
+    static let success = "true"
+    static let unsucsess = "false"
 }

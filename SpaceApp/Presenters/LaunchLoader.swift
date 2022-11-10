@@ -20,7 +20,7 @@ class LaunchLoader {
 
     func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
         let session = URLSession.shared
-        guard let url = URL(string: Url.launchUrl.rawValue) else {return}
+        guard let url = URL(string: Url.launchUrl) else {return}
         let task = session.dataTask(with: url) { (data, _, error) in
             guard let data = data else {return}
                     do {

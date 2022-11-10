@@ -22,7 +22,7 @@ final class CollectionViewCell: UICollectionViewCell {
         rocketNameLabel.text = rocket.name
         dateOfLaunchLabel.text = dates
         if let launchingResult = rocket.success {
-            isSucsessImage.image = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess).rawValue)
+            isSucsessImage.image = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
         } else {
             return
         }
