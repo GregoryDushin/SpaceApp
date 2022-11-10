@@ -94,7 +94,10 @@ extension RocketViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let dataViewController = viewController as? DataViewController
-        guard var currentIndex = dataViewController?.index, currentIndex == rockets.count - 1 else {
+        guard var currentIndex = dataViewController?.index else {
+            return nil
+        }
+        if currentIndex == rockets.count - 1 {
             return nil
         }
         currentIndex += 1

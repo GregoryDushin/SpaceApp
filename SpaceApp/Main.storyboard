@@ -207,6 +207,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vtf-9G-xQF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KXy-5S-5N7" firstAttribute="top" secondItem="M7Y-tZ-ng0" secondAttribute="top" id="Dha-d3-am3"/>
@@ -244,6 +245,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="PfE-nN-mWf"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="jus-gy-IKI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4f6-Q2-TEI"/>
