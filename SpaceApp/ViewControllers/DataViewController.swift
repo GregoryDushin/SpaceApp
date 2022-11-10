@@ -13,16 +13,16 @@ final class DataViewController: UIViewController {
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
-    typealias DataSourse = UICollectionViewDiffableDataSource<Section, ListItem>
-    typealias DataSourseSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     private var sections = [Section]()
-    private var dataSourse: DataSourse!
-    private var snapshot = DataSourseSnapshot()
+    var dataSource: DataSource!
+    private var snapshot = DataSourceSnapshot()
 
-// MARK: - Configure CollectionView DataSource
+    // MARK: - Configure CollectionView DataSource
 
     private func configureCollectionViewDataSource() {
-        dataSourse = DataSourse(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
+        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
             self.sections[indexPath.section].items[indexPath.row]
             switch listItem {
             case let .image(url, rocketName):
@@ -44,30 +44,41 @@ final class DataViewController: UIViewController {
         })
     }
 
-// MARK: - Configure Snapshot
+    // MARK: - Configure Snapshot
 
     private func applySnapshot() {
-        snapshot = DataSourseSnapshot()
+        snapshot = DataSourceSnapshot()
         for section in sections {
             snapshot.appendSections([section])
             snapshot.appendItems(section.items, toSection: section)
         }
-        dataSourse.apply(snapshot)
+        dataSource.apply(snapshot)
     }
+    // MARK: - Configure Header
+
+    func configureHeader() {
+        dataSource?.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+                header.setup(title: self.sections[indexPath.section].title ?? "hueta")
+                return header
+            }
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
         sections =  mapRocketToSections(rocket: dataArray[index])
+        configureHeader()
         configureCollectionViewDataSource()
         applySnapshot()
         collectionView.reloadData()
+
     }
-// MARK: - Creating sections using CompositionalLayout
+    // MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
-            let section = self!.dataSourse.snapshot().sectionIdentifiers[sectionIndex].sectionType
+            let section = self!.dataSource.snapshot().sectionIdentifiers[sectionIndex].sectionType
             guard self != nil else {
                 return nil
             }
@@ -88,7 +99,13 @@ final class DataViewController: UIViewController {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60)))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(130)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-                //hz                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                // HEADER TROUBLE
+                let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                              heightDimension: .estimated(44))
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerFooterSize,
+                    elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+//                section.boundarySupplementaryItems = [sectionHeader]
                 return section
             case .button:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -99,13 +116,7 @@ final class DataViewController: UIViewController {
         }
     }
 
-// MARK: - Creating Item Headers
-
-    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-    }
-
-// MARK: - Implementing data from URL into items
+    // MARK: - Implementing data from URL into items
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
         [
@@ -134,8 +145,8 @@ final class DataViewController: UIViewController {
             Section(sectionType: .button, title: nil, items: [.button])
         ]
     }
-// MARK: - Data transfer to the launch VC
-
+    // MARK: - Data transfer to the launch VC
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showLaunch" else { return }
         guard let destination = segue.destination as? LaunchViewController else { return }
@@ -144,15 +155,16 @@ final class DataViewController: UIViewController {
     }
 }
 // MARK: - UICollectionViewDelegate
-extension DataViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-            header.setup(title: sections[indexPath.section].title ?? "hueta")
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
-}
+
+//extension DataViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+//            header.setup(title: sections[indexPath.section].title ?? "hueta")
+//            return header
+//        default:
+//            return UICollectionReusableView()
+//        }
+//    }
+//}

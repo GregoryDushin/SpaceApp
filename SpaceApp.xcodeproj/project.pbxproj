@@ -29,7 +29,7 @@
 		F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77228F5CCF000F1ADB9 /* Constants.swift */; };
 		F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA77428F5CCF800F1ADB9 /* Main.storyboard */; };
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
-		F385E7A828FEA3340081166F /* TestDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* TestDataViewController.swift */; };
+		F385E7A828FEA3340081166F /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* DataViewController.swift */; };
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
 		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
@@ -61,7 +61,7 @@
 		F37AA77228F5CCF000F1ADB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37AA77428F5CCF800F1ADB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		F385E7A728FEA3340081166F /* TestDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataViewController.swift; sourceTree = "<group>"; };
+		F385E7A728FEA3340081166F /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		F341BDCC28F69A6200D32DEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F385E7A728FEA3340081166F /* TestDataViewController.swift */,
+				F385E7A728FEA3340081166F /* DataViewController.swift */,
 				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
 				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
@@ -354,7 +354,7 @@
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
 				F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */,
 				F30E40DB290AB28B0046189B /* RocketVerticalInfoCell.swift in Sources */,
-				F385E7A828FEA3340081166F /* TestDataViewController.swift in Sources */,
+				F385E7A828FEA3340081166F /* DataViewController.swift in Sources */,
 				F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */,
 				F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */,
 				F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */,
