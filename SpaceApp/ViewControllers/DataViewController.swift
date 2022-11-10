@@ -146,7 +146,7 @@ final class DataViewController: UIViewController {
         ]
     }
     // MARK: - Data transfer to the launch VC
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showLaunch" else { return }
         guard let destination = segue.destination as? LaunchViewController else { return }

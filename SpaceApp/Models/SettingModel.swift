@@ -1,9 +1,3 @@
-//
-//  Setting.swift
-//  SpaceApp
-//
-//  Created by Григорий Душин on 21.10.2022.
-//
 
 import Foundation
 

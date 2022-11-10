@@ -52,11 +52,11 @@ final class RocketViewController: UIViewController {
         pageViewController.view.backgroundColor = UIColor.black
         contentView.addSubview(pageViewController.view)
 
-        guard let startingViewController = detailViewControllerAt(index: currentViewControllerIndex) else { return }
+        guard let startingViewController = passViewControllerAt(index: currentViewControllerIndex) else { return }
         pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true)
     }
 
-   private func detailViewControllerAt(index: Int) -> DataViewController? {
+   private func passViewControllerAt(index: Int) -> DataViewController? {
         if index >= rockets.count, rockets.count == 0 {return nil}
         guard let dataViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: DataViewController.self)) as? DataViewController else {return nil}
@@ -88,21 +88,18 @@ extension RocketViewController: UIPageViewControllerDataSource {
             return nil
         }
         currentIndex -= 1
-        return detailViewControllerAt(index: currentIndex)
+        return passViewControllerAt(index: currentIndex)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let dataViewController = viewController as? DataViewController
-        guard var currentIndex = dataViewController?.index else {
-            return nil
-        }
-        if currentIndex == rockets.count - 1 {
+        guard var currentIndex = dataViewController?.index, currentIndex == rockets.count - 1 else {
             return nil
         }
         currentIndex += 1
         currentViewControllerIndex = currentIndex
-        return detailViewControllerAt(index: currentIndex)
+        return passViewControllerAt(index: currentIndex)
     }
 }
 
