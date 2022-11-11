@@ -128,13 +128,6 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
-		F341BDCE28F69A8600D32DEA /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		F341BDCF28F69A8D00D32DEA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,13 +179,12 @@
 		F37AA74F28F5CC8400F1ADB9 /* SpaceApp */ = {
 			isa = PBXGroup;
 			children = (
-				F3A46166291E3902007C1CDB /* Settings */,
 				F3759B9C291E37FB00B52A22 /* Launch */,
 				F3759B9B291E378300B52A22 /* Rocket */,
+				F3A46166291E3902007C1CDB /* Settings */,
 				F341BDCB28F69A5900D32DEA /* Models */,
 				F341BDCD28F69A7300D32DEA /* Presenters */,
 				F341BDCF28F69A8D00D32DEA /* Helpers */,
-				F341BDCE28F69A8600D32DEA /* Cells */,
 				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
 				F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */,
 				F37AA77428F5CCF800F1ADB9 /* Main.storyboard */,

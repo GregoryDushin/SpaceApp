@@ -29,28 +29,28 @@ final class DataViewController: UIViewController {
                 switch listItem {
                 case let .image(url, rocketName):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: "RocketImageCell",
+                        withReuseIdentifier: String(describing: RocketImageCell.self),
                         for: indexPath
                     ) as? RocketImageCell else {return UICollectionViewCell()}
                     cell.setup(url: url, rocketName: rocketName)
                     return cell
                 case let .horizontalInfo(title, value):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: "RocketDescriptionCell",
+                        withReuseIdentifier: String(describing: RocketHorizontalInfoCell.self),
                         for: indexPath
                     ) as? RocketHorizontalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case let .verticalInfo(title, value, _):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: "RocketAnotherInfoCell",
+                        withReuseIdentifier: String(describing: RocketVerticalInfoCell.self),
                         for: indexPath
                     ) as? RocketVerticalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case .button:
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: "RocketLaunchButton",
+                        withReuseIdentifier: String(describing: RocketLaunchButtonCell.self),
                         for: indexPath
                     ) as? RocketLaunchButtonCell else {return UICollectionViewCell()}
                     return cell

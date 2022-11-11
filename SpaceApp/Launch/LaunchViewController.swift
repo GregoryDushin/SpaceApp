@@ -69,7 +69,7 @@ extension LaunchViewController: UICollectionViewDataSource {
                         IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CollectionViewCell",
+            withReuseIdentifier: String(describing: CollectionViewCell.self),
             for: indexPath
         ) as? CollectionViewCell else {return UICollectionViewCell()}
         let dates = launches[indexPath.row].dateUtc.dateFormatter()

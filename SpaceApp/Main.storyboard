@@ -27,7 +27,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketImageCell" reuseIdentifier="RocketImageCell" id="0wi-67-ALl" customClass="RocketImageCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketImageCell" id="0wi-67-ALl" customClass="RocketImageCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="251" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aFk-4E-xvi">
@@ -84,7 +84,7 @@
                                             <outlet property="rocketView" destination="s1Z-zl-kK2" id="URK-la-KA2"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketDescriptionCell" reuseIdentifier="RocketDescriptionCell" id="cTo-35-eIg" customClass="RocketHorizontalInfoCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketHorizontalInfoCell" id="cTo-35-eIg" customClass="RocketHorizontalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="286" y="50" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OoK-Uo-dNa">
@@ -117,7 +117,7 @@
                                             <outlet property="valueParametrLabel" destination="kfu-lr-pbK" id="xnL-um-KdE"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketLaunchButton" reuseIdentifier="RocketLaunchButton" id="i3r-fd-1nZ" customClass="RocketLaunchButtonCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketLaunchButtonCell" id="i3r-fd-1nZ" customClass="RocketLaunchButtonCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="7.5" y="188" width="399" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lNe-8g-YZ5">
@@ -148,7 +148,7 @@
                                             <outlet property="launchButton" destination="5hd-BA-fd2" id="GnS-X2-W8s"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketAnotherInfoCell" reuseIdentifier="RocketAnotherInfoCell" id="Vjl-CR-p2O" customClass="RocketVerticalInfoCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketVerticalInfoCell" id="Vjl-CR-p2O" customClass="RocketVerticalInfoCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="274" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lHe-fg-qSr">
@@ -182,7 +182,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="HeaderCell" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderCell" id="nao-eU-9sL" customClass="HeaderCell" customModule="SpaceApp" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderCell" id="nao-eU-9sL" customClass="HeaderCell" customModule="SpaceApp" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
