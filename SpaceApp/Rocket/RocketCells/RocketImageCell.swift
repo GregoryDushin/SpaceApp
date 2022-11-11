@@ -4,10 +4,8 @@
 //
 //  Created by Григорий Душин on 25.10.2022.
 //
-
-import UIKit
-import Alamofire
 import AlamofireImage
+import UIKit
 
 final class RocketImageCell: UICollectionViewCell {
     @IBOutlet private var rocketImage: UIImageView!
@@ -15,7 +13,7 @@ final class RocketImageCell: UICollectionViewCell {
     @IBOutlet private var rocketView: UIView!
 
     override func awakeFromNib() {
-        super .awakeFromNib()
+        super.awakeFromNib()
         rocketView.layer.masksToBounds = true
         rocketView.layer.cornerRadius = 20
     }

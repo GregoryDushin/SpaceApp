@@ -1,5 +1,7 @@
 disabled_rules:
   - nesting
+  - indentation_width
+  - closure_end_indentation
 
 opt_in_rules:
   - anyobject_protocol
@@ -96,12 +98,12 @@ type_body_length: 500
 file_length: 500
 
 type_name:
-  min_length: 4
+  min_length: 2
   max_length: 40
   allowed_symbols: ["_"]
 
 identifier_name:
-  min_length: 3
+  min_length: 1
   max_length:
     warning: 40
     error: 50
@@ -123,9 +125,9 @@ cyclomatic_complexity:
   ignores_case_statements: true
   error: 50
 
-indentation_width:
-  indentation_width: 2
-  include_comments: false
+#indentation_width:
+#  indentation_width: 2
+#  include_comments: false
 
 function_body_length: 100
 
@@ -141,5 +143,4 @@ attributes:
 
 closure_body_length: 40
 
-warning_threshold: 1
 

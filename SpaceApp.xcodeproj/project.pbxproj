@@ -25,7 +25,7 @@
 		F37AA76B28F5CCC300F1ADB9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */; };
 		F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */; };
 		F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */; };
-		F37AA77128F5CCE300F1ADB9 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */; };
+		F37AA77128F5CCE300F1ADB9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */; };
 		F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77228F5CCF000F1ADB9 /* Constants.swift */; };
 		F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA77428F5CCF800F1ADB9 /* Main.storyboard */; };
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
@@ -57,7 +57,7 @@
 		F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RocketLoader.swift; sourceTree = "<group>"; };
 		F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchLoader.swift; sourceTree = "<group>"; };
-		F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
+		F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		F37AA77228F5CCF000F1ADB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37AA77428F5CCF800F1ADB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,17 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
-				F3759B9D291E381A00B52A22 /* LaunchCell */,
+				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
 			);
 			path = Launch;
-			sourceTree = "<group>";
-		};
-		F3759B9D291E381A00B52A22 /* LaunchCell */ = {
-			isa = PBXGroup;
-			children = (
-				F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */,
-			);
-			path = LaunchCell;
 			sourceTree = "<group>";
 		};
 		F37AA74428F5CC8400F1ADB9 = {
@@ -215,17 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
-				F3A46167291E3937007C1CDB /* SettingsCell */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		F3A46167291E3937007C1CDB /* SettingsCell */ = {
-			isa = PBXGroup;
-			children = (
 				F385E7A128FD49180081166F /* SettingsTableViewCell.swift */,
 			);
-			path = SettingsCell;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37AA77128F5CCE300F1ADB9 /* LaunchCell.swift in Sources */,
+				F37AA77128F5CCE300F1ADB9 /* CollectionViewCell.swift in Sources */,
 				F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */,
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
 				F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */,

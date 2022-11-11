@@ -21,7 +21,7 @@ final class LaunchLoader {
 
     func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
         guard let url = URL(string: Url.launchUrl) else {return}
-        let task = session.dataTask(with: url) { (data, _, error) in
+        let task = session.dataTask(with: url) { data, _, error in
             guard let data = data else {return}
                     do {
                         let json = try self.decoder.decode([LaunchModelElement].self, from: data)

@@ -117,7 +117,7 @@
                                             <outlet property="valueParametrLabel" destination="kfu-lr-pbK" id="xnL-um-KdE"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketLaunchButton" reuseIdentifier="RocketLaunchButton" id="i3r-fd-1nZ" customClass="RocketLaunchButton" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RocketLaunchButton" reuseIdentifier="RocketLaunchButton" id="i3r-fd-1nZ" customClass="RocketLaunchButtonCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="7.5" y="188" width="399" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lNe-8g-YZ5">
@@ -281,7 +281,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="CollectionViewCell" id="shv-gC-86B" customClass="LaunchCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="CollectionViewCell" id="shv-gC-86B" customClass="CollectionViewCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wyd-ok-teO">
@@ -521,7 +521,7 @@
                                             <outlet property="valueParametrLabel" destination="wwD-lQ-b5i" id="xaX-cj-xpC"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketLaunchButton" id="4GI-er-f83" customClass="RocketLaunchButton" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RocketLaunchButton" id="4GI-er-f83" customClass="RocketLaunchButtonCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="7.5" y="188" width="399" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mU8-Ms-jR4">

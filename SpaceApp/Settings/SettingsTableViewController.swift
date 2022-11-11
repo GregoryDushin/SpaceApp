@@ -27,13 +27,16 @@ final class SettingsTableViewController: UIViewController {
 
 extension SettingsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingsArray.count
+        settingsArray.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingsTableView.dequeueReusableCell(
-            withIdentifier: String(describing: SettingsTableViewCell.self)) as! SettingsTableViewCell
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let cell = settingsTableView.dequeueReusableCell(
+            withIdentifier: String(describing: SettingsTableViewCell.self)
+        ) as? SettingsTableViewCell else { return UITableViewCell() }
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [self] selectedIndex in
             defaults.set(settingsArray[indexPath.row].values[selectedIndex], forKey: settingsArray[indexPath.row].key)

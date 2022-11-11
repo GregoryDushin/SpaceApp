@@ -18,7 +18,7 @@ final class RocketLoader {
 
     func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
         guard let url = URL(string: Url.rocketUrl) else {return}
-        let task = session.dataTask(with: url) { (data, _, error) in
+        let task = session.dataTask(with: url) { data, _, error in
             guard let data = data else {return}
                 do {
                     let json = try self.decoder.decode([RocketModelElement].self, from: data)

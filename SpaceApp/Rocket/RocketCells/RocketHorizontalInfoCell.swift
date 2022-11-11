@@ -12,7 +12,7 @@ final class RocketHorizontalInfoCell: UICollectionViewCell {
     @IBOutlet private var valueParametrLabel: UILabel!
 
     override func awakeFromNib() {
-        super .awakeFromNib()
+        super.awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = 60
     }

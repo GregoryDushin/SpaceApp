@@ -57,11 +57,17 @@ final class RocketViewController: UIViewController {
     }
 
    private func passViewControllerAt(index: Int) -> DataViewController? {
-        if index >= rockets.count, rockets.isEmpty {return nil}
+        if index >= rockets.count, rockets.isEmpty {
+            return nil
+        }
         guard let dataViewController =
                 storyboard?.instantiateViewController(
                     withIdentifier: String(
-                        describing: DataViewController.self)) as? DataViewController else {return nil}
+                        describing: DataViewController.self
+                    )
+                ) as? DataViewController else {
+            return nil
+        }
         dataViewController.dataArray = rockets
         dataViewController.index = index
         dataViewController.displayText = rockets[index].name
@@ -79,8 +85,10 @@ final class RocketViewController: UIViewController {
 
 extension RocketViewController: UIPageViewControllerDataSource {
 
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerBefore viewController: UIViewController
+    ) -> UIViewController? {
         let dataViewController = viewController as? DataViewController
         guard var currentIndex = dataViewController?.index else {
             return nil
@@ -93,8 +101,10 @@ extension RocketViewController: UIPageViewControllerDataSource {
         return passViewControllerAt(index: currentIndex)
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerAfter viewController: UIViewController
+    ) -> UIViewController? {
         let dataViewController = viewController as? DataViewController
         guard var currentIndex = dataViewController?.index else {
             return nil
@@ -112,11 +122,11 @@ extension RocketViewController: UIPageViewControllerDataSource {
 
 extension RocketViewController: UIPageViewControllerDelegate {
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return currentViewControllerIndex
+        currentViewControllerIndex
     }
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return rockets.count
+        rockets.count
     }
 
 }
