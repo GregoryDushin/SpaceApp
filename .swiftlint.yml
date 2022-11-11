@@ -1,8 +1,7 @@
 disabled_rules:
-  - force_unwrapping
-  - force_cast
-  
-# opt_in_rules:
+  - nesting
+
+opt_in_rules:
   - anyobject_protocol
   - array_init
   - attributes
@@ -27,8 +26,7 @@ disabled_rules:
   # - file_name
   - file_types_order
   - first_where
-
-  - warning_threshold
+  - force_unwrapping
   - function_default_parameter_at_end
   - identical_operands
   - implicit_return
@@ -88,7 +86,7 @@ excluded:
   - vendor
 
 line_length:
-  warning: 500
+  warning: 140
   ignores_comments: true
   ignores_urls: true
   ignores_interpolated_strings: true
@@ -98,12 +96,12 @@ type_body_length: 500
 file_length: 500
 
 type_name:
-  min_length: 1
+  min_length: 4
   max_length: 40
   allowed_symbols: ["_"]
 
 identifier_name:
-  min_length: 1
+  min_length: 3
   max_length:
     warning: 40
     error: 50
@@ -143,4 +141,5 @@ attributes:
 
 closure_body_length: 40
 
+warning_threshold: 1
 

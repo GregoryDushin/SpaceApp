@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CollectionViewCell: UICollectionViewCell {
+final class LaunchCell: UICollectionViewCell {
     @IBOutlet private var rocketNameLabel: UILabel!
     @IBOutlet private var dateOfLaunchLabel: UILabel!
     @IBOutlet private var isSucsessImage: UIImageView!
@@ -17,7 +17,6 @@ final class CollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
         layer.cornerRadius = 12
     }
-    
 
     func configure(rocket: LaunchModelElement, dates: String) {
         rocketNameLabel.text = rocket.name

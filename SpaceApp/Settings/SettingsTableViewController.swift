@@ -8,9 +8,8 @@
 import UIKit
 
 final class SettingsTableViewController: UIViewController {
-
     @IBOutlet private var settingsTableView: UITableView!
-    let settingsArray = [
+    private let settingsArray = [
         Setting(title: "Высота", key: PersistanceKeys.heightKey, values: ["m", "ft"]),
         Setting(title: "Диаметр", key: PersistanceKeys.diameterKey, values: ["m", "ft"]),
         Setting(title: "Масса", key: PersistanceKeys.massKey, values: ["kg", "lb"]),
@@ -31,8 +30,10 @@ extension SettingsTableViewController: UITableViewDataSource {
         return settingsArray.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingsTableView.dequeueReusableCell(withIdentifier: String(describing: SettingsTableViewCell.self)) as! SettingsTableViewCell
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = settingsTableView.dequeueReusableCell(
+            withIdentifier: String(describing: SettingsTableViewCell.self)) as! SettingsTableViewCell
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [self] selectedIndex in
             defaults.set(settingsArray[indexPath.row].values[selectedIndex], forKey: settingsArray[indexPath.row].key)

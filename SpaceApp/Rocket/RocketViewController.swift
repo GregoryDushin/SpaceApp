@@ -57,9 +57,11 @@ final class RocketViewController: UIViewController {
     }
 
    private func passViewControllerAt(index: Int) -> DataViewController? {
-        if index >= rockets.count, rockets.count == 0 {return nil}
+        if index >= rockets.count, rockets.isEmpty {return nil}
         guard let dataViewController =
-                storyboard?.instantiateViewController(withIdentifier: String(describing: DataViewController.self)) as? DataViewController else {return nil}
+                storyboard?.instantiateViewController(
+                    withIdentifier: String(
+                        describing: DataViewController.self)) as? DataViewController else {return nil}
         dataViewController.dataArray = rockets
         dataViewController.index = index
         dataViewController.displayText = rockets[index].name

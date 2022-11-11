@@ -22,23 +22,33 @@ final class DataViewController: UIViewController {
     // MARK: - Configure CollectionView DataSource
 
     private func configureCollectionViewDataSource() {
-        dataSource = DataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
+        dataSource = DataSource(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
             self.sections[indexPath.section].items[indexPath.row]
             switch listItem {
             case let .image(url, rocketName):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketImageCell", for: indexPath) as! RocketImageCell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "RocketImageCell",
+                    for: indexPath) as! RocketImageCell
                 cell.setup(url: url, rocketName: rocketName)
                 return cell
             case let .horizontalInfo(title, value):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketDescriptionCell", for: indexPath) as! RocketHorizontalInfoCell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "RocketDescriptionCell",
+                    for: indexPath) as! RocketHorizontalInfoCell
                 cell.setup(title: title, value: value)
                 return cell
             case let .verticalInfo(title, value, _):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketAnotherInfoCell", for: indexPath) as! RocketVerticalInfoCell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "RocketAnotherInfoCell",
+                    for: indexPath) as! RocketVerticalInfoCell
                 cell.setup(title: title, value: value)
                 return cell
             case .button:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RocketLaunchButton", for: indexPath) as! RocketLaunchButton
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "RocketLaunchButton",
+                    for: indexPath) as! RocketLaunchButton
                 return cell
             }
         })
@@ -54,10 +64,14 @@ final class DataViewController: UIViewController {
         }
         dataSource.apply(snapshot)
     }
+
     // MARK: - Configure Header
 
     func configureHeader() {
-        dataSource?.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+        dataSource?.supplementaryViewProvider = {(
+            collectionView: UICollectionView,
+            kind: String,
+            indexPath: IndexPath) -> UICollectionReusableView? in
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
                 header.setup(title: self.sections[indexPath.section].title ?? "")
                 return header
@@ -74,6 +88,7 @@ final class DataViewController: UIViewController {
         collectionView.reloadData()
 
     }
+
     // MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -116,32 +131,56 @@ final class DataViewController: UIViewController {
     // MARK: - Implementing data from URL into items
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
-        [
-            Section(sectionType: .image, title: nil, items: [.image(url: URL(string: rocket.flickrImages[0])!, rocketName: rocket.name)]),
-            Section(sectionType: .horizontal, title: nil, items:
-                        [.horizontalInfo(title: "Высота, ft", value: String(rocket.height.meters ?? 0.0)),
-                         .horizontalInfo(title: "Диаметр, ft", value: String(rocket.diameter.meters ?? 0.0)),
-                         .horizontalInfo(title: "Масса, lb", value: String(rocket.mass.kg)),
-                         .horizontalInfo(title: "Нагрузка, lb", value: String(rocket.payloadWeights[0].kg))
-                        ]),
-            Section(sectionType: .vertical, title: nil, items:
-                        [.verticalInfo(title: "Первый запуск", value: rocket.firstFlight, id: UUID()),
-                         .verticalInfo(title: "Страна", value: "США", id: UUID()),
-                         .verticalInfo(title: "Стоимость запуска", value: "$" + String((rocket.costPerLaunch)/1000000) + " млн", id: UUID())
-                        ]),
-            Section(sectionType: .vertical, title: "Первая ступень", items:
-                        [.verticalInfo(title: "Количество двигателей", value: String(rocket.firstStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн", id: UUID()),
-                         .verticalInfo(title: "Время сгорания", value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек", id: UUID())
-                        ]),
+        [Section(sectionType: .image,
+                    title: nil,
+                    items: [.image(url: URL(string: rocket.flickrImages[0])!, rocketName: rocket.name)]),
+            Section(sectionType: .horizontal,
+                    title: nil,
+                    items:
+                        [.horizontalInfo(title: "Высота, ft",
+                                         value: String(rocket.height.meters ?? 0.0)),
+                         .horizontalInfo(title: "Диаметр, ft",
+                                         value: String(rocket.diameter.meters ?? 0.0)),
+                         .horizontalInfo(title: "Масса, lb",
+                                         value: String(rocket.mass.kg)),
+                         .horizontalInfo(title: "Нагрузка, lb",
+                                         value: String(rocket.payloadWeights[0].kg))]),
+            Section(sectionType: .vertical,
+                    title: nil,
+                    items:
+                        [.verticalInfo(title: "Первый запуск",
+                                       value: rocket.firstFlight,
+                                       id: UUID()),
+                         .verticalInfo(title: "Страна",
+                                       value: "США",
+                                       id: UUID()),
+                         .verticalInfo(title: "Стоимость запуска",
+                                       value: "$" + String((rocket.costPerLaunch)/1000000) + " млн",
+                                       id: UUID())]),
+            Section(sectionType: .vertical,
+                    title: "Первая ступень",
+                    items:
+                        [.verticalInfo(title: "Количество двигателей",
+                                         value: String(rocket.firstStage.engines),
+                                         id: UUID()),
+                         .verticalInfo(title: "Количество топлива",
+                                       value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Время сгорания",
+                                       value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек", id: UUID())]),
             Section(sectionType: .vertical, title: "Вторая ступень", items:
-                        [.verticalInfo(title: "Количество двигателей", value: String(rocket.secondStage.engines), id: UUID()),
-                         .verticalInfo(title: "Количество топлива", value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн", id: UUID()),
-                         .verticalInfo(title: "Время сгорания", value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек", id: UUID())
+                        [.verticalInfo(title: "Количество двигателей",
+                                       value: String(rocket.secondStage.engines),
+                                       id: UUID()),
+                         .verticalInfo(title: "Количество топлива",
+                                       value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн", id: UUID()),
+                         .verticalInfo(title: "Время сгорания",
+                                       value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек",
+                                       id: UUID())
                         ]),
             Section(sectionType: .button, title: nil, items: [.button])
         ]
     }
+
     // MARK: - Data transfer to the launch VC
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -151,17 +190,3 @@ final class DataViewController: UIViewController {
         destination.title = displayText
     }
 }
-// MARK: - UICollectionViewDelegate
-
-//extension DataViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-//            header.setup(title: sections[indexPath.section].title ?? "hueta")
-//            return header
-//        default:
-//            return UICollectionReusableView()
-//        }
-//    }
-//}

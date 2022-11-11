@@ -17,7 +17,7 @@ final class SettingsTableViewCell: UITableViewCell {
         settingsSegmentedControl.setTitle(settings.values[1], forSegmentAt: 1)
         settingsSegmentedControl.addTarget(self, action: #selector(changed), for: .valueChanged)
     }
-    var onSettingChanged: ((Int) -> ())?
+    var onSettingChanged: ((Int) -> Void)?
 
     @objc private func changed() {
         onSettingChanged?(settingsSegmentedControl.selectedSegmentIndex)

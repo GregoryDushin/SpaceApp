@@ -43,12 +43,15 @@ final class LaunchViewController: UIViewController {
 
 extension LaunchViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let widthCell = UIScreen.main.bounds.width - 40
         return CGSize(width: widthCell, height: 100)
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return launches.count
     }
 }
@@ -56,8 +59,13 @@ extension LaunchViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Collection View Data Source
 extension LaunchViewController: UICollectionViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CollectionViewCell.self), for: indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath:
+                        IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: LaunchCell.self),
+            for: indexPath) as! LaunchCell
         let dates = launches[indexPath.row].dateUtc.dateFormatter()
         cell.configure(rocket: launches[indexPath.row], dates: dates)
         return cell
