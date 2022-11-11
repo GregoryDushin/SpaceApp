@@ -44,7 +44,7 @@ final class LaunchViewController: UIViewController {
 extension LaunchViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
-        _collectionView: UICollectionView,
+        _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
@@ -68,7 +68,6 @@ extension LaunchViewController: UICollectionViewDataSource {
         cellForItemAt indexPath:
                         IndexPath
     ) -> UICollectionViewCell {
-
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell",
             for: indexPath

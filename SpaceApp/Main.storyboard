@@ -328,7 +328,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="bJC-i8-hzT" id="h6I-et-ptF"/>
-                                    <outlet property="delegate" destination="bJC-i8-hzT" id="5Ww-DO-CeC"/>
+                                    <outlet property="delegate" destination="bJC-i8-hzT" id="iFM-Ic-rmI"/>
                                 </connections>
                             </collectionView>
                         </subviews>
