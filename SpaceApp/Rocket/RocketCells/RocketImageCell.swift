@@ -18,13 +18,17 @@ final class RocketImageCell: UICollectionViewCell {
         rocketView.layer.cornerRadius = 20
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rocketImage.af.cancelImageRequest()
+    }
+
     func setup(url: URL?, rocketName: String) {
         if let imageUrl = url {
             rocketImage.af.setImage(withURL: imageUrl)
         } else {
-            rocketImage.image = UIImage(named: "rocket")
+            return
         }
-
         rocketNameLabel.text = rocketName
     }
 

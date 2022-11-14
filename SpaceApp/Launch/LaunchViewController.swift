@@ -12,7 +12,11 @@ final class LaunchViewController: UIViewController {
     private var launches: [LaunchModelElement] = []
     var newId = ""
     private let launchLoader = LaunchLoader()
-
+    private let dateFormatter = { () -> DateFormatter in
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/YY"
+        return dateFormatter
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         launchLoader(id: newId)
@@ -36,6 +40,10 @@ final class LaunchViewController: UIViewController {
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)
+    }
+
+    private func dateToString(_ utcDate: Date) -> String {
+        dateFormatter.string(from: utcDate)
     }
 }
 
@@ -69,20 +77,26 @@ extension LaunchViewController: UICollectionViewDataSource {
                         IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: CollectionViewCell.self),
+            withReuseIdentifier: CollectionViewCell.identifier,
             for: indexPath
         ) as? CollectionViewCell else {return UICollectionViewCell()}
-        let dates = launches[indexPath.row].dateUtc.dateFormatter()
-        cell.configure(rocket: launches[indexPath.row], dates: dates)
+        let date = dateToString(launches[indexPath.row].dateUtc)
+
+        var isSuccessImg = UIImage(named: LaunchImages.unknown)!
+        if let launchingResult = launches[indexPath.row].success {
+            isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))!
+        }
+        cell.configure(name: launches[indexPath.row].name, date: date, image: isSuccessImg)
         return cell
     }
 }
-
-private extension Date {
-
-    func dateFormatter() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY"
-        return dateFormatter.string(from: self)
+public extension UICollectionReusableView {
+    static var identifier: String {
+        String(describing: self)
+    }
+}
+public extension UITableViewCell {
+    static var identifier: String {
+        String(describing: self)
     }
 }

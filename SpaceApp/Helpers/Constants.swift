@@ -20,4 +20,5 @@ enum PersistanceKeys {
 enum LaunchImages {
     static let success = "true"
     static let unsucsess = "false"
+    static let unknown = "unknown"
 }

@@ -21,5 +21,6 @@ final class SettingsTableViewCell: UITableViewCell {
 
     @objc private func changed() {
         onSettingChanged?(settingsSegmentedControl.selectedSegmentIndex)
+        print("huihuihui")
     }
 }

@@ -16,6 +16,7 @@ final class DataViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     private var sections = [Section]()
+   // private lazy var dataSource = configureCollectionViewDataSource()
     var dataSource: DataSource!
     private var snapshot = DataSourceSnapshot()
 
@@ -29,28 +30,28 @@ final class DataViewController: UIViewController {
                 switch listItem {
                 case let .image(url, rocketName):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: String(describing: RocketImageCell.self),
+                        withReuseIdentifier: RocketImageCell.identifier,
                         for: indexPath
                     ) as? RocketImageCell else {return UICollectionViewCell()}
                     cell.setup(url: url, rocketName: rocketName)
                     return cell
                 case let .horizontalInfo(title, value):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: String(describing: RocketHorizontalInfoCell.self),
+                        withReuseIdentifier: RocketHorizontalInfoCell.identifier,
                         for: indexPath
                     ) as? RocketHorizontalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case let .verticalInfo(title, value, _):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: String(describing: RocketVerticalInfoCell.self),
+                        withReuseIdentifier: RocketVerticalInfoCell.identifier,
                         for: indexPath
                     ) as? RocketVerticalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case .button:
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: String(describing: RocketLaunchButtonCell.self),
+                        withReuseIdentifier: RocketLaunchButtonCell.identifier,
                         for: indexPath
                     ) as? RocketLaunchButtonCell else {return UICollectionViewCell()}
                     return cell
@@ -75,7 +76,7 @@ final class DataViewController: UIViewController {
     func configureHeader() {
         dataSource?.supplementaryViewProvider = {collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath
+                ofKind: kind, withReuseIdentifier: HeaderCell.identifier, for: indexPath
             ) as? HeaderCell else {return UICollectionReusableView()}
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
@@ -90,7 +91,6 @@ final class DataViewController: UIViewController {
         configureHeader()
         applySnapshot()
         collectionView.reloadData()
-
     }
 
     // MARK: - Creating sections using CompositionalLayout
@@ -128,7 +128,6 @@ final class DataViewController: UIViewController {
                     layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(130)), subitems: [item]
                 )
                 let section = NSCollectionLayoutSection(group: group)
-                // HEADER TROUBLE
                 let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: headerFooterSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top
@@ -154,7 +153,7 @@ final class DataViewController: UIViewController {
             Section(
                 sectionType: .image,
                 title: nil,
-                items: [.image(url: URL(string: rocket.flickrImages[0])!, rocketName: rocket.name)]
+                items: [.image(url: URL(string: rocket.flickrImages[0]), rocketName: rocket.name)]
             ),
             Section(
                 sectionType: .horizontal,

@@ -119,15 +119,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F341BDCD28F69A7300D32DEA /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
-				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
 		F341BDCF28F69A8D00D32DEA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +131,7 @@
 		F3759B9B291E378300B52A22 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
+				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
 				F385E7A728FEA3340081166F /* DataViewController.swift */,
 				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
@@ -153,6 +145,7 @@
 			children = (
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
 				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
+				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -183,7 +176,6 @@
 				F3759B9B291E378300B52A22 /* Rocket */,
 				F3A46166291E3902007C1CDB /* Settings */,
 				F341BDCB28F69A5900D32DEA /* Models */,
-				F341BDCD28F69A7300D32DEA /* Presenters */,
 				F341BDCF28F69A8D00D32DEA /* Helpers */,
 				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
 				F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */,
