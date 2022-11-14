@@ -16,13 +16,12 @@ final class DataViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     private var sections = [Section]()
-   // private lazy var dataSource = configureCollectionViewDataSource()
-    var dataSource: DataSource!
+    private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
 
     // MARK: - Configure CollectionView DataSource
 
-    private func configureCollectionViewDataSource() {
+    private func configureCollectionViewDataSource() -> DataSource {
         dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
@@ -30,34 +29,37 @@ final class DataViewController: UIViewController {
                 switch listItem {
                 case let .image(url, rocketName):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: RocketImageCell.identifier,
+                        withReuseIdentifier: RocketImageCell.reuseIdentifier,
                         for: indexPath
                     ) as? RocketImageCell else {return UICollectionViewCell()}
+                    if let url = url {
                     cell.setup(url: url, rocketName: rocketName)
+                    }
                     return cell
                 case let .horizontalInfo(title, value):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: RocketHorizontalInfoCell.identifier,
+                        withReuseIdentifier: RocketHorizontalInfoCell.reuseIdentifier,
                         for: indexPath
                     ) as? RocketHorizontalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case let .verticalInfo(title, value, _):
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: RocketVerticalInfoCell.identifier,
+                        withReuseIdentifier: RocketVerticalInfoCell.reuseIdentifier,
                         for: indexPath
                     ) as? RocketVerticalInfoCell else {return UICollectionViewCell()}
                     cell.setup(title: title, value: value)
                     return cell
                 case .button:
                     guard let cell = collectionView.dequeueReusableCell(
-                        withReuseIdentifier: RocketLaunchButtonCell.identifier,
+                        withReuseIdentifier: RocketLaunchButtonCell.reuseIdentifier,
                         for: indexPath
                     ) as? RocketLaunchButtonCell else {return UICollectionViewCell()}
                     return cell
                 }
             }
         )
+        return dataSource
     }
 
     // MARK: - Configure Snapshot
@@ -74,9 +76,9 @@ final class DataViewController: UIViewController {
     // MARK: - Configure Header
 
     func configureHeader() {
-        dataSource?.supplementaryViewProvider = {collectionView, kind, indexPath -> UICollectionReusableView? in
+        dataSource.supplementaryViewProvider = {collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: HeaderCell.identifier, for: indexPath
+                ofKind: kind, withReuseIdentifier: HeaderCell.reuseIdentifier, for: indexPath
             ) as? HeaderCell else {return UICollectionReusableView()}
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
@@ -87,7 +89,6 @@ final class DataViewController: UIViewController {
         super.viewDidLoad()
         collectionView.collectionViewLayout = createLayout()
         sections = mapRocketToSections(rocket: dataArray[index])
-        configureCollectionViewDataSource()
         configureHeader()
         applySnapshot()
         collectionView.reloadData()

@@ -69,6 +69,7 @@ extension LaunchViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Collection View Data Source
+
 extension LaunchViewController: UICollectionViewDataSource {
 
     func collectionView(
@@ -77,26 +78,16 @@ extension LaunchViewController: UICollectionViewDataSource {
                         IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CollectionViewCell.identifier,
+            withReuseIdentifier: CollectionViewCell.reuseIdentifier,
             for: indexPath
         ) as? CollectionViewCell else {return UICollectionViewCell()}
         let date = dateToString(launches[indexPath.row].dateUtc)
 
-        var isSuccessImg = UIImage(named: LaunchImages.unknown)!
+        var isSuccessImg = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {
-            isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))!
+            isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
         }
         cell.configure(name: launches[indexPath.row].name, date: date, image: isSuccessImg)
         return cell
-    }
-}
-public extension UICollectionReusableView {
-    static var identifier: String {
-        String(describing: self)
-    }
-}
-public extension UITableViewCell {
-    static var identifier: String {
-        String(describing: self)
     }
 }

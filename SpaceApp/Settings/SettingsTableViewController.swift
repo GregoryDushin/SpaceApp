@@ -35,7 +35,7 @@ extension SettingsTableViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         guard let cell = settingsTableView.dequeueReusableCell(
-            withIdentifier: SettingsTableViewCell.identifier
+            withIdentifier: SettingsTableViewCell.reuseIdentifier
         ) as? SettingsTableViewCell else { return UITableViewCell() }
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [self] selectedIndex in

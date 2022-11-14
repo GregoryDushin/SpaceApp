@@ -23,12 +23,8 @@ final class RocketImageCell: UICollectionViewCell {
         rocketImage.af.cancelImageRequest()
     }
 
-    func setup(url: URL?, rocketName: String) {
-        if let imageUrl = url {
-            rocketImage.af.setImage(withURL: imageUrl)
-        } else {
-            return
-        }
+    func setup(url: URL, rocketName: String) {
+        rocketImage.af.setImage(withURL: url)
         rocketNameLabel.text = rocketName
     }
 
