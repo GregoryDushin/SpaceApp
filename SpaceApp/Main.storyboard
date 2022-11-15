@@ -129,9 +129,9 @@
                                                     <color key="backgroundColor" red="0.086274504660000001" green="0.086274504660000001" blue="0.086274504660000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Launches"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Запуски"/>
                                                     <connections>
-                                                        <segue destination="bJC-i8-hzT" kind="show" identifier="showLaunch" id="jNc-zu-2lJ"/>
+                                                        <segue destination="bJC-i8-hzT" kind="show" identifier="showLaunch" destinationCreationSelector="transferLaunchInfo:" id="jNc-zu-2lJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

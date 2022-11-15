@@ -99,7 +99,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F30E40CD290A9F700046189B /* RocketCells */ = {
+		F30E40CD290A9F700046189B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */,
@@ -108,15 +108,88 @@
 				F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */,
 				F34C5E35291936210091690A /* RocketHeaderCell.swift */,
 			);
-			path = RocketCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		F341BDCB28F69A5900D32DEA /* Models */ = {
+		F34139622923BD3E004156C5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F34139642923BD66004156C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F34139652923BD81004156C5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F34139662923BDB8004156C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F34139672923BDE2004156C5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F34139682923BDF0004156C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F385E7A128FD49180081166F /* SettingsTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F34139692923BE12004156C5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
+				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
+				F385E7A728FEA3340081166F /* DataViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F341396A2923BE2D004156C5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F341396B2923BE7F004156C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F341396C2923BE8F004156C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
-				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
-				F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */,
+				F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				F341396029227813004156C5 /* IdExtensions.swift */,
-				F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */,
 				F37AA77228F5CCF000F1ADB9 /* Constants.swift */,
 			);
 			path = Helpers;
@@ -134,11 +206,10 @@
 		F3759B9B291E378300B52A22 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
-				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
-				F385E7A728FEA3340081166F /* DataViewController.swift */,
-				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
-				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
-				F30E40CD290A9F700046189B /* RocketCells */,
+				F341396C2923BE8F004156C5 /* Models */,
+				F34139692923BE12004156C5 /* ViewControllers */,
+				F30E40CD290A9F700046189B /* Cells */,
+				F341396A2923BE2D004156C5 /* Presenter */,
 			);
 			path = Rocket;
 			sourceTree = "<group>";
@@ -146,9 +217,10 @@
 		F3759B9C291E37FB00B52A22 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
-				F37AA77028F5CCE300F1ADB9 /* CollectionViewCell.swift */,
-				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
+				F34139622923BD3E004156C5 /* ViewController */,
+				F34139642923BD66004156C5 /* Cell */,
+				F34139662923BDB8004156C5 /* Model */,
+				F34139652923BD81004156C5 /* Presenter */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -175,10 +247,9 @@
 		F37AA74F28F5CC8400F1ADB9 /* SpaceApp */ = {
 			isa = PBXGroup;
 			children = (
-				F3759B9C291E37FB00B52A22 /* Launch */,
 				F3759B9B291E378300B52A22 /* Rocket */,
+				F3759B9C291E37FB00B52A22 /* Launch */,
 				F3A46166291E3902007C1CDB /* Settings */,
-				F341BDCB28F69A5900D32DEA /* Models */,
 				F341BDCF28F69A8D00D32DEA /* Helpers */,
 				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
 				F37AA75228F5CC8400F1ADB9 /* SceneDelegate.swift */,
@@ -193,8 +264,9 @@
 		F3A46166291E3902007C1CDB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
-				F385E7A128FD49180081166F /* SettingsTableViewCell.swift */,
+				F341396B2923BE7F004156C5 /* Model */,
+				F34139672923BDE2004156C5 /* ViewController */,
+				F34139682923BDF0004156C5 /* Cell */,
 			);
 			path = Settings;
 			sourceTree = "<group>";

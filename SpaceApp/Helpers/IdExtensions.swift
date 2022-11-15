@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Cell Identifire Helpers
+
 protocol ReuseIdentifying {
     static var reuseIdentifier: String { get }
 }

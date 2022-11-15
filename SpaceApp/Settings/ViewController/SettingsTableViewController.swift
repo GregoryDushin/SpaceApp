@@ -26,6 +26,7 @@ final class SettingsTableViewController: UIViewController {
 // MARK: - UITableViewDataSource
 
 extension SettingsTableViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         settingsArray.count
     }

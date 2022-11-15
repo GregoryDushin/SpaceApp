@@ -10,7 +10,15 @@ import UIKit
 final class LaunchViewController: UIViewController {
     @IBOutlet private var launchCollectionView: UICollectionView!
     private var launches: [LaunchModelElement] = []
-    var newId = ""
+    var newId: String
+    init?(coder: NSCoder, newId: String) {
+        self.newId = newId
+        super.init(coder: coder)
+    }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        preconditionFailure("init(coder:) has not been implemented")
+    }
     private let launchLoader = LaunchLoader()
     private let dateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
@@ -22,6 +30,8 @@ final class LaunchViewController: UIViewController {
         launchLoader(id: newId)
     }
 
+// MARK: - LaunchLoader
+
     private func launchLoader(id: String) {
         launchLoader.launchDataLoad(id: id) { launches in
             DispatchQueue.main.async {
@@ -29,7 +39,6 @@ final class LaunchViewController: UIViewController {
                 case .success(let launches):
                     self.launches = launches
                     self.launchCollectionView.reloadData()
-
                 case .failure(let error):
                     self.showAlert(error.localizedDescription)
                 }
@@ -37,10 +46,14 @@ final class LaunchViewController: UIViewController {
         }
     }
 
+// MARK: - Creating Alert Controller
+
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)
     }
+
+// MARK: - Formating Date into String
 
     private func transformDateToString(_ utcDate: Date) -> String {
         dateFormatter.string(from: utcDate)
@@ -75,14 +88,13 @@ extension LaunchViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath:
-                        IndexPath
+        IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CollectionViewCell.reuseIdentifier,
             for: indexPath
         ) as? CollectionViewCell else {return UICollectionViewCell()}
         let date = transformDateToString(launches[indexPath.row].dateUtc)
-
         var isSuccessImg = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {
             isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))

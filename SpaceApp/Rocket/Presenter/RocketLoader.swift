@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: JSON ROCKET PARSING
+// MARK: - JSON ROCKET PARSING
 
 final class RocketLoader {
     private let decoder = JSONDecoder()
@@ -20,12 +20,12 @@ final class RocketLoader {
         guard let url = URL(string: Url.rocketUrl) else {return}
         let task = session.dataTask(with: url) { data, _, error in
             guard let data = data else {return}
-                do {
-                    let json = try self.decoder.decode([RocketModelElement].self, from: data)
-                    completion(.success(json))
-                } catch {
-                    completion(.failure(error))
-                }
+            do {
+                let json = try self.decoder.decode([RocketModelElement].self, from: data)
+                completion(.success(json))
+            } catch {
+                completion(.failure(error))
+            }
         }
         task.resume()
     }

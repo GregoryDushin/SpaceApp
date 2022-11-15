@@ -15,7 +15,6 @@ final class RocketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         rocketLoader.rocketDataLoad { rockets in
             DispatchQueue.main.async {
                 switch rockets {
@@ -39,7 +38,7 @@ final class RocketViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-   private func configurePageViewController() {
+    private func configurePageViewController() {
         guard let pageViewController =
                 storyboard?.instantiateViewController(withIdentifier: String(describing: CustomPageViewController.self))
                 as? CustomPageViewController else {
@@ -51,12 +50,11 @@ final class RocketViewController: UIViewController {
         pageViewController.didMove(toParent: self)
         pageViewController.view.backgroundColor = UIColor.black
         contentView.addSubview(pageViewController.view)
-
         guard let startingViewController = passViewControllerAt(index: currentViewControllerIndex) else { return }
         pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true)
     }
 
-   private func passViewControllerAt(index: Int) -> DataViewController? {
+    private func passViewControllerAt(index: Int) -> DataViewController? {
         if index >= rockets.count, rockets.isEmpty {
             return nil
         }
@@ -74,6 +72,8 @@ final class RocketViewController: UIViewController {
         dataViewController.id = rockets[index].id
         return dataViewController
     }
+
+// MARK: - Creating Alert Controller
 
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
@@ -128,5 +128,4 @@ extension RocketViewController: UIPageViewControllerDelegate {
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         rockets.count
     }
-
 }

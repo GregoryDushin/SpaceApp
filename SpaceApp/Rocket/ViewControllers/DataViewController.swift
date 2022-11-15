@@ -33,7 +33,7 @@ final class DataViewController: UIViewController {
                         for: indexPath
                     ) as? RocketImageCell else {return UICollectionViewCell()}
                     if let url = url {
-                    cell.setup(url: url, rocketName: rocketName)
+                        cell.setup(url: url, rocketName: rocketName)
                     }
                     return cell
                 case let .horizontalInfo(title, value):
@@ -247,12 +247,10 @@ final class DataViewController: UIViewController {
         ]
     }
 
-    // MARK: - Data transfer to the launch VC
+    // MARK: - Data transfer to the Launch VC
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showLaunch" else { return }
-        guard let destination = segue.destination as? LaunchViewController else { return }
-        destination.newId = id
-        destination.title = displayText
+    @IBSegueAction
+    func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
+        LaunchViewController(coder: coder, newId: self.id)
     }
 }

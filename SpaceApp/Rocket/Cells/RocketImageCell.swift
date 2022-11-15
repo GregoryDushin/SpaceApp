@@ -27,5 +27,4 @@ final class RocketImageCell: UICollectionViewCell {
         rocketImage.af.setImage(withURL: url)
         rocketNameLabel.text = rocketName
     }
-
 }
