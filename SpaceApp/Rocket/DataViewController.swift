@@ -25,7 +25,7 @@ final class DataViewController: UIViewController {
         dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
-                self.sections[indexPath.section].items[indexPath.row]
+                _ = self.sections[indexPath.section].items[indexPath.row]
                 switch listItem {
                 case let .image(url, rocketName):
                     guard let cell = collectionView.dequeueReusableCell(

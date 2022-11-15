@@ -377,8 +377,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r55-YI-LJi">
-                                                    <rect key="frame" x="313" y="19.5" width="81" height="32"/>
+                                                    <rect key="frame" x="313" y="15" width="81" height="41"/>
                                                     <color key="backgroundColor" red="0.1294117719" green="0.1294117719" blue="0.1294117719" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Uje-wt-B8G"/>
+                                                    </constraints>
                                                     <segments>
                                                         <segment title="" width="40"/>
                                                         <segment title="" width="40"/>

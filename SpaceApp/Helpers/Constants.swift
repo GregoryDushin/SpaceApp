@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum LaunchImages {
+    static let success = "true"
+    static let unsucsess = "false"
+    static let unknown = "unknown"
+}
 enum Url {
     static let rocketUrl = "https://api.spacexdata.com/v4/rockets"
     static let launchUrl = "https://api.spacexdata.com/v4/launches"
@@ -16,9 +21,4 @@ enum PersistanceKeys {
     static let diameterKey = "Persistance.diameterKey"
     static let massKey = "Persistance.massKey"
     static let capacityKey = "Persistance.capaciryKey"
-}
-enum LaunchImages {
-    static let success = "true"
-    static let unsucsess = "false"
-    static let unknown = "unknown"
 }

@@ -42,7 +42,7 @@ final class LaunchViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    private func dateToString(_ utcDate: Date) -> String {
+    private func transformDateToString(_ utcDate: Date) -> String {
         dateFormatter.string(from: utcDate)
     }
 }
@@ -81,7 +81,7 @@ extension LaunchViewController: UICollectionViewDataSource {
             withReuseIdentifier: CollectionViewCell.reuseIdentifier,
             for: indexPath
         ) as? CollectionViewCell else {return UICollectionViewCell()}
-        let date = dateToString(launches[indexPath.row].dateUtc)
+        let date = transformDateToString(launches[indexPath.row].dateUtc)
 
         var isSuccessImg = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {

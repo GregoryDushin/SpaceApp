@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: JSON LAUNCH PARSING
+// MARK: - JSON LAUNCH PARSING
 
 final class LaunchLoader {
     private let decoder = JSONDecoder()

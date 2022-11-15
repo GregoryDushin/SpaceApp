@@ -38,8 +38,8 @@ extension SettingsTableViewController: UITableViewDataSource {
             withIdentifier: SettingsTableViewCell.reuseIdentifier
         ) as? SettingsTableViewCell else { return UITableViewCell() }
         cell.cellConfigure(settings: settingsArray[indexPath.row])
-        cell.onSettingChanged = { [self] selectedIndex in
-            defaults.set(settingsArray[indexPath.row].values[selectedIndex], forKey: settingsArray[indexPath.row].key)
+        cell.onSettingChanged = { [weak self] selectedIndex in
+            self!.defaults.set(self!.settingsArray[indexPath.row].values[selectedIndex], forKey: self!.settingsArray[indexPath.row].key)
         }
         return cell
     }
