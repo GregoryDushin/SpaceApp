@@ -39,7 +39,8 @@ extension SettingsTableViewController: UITableViewDataSource {
         ) as? SettingsTableViewCell else { return UITableViewCell() }
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
-            self!.defaults.set(self!.settingsArray[indexPath.row].values[selectedIndex], forKey: self!.settingsArray[indexPath.row].key)
+            guard let self = self else { return }
+            self.defaults.set(self.settingsArray[indexPath.row].values[selectedIndex], forKey: self.settingsArray[indexPath.row].key)
         }
         return cell
     }

@@ -23,7 +23,7 @@ final class DataViewController: UIViewController {
 
     private func configureCollectionViewDataSource() -> DataSource {
         dataSource = DataSource(
-            collectionView: collectionView,
+            collectionView: { collectionView }(),
             cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
                 _ = self.sections[indexPath.section].items[indexPath.row]
                 switch listItem {
@@ -98,10 +98,8 @@ final class DataViewController: UIViewController {
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
-            let section = self!.dataSource.snapshot().sectionIdentifiers[sectionIndex].sectionType
-            guard self != nil else {
-                return nil
-            }
+            guard let self = self else { return nil }
+            let section = self.dataSource.snapshot().sectionIdentifiers[sectionIndex].sectionType
             switch section {
             case .image:
                 let item = NSCollectionLayoutItem(

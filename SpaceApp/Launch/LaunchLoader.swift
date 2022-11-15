@@ -23,14 +23,14 @@ final class LaunchLoader {
         guard let url = URL(string: Url.launchUrl) else {return}
         let task = session.dataTask(with: url) { data, _, error in
             guard let data = data else {return}
-                    do {
-                        let json = try self.decoder.decode([LaunchModelElement].self, from: data)
-                        let launches = json.filter { $0.rocket == id }
-                        completion(.success(launches))
-                    } catch {
-                        completion(.failure(error))
-                    }
+            do {
+                let json = try self.decoder.decode([LaunchModelElement].self, from: data)
+                let launches = json.filter { $0.rocket == id }
+                completion(.success(launches))
+            } catch {
+                completion(.failure(error))
             }
-            task.resume()
         }
+        task.resume()
     }
+}
