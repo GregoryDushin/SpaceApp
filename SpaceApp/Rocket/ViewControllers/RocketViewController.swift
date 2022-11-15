@@ -68,7 +68,6 @@ final class RocketViewController: UIViewController {
         }
         dataViewController.dataArray = rockets
         dataViewController.index = index
-        dataViewController.displayText = rockets[index].name
         dataViewController.id = rockets[index].id
         return dataViewController
     }

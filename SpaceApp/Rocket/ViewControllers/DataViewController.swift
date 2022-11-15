@@ -9,7 +9,6 @@ import UIKit
 
 final class DataViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
-    var displayText: String?
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
@@ -19,7 +18,7 @@ final class DataViewController: UIViewController {
     private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
 
-    // MARK: - Configure CollectionView DataSource
+// MARK: - Configure CollectionView DataSource
 
     private func configureCollectionViewDataSource() -> DataSource {
         dataSource = DataSource(
@@ -62,7 +61,7 @@ final class DataViewController: UIViewController {
         return dataSource
     }
 
-    // MARK: - Configure Snapshot
+// MARK: - Configure Snapshot
 
     private func applySnapshot() {
         snapshot = DataSourceSnapshot()
@@ -73,7 +72,7 @@ final class DataViewController: UIViewController {
         dataSource.apply(snapshot)
     }
 
-    // MARK: - Configure Header
+// MARK: - Configure Header
 
     func configureHeader() {
         dataSource.supplementaryViewProvider = {collectionView, kind, indexPath -> UICollectionReusableView? in
@@ -94,7 +93,7 @@ final class DataViewController: UIViewController {
         collectionView.reloadData()
     }
 
-    // MARK: - Creating sections using CompositionalLayout
+// MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
@@ -145,7 +144,7 @@ final class DataViewController: UIViewController {
         }
     }
 
-    // MARK: - Implementing data from URL into items
+// MARK: - Implementing data from URL into items
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
         [
@@ -247,7 +246,7 @@ final class DataViewController: UIViewController {
         ]
     }
 
-    // MARK: - Data transfer to the Launch VC
+// MARK: - Data transfer to the Launch VC
 
     @IBSegueAction
     func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {

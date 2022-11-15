@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D7F5CC6E2F0D4BFDEEB89CBB /* Pods_SpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */; };
-		F30932A3291BB46E009F4BAC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F30932A2291BB46E009F4BAC /* .swiftlint.yml */; };
 		F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */; };
 		F30E40DB290AB28B0046189B /* RocketVerticalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */; };
 		F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D7290AB28B0046189B /* RocketHorizontalInfoCell.swift */; };
@@ -39,7 +38,6 @@
 /* Begin PBXFileReference section */
 		7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2219D34D3BE59D88769D09B /* Pods-SpaceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.debug.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.debug.xcconfig"; sourceTree = "<group>"; };
-		F30932A2291BB46E009F4BAC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F30E40D5290AB28B0046189B /* RocketImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketImageCell.swift; sourceTree = "<group>"; };
 		F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchButtonCell.swift; sourceTree = "<group>"; };
@@ -162,9 +160,9 @@
 		F34139692923BE12004156C5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
-				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
 				F385E7A728FEA3340081166F /* DataViewController.swift */,
+				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
+				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -228,7 +226,6 @@
 		F37AA74428F5CC8400F1ADB9 = {
 			isa = PBXGroup;
 			children = (
-				F30932A2291BB46E009F4BAC /* .swiftlint.yml */,
 				F37AA74F28F5CC8400F1ADB9 /* SpaceApp */,
 				F37AA74E28F5CC8400F1ADB9 /* Products */,
 				68B7B0EDE10CCAB4AFD656CD /* Pods */,
@@ -343,7 +340,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30932A3291BB46E009F4BAC /* .swiftlint.yml in Resources */,
 				F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */,
 				F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */,
 				F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */,
