@@ -12,15 +12,17 @@ struct Section: Hashable {
     let title: String?
     let items: [ListItem]
 }
+
 enum SectionType {
     case image
     case horizontal
     case vertical
     case button
 }
+
 enum ListItem: Hashable {
-    case image(url: URL?, rocketName: String)
-    case verticalInfo(title: String, value: String, id: UUID)
+    case image(url: URL, rocketName: String)
+    case verticalInfo(title: String, value: String, id: UUID = UUID())
     case horizontalInfo(title: String, value: String)
     case button
 }

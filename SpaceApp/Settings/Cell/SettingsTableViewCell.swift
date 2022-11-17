@@ -16,6 +16,7 @@ final class SettingsTableViewCell: UITableViewCell {
         settingsSegmentedControl.setTitle(settings.values[0], forSegmentAt: 0)
         settingsSegmentedControl.setTitle(settings.values[1], forSegmentAt: 1)
         settingsSegmentedControl.addTarget(self, action: #selector(changed), for: .valueChanged)
+        //settingsSegmentedControl.selectedSegmentIndex
     }
     var onSettingChanged: ((Int) -> Void)?
 

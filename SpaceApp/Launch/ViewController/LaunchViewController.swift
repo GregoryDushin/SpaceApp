@@ -10,27 +10,31 @@ import UIKit
 final class LaunchViewController: UIViewController {
     @IBOutlet private var launchCollectionView: UICollectionView!
     private var launches: [LaunchModelElement] = []
-    var newId: String
+    private var newId: String
+    private let launchLoader = LaunchLoader()
+
     init?(coder: NSCoder, newId: String) {
         self.newId = newId
         super.init(coder: coder)
     }
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
-    private let launchLoader = LaunchLoader()
-    private let dateFormatter = { () -> DateFormatter in
+
+    private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/YY"
         return dateFormatter
     }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         launchLoader(id: newId)
     }
 
-// MARK: - LaunchLoader
+    // MARK: - LaunchLoader
 
     private func launchLoader(id: String) {
         launchLoader.launchDataLoad(id: id) { launches in
@@ -46,17 +50,11 @@ final class LaunchViewController: UIViewController {
         }
     }
 
-// MARK: - Creating Alert Controller
+    // MARK: - Creating Alert Controller
 
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)
-    }
-
-// MARK: - Formating Date into String
-
-    private func transformDateToString(_ utcDate: Date) -> String {
-        dateFormatter.string(from: utcDate)
     }
 }
 
@@ -93,13 +91,20 @@ extension LaunchViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CollectionViewCell.reuseIdentifier,
             for: indexPath
-        ) as? CollectionViewCell else {return UICollectionViewCell()}
-        let date = transformDateToString(launches[indexPath.row].dateUtc)
+        ) as? CollectionViewCell else {return UICollectionViewCell() }
+
         var isSuccessImg = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {
             isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
         }
-        cell.configure(name: launches[indexPath.row].name, date: date, image: isSuccessImg)
+        cell.configure(
+            name: launches[indexPath.row].name,
+            date: dateFormatter.string(
+                from:
+                    launches[indexPath.row].dateUtc
+            ),
+            image: isSuccessImg
+        )
         return cell
     }
 }

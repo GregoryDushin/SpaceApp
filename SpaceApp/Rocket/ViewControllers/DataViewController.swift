@@ -8,32 +8,28 @@
 import UIKit
 
 final class DataViewController: UIViewController {
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     @IBOutlet private var collectionView: UICollectionView!
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
-    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
 
-// MARK: - Configure CollectionView DataSource
+    // MARK: - Configure CollectionView DataSource
 
     private func configureCollectionViewDataSource() -> DataSource {
         dataSource = DataSource(
-            collectionView: { collectionView }(),
-            cellProvider: { collectionView, indexPath, listItem -> UICollectionViewCell? in
-                _ = self.sections[indexPath.section].items[indexPath.row]
+            collectionView: collectionView) { collectionView, indexPath, listItem -> UICollectionViewCell? in
                 switch listItem {
                 case let .image(url, rocketName):
                     guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: RocketImageCell.reuseIdentifier,
                         for: indexPath
-                    ) as? RocketImageCell else {return UICollectionViewCell()}
-                    if let url = url {
-                        cell.setup(url: url, rocketName: rocketName)
-                    }
+                    ) as? RocketImageCell else { return UICollectionViewCell() }
+                    cell.setup(url: url, rocketName: rocketName)
                     return cell
                 case let .horizontalInfo(title, value):
                     guard let cell = collectionView.dequeueReusableCell(
@@ -57,11 +53,10 @@ final class DataViewController: UIViewController {
                     return cell
                 }
             }
-        )
         return dataSource
     }
 
-// MARK: - Configure Snapshot
+    // MARK: - Configure Snapshot
 
     private func applySnapshot() {
         snapshot = DataSourceSnapshot()
@@ -72,13 +67,13 @@ final class DataViewController: UIViewController {
         dataSource.apply(snapshot)
     }
 
-// MARK: - Configure Header
+    // MARK: - Configure Header
 
     func configureHeader() {
-        dataSource.supplementaryViewProvider = {collectionView, kind, indexPath -> UICollectionReusableView? in
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: HeaderCell.reuseIdentifier, for: indexPath
-            ) as? HeaderCell else {return UICollectionReusableView()}
+            ) as? HeaderCell else {return UICollectionReusableView() }
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
         }
@@ -93,10 +88,10 @@ final class DataViewController: UIViewController {
         collectionView.reloadData()
     }
 
-// MARK: - Creating sections using CompositionalLayout
+    // MARK: - Creating sections using CompositionalLayout
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self = self else { return nil }
             let section = self.dataSource.snapshot().sectionIdentifiers[sectionIndex].sectionType
             switch section {
@@ -144,15 +139,10 @@ final class DataViewController: UIViewController {
         }
     }
 
-// MARK: - Implementing data from URL into items
+    // MARK: - Implementing data from URL into items
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
-        [
-            Section(
-                sectionType: .image,
-                title: nil,
-                items: [.image(url: URL(string: rocket.flickrImages[0]), rocketName: rocket.name)]
-            ),
+        var sections = [
             Section(
                 sectionType: .horizontal,
                 title: nil,
@@ -183,18 +173,15 @@ final class DataViewController: UIViewController {
                     [
                         .verticalInfo(
                             title: "Первый запуск",
-                            value: rocket.firstFlight,
-                            id: UUID()
+                            value: rocket.firstFlight
                         ),
                         .verticalInfo(
                             title: "Страна",
-                            value: "США",
-                            id: UUID()
+                            value: "США"
                         ),
                         .verticalInfo(
                             title: "Стоимость запуска",
-                            value: "$" + String((rocket.costPerLaunch) / 1_000_000) + " млн",
-                            id: UUID()
+                            value: "$" + String((rocket.costPerLaunch) / 1_000_000) + " млн"
                         )
                     ]
             ),
@@ -205,18 +192,15 @@ final class DataViewController: UIViewController {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(rocket.firstStage.engines),
-                            id: UUID()
+                            value: String(rocket.firstStage.engines)
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн",
-                            id: UUID()
+                            value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек",
-                            id: UUID()
+                            value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек"
                         )
                     ]
             ),
@@ -227,29 +211,34 @@ final class DataViewController: UIViewController {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(rocket.secondStage.engines),
-                            id: UUID()
+                            value: String(rocket.secondStage.engines)
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн",
-                            id: UUID()
+                            value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек",
-                            id: UUID()
+                            value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек"
                         )
                     ]
             ),
             Section(sectionType: .button, title: nil, items: [.button])
         ]
+        if let url = URL(string: rocket.flickrImages[0]) {
+            let section = Section(
+                sectionType: .image,
+                title: nil,
+                items: [.image(url: url, rocketName: rocket.name)]
+            )
+            sections.insert(section, at: 0)
+        }
+        return sections
     }
-
-// MARK: - Data transfer to the Launch VC
+    // MARK: - Data transfer to the Launch VC
 
     @IBSegueAction
-    func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
+    private func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
         LaunchViewController(coder: coder, newId: self.id)
     }
 }
