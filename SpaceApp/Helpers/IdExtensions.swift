@@ -12,10 +12,14 @@ import UIKit
 protocol ReuseIdentifying {
     static var reuseIdentifier: String { get }
 }
+
 extension ReuseIdentifying {
     static var reuseIdentifier: String {
         String(describing: Self.self)
     }
+
 }
+
 extension UICollectionReusableView: ReuseIdentifying {}
+
 extension UITableViewCell: ReuseIdentifying {}

@@ -10,6 +10,7 @@ import UIKit
 final class DataViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
+
     @IBOutlet private var collectionView: UICollectionView!
     var index: Int = 0
     var id = ""
@@ -29,30 +30,36 @@ final class DataViewController: UIViewController {
                         withReuseIdentifier: RocketImageCell.reuseIdentifier,
                         for: indexPath
                     ) as? RocketImageCell else { return UICollectionViewCell() }
+
                     cell.setup(url: url, rocketName: rocketName)
                     return cell
                 case let .horizontalInfo(title, value):
                     guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: RocketHorizontalInfoCell.reuseIdentifier,
                         for: indexPath
-                    ) as? RocketHorizontalInfoCell else {return UICollectionViewCell()}
+                    ) as? RocketHorizontalInfoCell else { return UICollectionViewCell() }
+
                     cell.setup(title: title, value: value)
                     return cell
                 case let .verticalInfo(title, value, _):
                     guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: RocketVerticalInfoCell.reuseIdentifier,
                         for: indexPath
-                    ) as? RocketVerticalInfoCell else {return UICollectionViewCell()}
+                    ) as? RocketVerticalInfoCell else { return UICollectionViewCell() }
+
                     cell.setup(title: title, value: value)
                     return cell
                 case .button:
                     guard let cell = collectionView.dequeueReusableCell(
                         withReuseIdentifier: RocketLaunchButtonCell.reuseIdentifier,
                         for: indexPath
-                    ) as? RocketLaunchButtonCell else {return UICollectionViewCell()}
+                    ) as? RocketLaunchButtonCell else { return UICollectionViewCell() }
+
                     return cell
                 }
+
             }
+
         return dataSource
     }
 
@@ -64,8 +71,10 @@ final class DataViewController: UIViewController {
             snapshot.appendSections([section])
             snapshot.appendItems(section.items, toSection: section)
         }
+
         dataSource.apply(snapshot)
     }
+
 
     // MARK: - Configure Header
 
@@ -74,9 +83,11 @@ final class DataViewController: UIViewController {
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: HeaderCell.reuseIdentifier, for: indexPath
             ) as? HeaderCell else {return UICollectionReusableView() }
+
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
         }
+
     }
 
     override func viewDidLoad() {
@@ -93,6 +104,7 @@ final class DataViewController: UIViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self = self else { return nil }
+
             let section = self.dataSource.snapshot().sectionIdentifiers[sectionIndex].sectionType
             switch section {
             case .image:
@@ -136,7 +148,9 @@ final class DataViewController: UIViewController {
                 )
                 return NSCollectionLayoutSection(group: group)
             }
+
         }
+
     }
 
     // MARK: - Implementing data from URL into items
@@ -233,12 +247,15 @@ final class DataViewController: UIViewController {
             )
             sections.insert(section, at: 0)
         }
+
         return sections
     }
+
     // MARK: - Data transfer to the Launch VC
 
     @IBSegueAction
     private func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
         LaunchViewController(coder: coder, newId: self.id)
     }
+
 }

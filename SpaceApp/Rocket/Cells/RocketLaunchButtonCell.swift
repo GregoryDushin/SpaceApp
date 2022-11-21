@@ -15,4 +15,5 @@ final class RocketLaunchButtonCell: UICollectionViewCell {
         launchButton.layer.masksToBounds = true
         launchButton.layer.cornerRadius = 20
     }
+
 }

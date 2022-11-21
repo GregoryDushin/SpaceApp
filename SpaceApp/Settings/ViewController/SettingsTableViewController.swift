@@ -17,10 +17,6 @@ final class SettingsTableViewController: UIViewController {
     ]
     private var selectedIndexPath: Int = 0
     private let defaults = UserDefaults.standard
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }
 
 // MARK: - UITableViewDataSource

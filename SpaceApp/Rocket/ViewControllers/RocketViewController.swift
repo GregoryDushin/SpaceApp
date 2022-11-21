@@ -44,6 +44,7 @@ final class RocketViewController: UIViewController {
                 as? CustomPageViewController else {
             return
         }
+
         pageViewController.delegate = self
         pageViewController.dataSource = self
         addChild(pageViewController)
@@ -51,6 +52,7 @@ final class RocketViewController: UIViewController {
         pageViewController.view.backgroundColor = UIColor.black
         contentView.addSubview(pageViewController.view)
         guard let startingViewController = passViewControllerAt(index: currentViewControllerIndex) else { return }
+
         pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true)
     }
 
@@ -58,6 +60,7 @@ final class RocketViewController: UIViewController {
         if index >= rockets.count, rockets.isEmpty {
             return nil
         }
+
         guard let dataViewController =
                 storyboard?.instantiateViewController(
                     withIdentifier: String(
@@ -66,6 +69,7 @@ final class RocketViewController: UIViewController {
                 ) as? DataViewController else {
             return nil
         }
+
         dataViewController.dataArray = rockets
         dataViewController.index = index
         dataViewController.id = rockets[index].id
@@ -78,6 +82,7 @@ final class RocketViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)
     }
+
 }
 
 // MARK: - UIPageViewDataSource
@@ -92,10 +97,12 @@ extension RocketViewController: UIPageViewControllerDataSource {
         guard var currentIndex = dataViewController?.index else {
             return nil
         }
+
         currentViewControllerIndex = currentIndex
         if currentIndex == 0 {
             return nil
         }
+
         currentIndex -= 1
         return passViewControllerAt(index: currentIndex)
     }
@@ -108,13 +115,16 @@ extension RocketViewController: UIPageViewControllerDataSource {
         guard var currentIndex = dataViewController?.index else {
             return nil
         }
+
         if currentIndex == rockets.count - 1 {
             return nil
         }
+
         currentIndex += 1
         currentViewControllerIndex = currentIndex
         return passViewControllerAt(index: currentIndex)
     }
+
 }
 
 // MARK: - UIPageViewControllerDelegate
