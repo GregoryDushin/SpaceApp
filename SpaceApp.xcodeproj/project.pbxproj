@@ -21,7 +21,6 @@
 		F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */; };
 		F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */; };
 		F37AA76728F5CCA500F1ADB9 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */; };
-		F37AA76928F5CCB800F1ADB9 /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */; };
 		F37AA76B28F5CCC300F1ADB9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */; };
 		F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */; };
 		F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */; };
@@ -54,7 +53,6 @@
 		F37AA75E28F5CC8700F1ADB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
-		F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
 		F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RocketLoader.swift; sourceTree = "<group>"; };
 		F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchLoader.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				F385E7A728FEA3340081166F /* DataViewController.swift */,
-				F37AA76828F5CCB800F1ADB9 /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
 			);
 			path = ViewControllers;
@@ -420,7 +417,6 @@
 				F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */,
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
 				F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */,
-				F37AA76928F5CCB800F1ADB9 /* RocketViewController.swift in Sources */,
 				F30E40DE290AB28B0046189B /* RocketImageCell.swift in Sources */,
 				F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */,
 				F30E40DF290AB28B0046189B /* RocketLaunchButtonCell.swift in Sources */,

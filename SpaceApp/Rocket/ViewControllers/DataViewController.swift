@@ -75,7 +75,6 @@ final class DataViewController: UIViewController {
         dataSource.apply(snapshot)
     }
 
-
     // MARK: - Configure Header
 
     func configureHeader() {
