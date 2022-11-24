@@ -8,9 +8,7 @@
 import UIKit
 
 final class HeaderCell: UICollectionReusableView {
-
     @IBOutlet private var headerLabel: UILabel!
-
     func setup(title: String) {
         headerLabel.text = title
     }

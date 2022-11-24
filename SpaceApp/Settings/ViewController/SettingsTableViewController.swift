@@ -8,7 +8,6 @@
 import UIKit
 
 final class SettingsTableViewController: UIViewController {
-
     @IBOutlet private var settingsTableView: UITableView!
 
     var completion: (() -> Void)?

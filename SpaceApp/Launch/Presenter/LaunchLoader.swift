@@ -10,7 +10,6 @@ import Foundation
 // MARK: - JSON LAUNCH PARSING
 
 final class LaunchLoader {
-
     private let decoder = JSONDecoder()
     private let session = URLSession.shared
 

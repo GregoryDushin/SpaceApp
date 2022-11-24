@@ -8,7 +8,6 @@
 import UIKit
 
 final class CustomPageViewController: UIPageViewController {
-
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
     private let rocketLoader = RocketLoader()

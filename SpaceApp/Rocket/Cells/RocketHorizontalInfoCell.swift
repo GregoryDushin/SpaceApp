@@ -8,7 +8,6 @@
 import UIKit
 
 final class RocketHorizontalInfoCell: UICollectionViewCell {
-
     @IBOutlet private var mainParametrLabel: UILabel!
     @IBOutlet private var valueParametrLabel: UILabel!
 

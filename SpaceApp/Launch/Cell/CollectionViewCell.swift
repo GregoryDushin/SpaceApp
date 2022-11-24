@@ -6,9 +6,7 @@
 //
 
 import UIKit
-
 final class CollectionViewCell: UICollectionViewCell {
-
     @IBOutlet private var rocketNameLabel: UILabel!
     @IBOutlet private var dateOfLaunchLabel: UILabel!
     @IBOutlet private var isSucsessImage: UIImageView!

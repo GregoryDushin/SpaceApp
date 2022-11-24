@@ -8,7 +8,6 @@
 import UIKit
 
 final class LaunchViewController: UIViewController {
-
     @IBOutlet private var launchCollectionView: UICollectionView!
 
     private var launches: [LaunchModelElement] = []

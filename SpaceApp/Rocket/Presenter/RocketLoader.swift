@@ -10,7 +10,6 @@ import Foundation
 // MARK: - JSON ROCKET PARSING
 
 final class RocketLoader {
-
     private let decoder = JSONDecoder()
     private let session = URLSession.shared
 

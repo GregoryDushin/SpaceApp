@@ -8,11 +8,10 @@
 import UIKit
 
 final class DataViewController: UIViewController {
+    @IBOutlet private var collectionView: UICollectionView!
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
-
-    @IBOutlet private var collectionView: UICollectionView!
 
     var index: Int = 0
     var id = ""
