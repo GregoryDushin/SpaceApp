@@ -8,6 +8,7 @@ import AlamofireImage
 import UIKit
 
 final class RocketImageCell: UICollectionViewCell {
+
     @IBOutlet private var rocketImage: UIImageView!
     @IBOutlet private var rocketNameLabel: UILabel!
     @IBOutlet private var rocketView: UIView!

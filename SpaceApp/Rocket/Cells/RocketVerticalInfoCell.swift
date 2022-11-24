@@ -8,6 +8,7 @@
 import UIKit
 
 final class RocketVerticalInfoCell: UICollectionViewCell {
+
     @IBOutlet private var nameSettingsLabel: UILabel!
     @IBOutlet private var valueSettingsLabel: UILabel!
 

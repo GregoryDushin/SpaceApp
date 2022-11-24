@@ -8,6 +8,7 @@
 import UIKit
 
 final class SettingsTableViewController: UIViewController {
+
     @IBOutlet private var settingsTableView: UITableView!
 
     var completion: (() -> Void)?
@@ -40,11 +41,6 @@ final class SettingsTableViewController: UIViewController {
     ]
     private var selectedIndexPath: Int = 0
     private let defaults = UserDefaults.standard
-
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        self.completion?()
-//    }
 }
 
 // MARK: - UITableViewDataSource

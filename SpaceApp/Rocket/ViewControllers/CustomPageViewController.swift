@@ -8,6 +8,7 @@
 import UIKit
 
 final class CustomPageViewController: UIPageViewController {
+
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
     private let rocketLoader = RocketLoader()
@@ -69,7 +70,6 @@ final class CustomPageViewController: UIPageViewController {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)
     }
-
 }
 
 // MARK: - UIPageViewDataSource

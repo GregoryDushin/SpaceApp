@@ -8,10 +8,18 @@
 import UIKit
 
 final class LaunchViewController: UIViewController {
+
     @IBOutlet private var launchCollectionView: UICollectionView!
+
     private var launches: [LaunchModelElement] = []
-    private var newId: String
+    private let newId: String
     private let launchLoader = LaunchLoader()
+
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/YY"
+        return dateFormatter
+    }()
 
     init?(coder: NSCoder, newId: String) {
         self.newId = newId
@@ -22,12 +30,6 @@ final class LaunchViewController: UIViewController {
     required init?(coder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
-
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY"
-        return dateFormatter
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

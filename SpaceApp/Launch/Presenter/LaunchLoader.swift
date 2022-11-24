@@ -10,8 +10,10 @@ import Foundation
 // MARK: - JSON LAUNCH PARSING
 
 final class LaunchLoader {
+
     private let decoder = JSONDecoder()
     private let session = URLSession.shared
+
     init() {
         let dateFormatter = DateFormatter()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)

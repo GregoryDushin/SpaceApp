@@ -8,10 +8,12 @@
 import UIKit
 
 final class DataViewController: UIViewController {
+
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
 
     @IBOutlet private var collectionView: UICollectionView!
+
     var index: Int = 0
     var id = ""
     var dataArray: [RocketModelElement] = []
@@ -57,7 +59,6 @@ final class DataViewController: UIViewController {
 
                     return cell
                 }
-
             }
 
         return dataSource
@@ -84,11 +85,6 @@ final class DataViewController: UIViewController {
             return header
         }
     }
-
-//    override func viewWillAppear (_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        collectionView.reloadData()
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -288,7 +284,7 @@ final class DataViewController: UIViewController {
         return sections
     }
 
-    // MARK: - Data transfer to the Launch VC
+    // MARK: - Data transfer between View Controllers
 
     @IBSegueAction
     private func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
@@ -298,11 +294,12 @@ final class DataViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let popUp = segue.destination as? SettingsTableViewController {
             popUp.completion = {[weak self] in
-                self?.collectionView.reloadData()
-                print("huihuihui")
+                guard let self = self else { return }
+                self.sections = self.mapRocketToSections(rocket: self.dataArray[self.index])
+                self.applySnapshot()
             }
         } else {
-            print("hueta")
+            return
         }
     }
 }
