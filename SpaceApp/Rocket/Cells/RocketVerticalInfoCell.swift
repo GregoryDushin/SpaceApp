@@ -15,5 +15,4 @@ final class RocketVerticalInfoCell: UICollectionViewCell {
         nameSettingsLabel.text = title
         valueSettingsLabel.text = value
     }
-
 }

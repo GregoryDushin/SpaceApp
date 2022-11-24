@@ -17,7 +17,6 @@ extension ReuseIdentifying {
     static var reuseIdentifier: String {
         String(describing: Self.self)
     }
-
 }
 
 extension UICollectionReusableView: ReuseIdentifying {}

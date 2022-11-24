@@ -65,8 +65,6 @@ final class CustomPageViewController: UIPageViewController {
         return dataViewController
     }
 
-    // MARK: - Creating Alert Controller
-
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         self.present(alert, animated: true)

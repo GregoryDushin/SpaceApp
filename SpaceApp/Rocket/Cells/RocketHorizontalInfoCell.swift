@@ -21,5 +21,4 @@ final class RocketHorizontalInfoCell: UICollectionViewCell {
         mainParametrLabel.text = title
         valueParametrLabel.text = value
     }
-
 }

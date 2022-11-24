@@ -26,7 +26,7 @@ extension RocketModelElement {
         let feet: Double?
     }
 
-    // MARK: - FirstStage
+// MARK: - FirstStage
 
     struct FirstStage: Decodable {
         let engines: Int
@@ -34,14 +34,14 @@ extension RocketModelElement {
         let burnTimeSec: Int?
     }
 
-    // MARK: - Mass
+// MARK: - Mass
 
     struct Mass: Decodable {
         let kg: Int
         let lb: Int
     }
 
-    // MARK: - PayloadWeight
+// MARK: - PayloadWeight
 
     struct PayloadWeight: Decodable {
         let id: String
@@ -50,7 +50,7 @@ extension RocketModelElement {
         let lb: Int
     }
 
-    // MARK: - SecondStage
+// MARK: - SecondStage
 
     struct SecondStage: Decodable {
         let engines: Int

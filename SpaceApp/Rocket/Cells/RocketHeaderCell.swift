@@ -13,5 +13,4 @@ final class HeaderCell: UICollectionReusableView {
     func setup(title: String) {
         headerLabel.text = title
     }
-
 }

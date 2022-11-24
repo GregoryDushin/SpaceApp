@@ -12,7 +12,16 @@ final class SettingsTableViewCell: UITableViewCell {
     @IBOutlet private var settingsSegmentedControl: UISegmentedControl!
     var onSettingChanged: ((Int) -> Void)?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        settingsSegmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        let titleTextAttributes1 = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        settingsSegmentedControl.setTitleTextAttributes(titleTextAttributes1, for: .selected)
+    }
+
     func cellConfigure(settings: Setting) {
+        settingsSegmentedControl.selectedSegmentIndex = UserDefaults.standard.integer(forKey: settings.positionKey)
         settingsLabel.text = settings.title
         settingsSegmentedControl.setTitle(settings.values[0], forSegmentAt: 0)
         settingsSegmentedControl.setTitle(settings.values[1], forSegmentAt: 1)

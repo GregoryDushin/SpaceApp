@@ -63,8 +63,6 @@ final class DataViewController: UIViewController {
         return dataSource
     }
 
-    // MARK: - Configure Snapshot
-
     private func applySnapshot() {
         snapshot = DataSourceSnapshot()
         for section in sections {
@@ -75,19 +73,22 @@ final class DataViewController: UIViewController {
         dataSource.apply(snapshot)
     }
 
-    // MARK: - Configure Header
-
-    func configureHeader() {
+    private func configureHeader() {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: HeaderCell.reuseIdentifier, for: indexPath
-            ) as? HeaderCell else {return UICollectionReusableView() }
+            ) as? HeaderCell else {return UICollectionReusableView()
+            }
 
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
         }
-
     }
+
+//    override func viewWillAppear (_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        collectionView.reloadData()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,14 +148,51 @@ final class DataViewController: UIViewController {
                 )
                 return NSCollectionLayoutSection(group: group)
             }
-
         }
-
     }
 
-    // MARK: - Implementing data from URL into items
-
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
+        var heightName = ""
+        var heightValue = ""
+        var diamName = ""
+        var diamValue = ""
+        var massName = ""
+        var massValue = ""
+        var capacityName = ""
+        var capacityValue = ""
+
+        if UserDefaults.standard.string(forKey: PersistanceKeys.heightKey) == "ft" {
+            heightName = "Высота, ft"
+            heightValue = String(rocket.height.feet ?? 0.0)
+        } else {
+            heightName = "Высота, m"
+            heightValue = String(rocket.height.meters ?? 0.0)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistanceKeys.diameterKey) == "ft" {
+            diamName = "Диаметр, ft"
+            diamValue = String(rocket.diameter.feet ?? 0.0)
+        } else {
+            diamName = "Диаметр, m"
+            diamValue = String(rocket.diameter.meters ?? 0.0)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistanceKeys.massKey) == "lb" {
+            massName = "Масса, lb"
+            massValue = String(rocket.mass.lb)
+        } else {
+            massName = "Масса, кг"
+            massValue = String(rocket.mass.kg)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistanceKeys.capacityKey) == "lb" {
+            capacityName = "Масса, lb"
+            capacityValue = String(rocket.payloadWeights[0].lb)
+        } else {
+            capacityName = "Масса, кг"
+            capacityValue = String(rocket.payloadWeights[0].kg)
+        }
+
         var sections = [
             Section(
                 sectionType: .horizontal,
@@ -162,20 +200,20 @@ final class DataViewController: UIViewController {
                 items:
                     [
                         .horizontalInfo(
-                            title: "Высота, ft",
-                            value: String(rocket.height.meters ?? 0.0)
+                            title: heightName,
+                            value: heightValue
                         ),
                         .horizontalInfo(
-                            title: "Диаметр, ft",
-                            value: String(rocket.diameter.meters ?? 0.0)
+                            title: diamName,
+                            value: diamValue
                         ),
                         .horizontalInfo(
-                            title: "Масса, lb",
-                            value: String(rocket.mass.kg)
+                            title: massName,
+                            value: massValue
                         ),
                         .horizontalInfo(
-                            title: "Нагрузка, lb",
-                            value: String(rocket.payloadWeights[0].kg)
+                            title: capacityName,
+                            value: capacityValue
                         )
                     ]
             ),
@@ -257,4 +295,14 @@ final class DataViewController: UIViewController {
         LaunchViewController(coder: coder, newId: self.id)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let popUp = segue.destination as? SettingsTableViewController {
+            popUp.completion = {[weak self] in
+                self?.collectionView.reloadData()
+                print("huihuihui")
+            }
+        } else {
+            print("hueta")
+        }
+    }
 }

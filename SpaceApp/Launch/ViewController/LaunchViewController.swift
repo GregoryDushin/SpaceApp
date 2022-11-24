@@ -34,8 +34,6 @@ final class LaunchViewController: UIViewController {
         launchLoader(id: newId)
     }
 
-    // MARK: - LaunchLoader
-
     private func launchLoader(id: String) {
         launchLoader.launchDataLoad(id: id) { launches in
             DispatchQueue.main.async {
@@ -49,8 +47,6 @@ final class LaunchViewController: UIViewController {
             }
         }
     }
-
-    // MARK: - Creating Alert Controller
 
     private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
@@ -91,7 +87,8 @@ extension LaunchViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CollectionViewCell.reuseIdentifier,
             for: indexPath
-        ) as? CollectionViewCell else {return UICollectionViewCell() }
+        ) as? CollectionViewCell else {return UICollectionViewCell()
+        }
 
         var isSuccessImg = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {

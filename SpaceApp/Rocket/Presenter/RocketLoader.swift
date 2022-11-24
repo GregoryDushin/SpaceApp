@@ -26,15 +26,11 @@ final class RocketLoader {
             do {
                 let json = try self.decoder.decode([RocketModelElement].self, from: data)
                 completion(.success(json))
-            }
-
-            catch {
+            } catch {
                 completion(.failure(error))
             }
-
         }
 
         task.resume()
     }
-
 }
