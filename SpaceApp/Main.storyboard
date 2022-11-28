@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Data View Controller-->
+        <!--Rocket View Controller-->
         <scene sceneID="XCk-LB-YQl">
             <objects>
-                <viewController restorationIdentifier="DataViewController" storyboardIdentifier="DataViewController" id="WhI-rz-Rt5" customClass="DataViewController" customModule="SpaceApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="RocketViewController" storyboardIdentifier="RocketViewController" id="WhI-rz-Rt5" customClass="RocketViewController" customModule="SpaceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M7Y-tZ-ng0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="settings"/>
                                                             <connections>
-                                                                <segue destination="tkL-XM-jbf" kind="show" identifier="showSettings" id="kk7-Aq-n4v"/>
+                                                                <segue destination="tkL-XM-jbf" kind="show" identifier="showSettings" destinationCreationSelector="transferSettingsInfo:" id="kk7-Aq-n4v"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -254,7 +254,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="CollectionViewCell" id="shv-gC-86B" customClass="CollectionViewCell" customModule="SpaceApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LaunchCell" reuseIdentifier="LaunchCell" id="shv-gC-86B" customClass="LaunchCell" customModule="SpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wyd-ok-teO">
@@ -417,7 +417,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="N4N-cB-3D5" kind="relationship" relationship="rootViewController" id="PNF-yX-ryf"/>
+                        <segue destination="N4N-cB-3D5" kind="relationship" relationship="rootViewController" destinationCreationSelector="transferLaunchInfo:" id="PNF-yX-ryf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kS-8Z-Lqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

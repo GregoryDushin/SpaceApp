@@ -9,6 +9,7 @@ import UIKit
 
 final class RocketLaunchButtonCell: UICollectionViewCell {
     @IBOutlet private var launchButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         launchButton.layer.masksToBounds = true

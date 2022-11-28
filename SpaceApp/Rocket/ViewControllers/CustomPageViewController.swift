@@ -8,6 +8,7 @@
 import UIKit
 
 final class CustomPageViewController: UIPageViewController {
+
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
     private let rocketLoader = RocketLoader()
@@ -40,26 +41,24 @@ final class CustomPageViewController: UIPageViewController {
     }
 
     private func configureStartingVC() {
-        if let startingViewController = passViewControllerAt(index: currentViewControllerIndex) {
-            setViewControllers([startingViewController], direction: .forward, animated: true)
+        guard let startingViewController = passViewControllerAt(index: currentViewControllerIndex) else {
+            return
         }
+            setViewControllers([startingViewController], direction: .forward, animated: true)
+
     }
 
-    private func passViewControllerAt(index: Int) -> DataViewController? {
-        if index >= rockets.count, rockets.isEmpty {
-            return nil
-        }
-
+    private func passViewControllerAt(index: Int) -> RocketViewController? {
         guard let dataViewController =
                 storyboard?.instantiateViewController(
                     withIdentifier: String(
-                        describing: DataViewController.self
+                        describing: RocketViewController.self
                     )
-                ) as? DataViewController else {
+                ) as? RocketViewController, index <= rockets.count, !rockets.isEmpty else {
             return nil
         }
 
-        dataViewController.dataArray = rockets
+        dataViewController.rocketData = rockets[index]
         dataViewController.index = index
         dataViewController.id = rockets[index].id
         return dataViewController
@@ -79,7 +78,7 @@ extension CustomPageViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
-        let dataViewController = viewController as? DataViewController
+        let dataViewController = viewController as? RocketViewController
         guard var currentIndex = dataViewController?.index else {
             return nil
         }
@@ -97,7 +96,7 @@ extension CustomPageViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
-        let dataViewController = viewController as? DataViewController
+        let dataViewController = viewController as? RocketViewController
         guard var currentIndex = dataViewController?.index else {
             return nil
         }

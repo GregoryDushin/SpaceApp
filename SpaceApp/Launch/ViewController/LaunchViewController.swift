@@ -86,22 +86,18 @@ extension LaunchViewController: UICollectionViewDataSource {
         IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CollectionViewCell.reuseIdentifier,
+            withReuseIdentifier: LaunchCell.reuseIdentifier,
             for: indexPath
-        ) as? CollectionViewCell else {return UICollectionViewCell()
-        }
+        ) as? LaunchCell else { return UICollectionViewCell() }
 
-        var isSuccessImg = UIImage(named: LaunchImages.unknown)
+        var launchImage = UIImage(named: LaunchImages.unknown)
         if let launchingResult = launches[indexPath.row].success {
-            isSuccessImg = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
+            launchImage = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
         }
         cell.configure(
             name: launches[indexPath.row].name,
-            date: dateFormatter.string(
-                from:
-                    launches[indexPath.row].dateUtc
-            ),
-            image: isSuccessImg
+            date: dateFormatter.string(from: launches[indexPath.row].dateUtc),
+            image: launchImage
         )
         return cell
     }

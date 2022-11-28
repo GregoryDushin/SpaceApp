@@ -12,6 +12,16 @@ final class SettingsTableViewController: UIViewController {
 
     var completion: (() -> Void)?
 
+    init?(coder: NSCoder, completion: (() -> Void)?) {
+        self.completion = completion
+        super.init(coder: coder)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        preconditionFailure("init(coder:) has not been implemented")
+    }
+
     private let settingsArray = [
         Setting(
             title: "Высота",

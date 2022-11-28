@@ -7,18 +7,27 @@
 
 import UIKit
 
-final class DataViewController: UIViewController {
-    @IBOutlet private var collectionView: UICollectionView!
-
+final class RocketViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
 
+    @IBOutlet private var collectionView: UICollectionView!
+
     var index: Int = 0
     var id = ""
-    var dataArray: [RocketModelElement] = []
+    var rocketData: RocketModelElement?
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.collectionViewLayout = createLayout()
+        guard let rocket = rocketData else { return }
+        sections = mapRocketToSections(rocket: rocket)
+        configureHeader()
+        applySnapshot()
+    }
 
     // MARK: - Configure CollectionView DataSource
 
@@ -76,22 +85,16 @@ final class DataViewController: UIViewController {
     private func configureHeader() {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: HeaderCell.reuseIdentifier, for: indexPath
-            ) as? HeaderCell else {return UICollectionReusableView()
+                ofKind: kind,
+                withReuseIdentifier: HeaderCell.reuseIdentifier,
+                for: indexPath
+            )
+                    as? HeaderCell else {return UICollectionReusableView()
             }
 
             header.setup(title: self.sections[indexPath.section].title ?? "")
             return header
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.collectionViewLayout = createLayout()
-        sections = mapRocketToSections(rocket: dataArray[index])
-        configureHeader()
-        applySnapshot()
-        collectionView.reloadData()
     }
 
     // MARK: - Creating sections using CompositionalLayout
@@ -147,14 +150,14 @@ final class DataViewController: UIViewController {
     }
 
     private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
-        var heightName = ""
-        var heightValue = ""
-        var diamName = ""
-        var diamValue = ""
-        var massName = ""
-        var massValue = ""
-        var capacityName = ""
-        var capacityValue = ""
+        let heightName: String
+        let heightValue: String
+        let diamName: String
+        let diamValue: String
+        let massName: String
+        let massValue: String
+        let capacityName: String
+        let capacityValue: String
 
         if UserDefaults.standard.string(forKey: PersistanceKeys.heightKey) == "ft" {
             heightName = "Высота, ft"
@@ -286,19 +289,16 @@ final class DataViewController: UIViewController {
     // MARK: - Data transfer between View Controllers
 
     @IBSegueAction
-    private func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
+    func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
         LaunchViewController(coder: coder, newId: self.id)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let popUp = segue.destination as? SettingsTableViewController {
-            popUp.completion = {[weak self] in
-                guard let self = self else { return }
-                self.sections = self.mapRocketToSections(rocket: self.dataArray[self.index])
-                self.applySnapshot()
-            }
-        } else {
-            return
+    @IBSegueAction
+    func transferSettingsInfo(_ coder: NSCoder) -> SettingsTableViewController? {
+        SettingsTableViewController(coder: coder) {[weak self] in
+            guard let self = self, let rocket = self.rocketData else { return }
+            self.sections = self.mapRocketToSections(rocket: rocket)
+            self.applySnapshot()
         }
     }
 }
