@@ -10,18 +10,11 @@ import UIKit
 final class LaunchViewController: UIViewController {
     @IBOutlet private var launchCollectionView: UICollectionView!
 
-    private var launches: [LaunchModelElement] = []
-    private let newId: String
-    private let launchLoader = LaunchLoader()
+    private var launches: [LaunchData] = []
+    private var presenter: LaunchViewPresenterProtocol
 
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY"
-        return dateFormatter
-    }()
-
-    init?(coder: NSCoder, newId: String) {
-        self.newId = newId
+    init?(coder: NSCoder, presenter: LaunchViewPresenterProtocol) {
+        self.presenter = presenter
         super.init(coder: coder)
     }
 
@@ -32,21 +25,7 @@ final class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        launchLoader(id: newId)
-    }
-
-    private func launchLoader(id: String) {
-        launchLoader.launchDataLoad(id: id) { launches in
-            DispatchQueue.main.async {
-                switch launches {
-                case .success(let launches):
-                    self.launches = launches
-                    self.launchCollectionView.reloadData()
-                case .failure(let error):
-                    self.showAlert(error.localizedDescription)
-                }
-            }
-        }
+        presenter.view = self
     }
 
     private func showAlert(_ error: String) {
@@ -90,15 +69,22 @@ extension LaunchViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? LaunchCell else { return UICollectionViewCell() }
 
-        var launchImage = UIImage(named: LaunchImages.unknown)
-        if let launchingResult = launches[indexPath.row].success {
-            launchImage = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
-        }
         cell.configure(
             name: launches[indexPath.row].name,
-            date: dateFormatter.string(from: launches[indexPath.row].dateUtc),
-            image: launchImage
+            date: launches[indexPath.row].date,
+            image: launches[indexPath.row].image
         )
         return cell
+    }
+}
+
+extension LaunchViewController: LaunchViewProtocol {
+    func succes(data: [LaunchData]) {
+        self.launches = data
+        self.launchCollectionView.reloadData()
+    }
+
+    func failure(error: Error) {
+        self.showAlert(error.localizedDescription)
     }
 }

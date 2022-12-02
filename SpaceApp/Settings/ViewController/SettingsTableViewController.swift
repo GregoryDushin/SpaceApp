@@ -25,25 +25,21 @@ final class SettingsTableViewController: UIViewController {
     private let settingsArray = [
         Setting(
             title: "Высота",
-            key: PersistanceKeys.heightKey,
             positionKey: PersistancePositionKeys.heightPositionKey,
             values: ["m", "ft"]
         ),
         Setting(
             title: "Диаметр",
-            key: PersistanceKeys.diameterKey,
             positionKey: PersistancePositionKeys.diameterPositionKey,
             values: ["m", "ft"]
         ),
         Setting(
             title: "Масса",
-            key: PersistanceKeys.massKey,
             positionKey: PersistancePositionKeys.massPositionKey,
             values: ["kg", "lb"]
             ),
         Setting(
             title: "Полезная нагрузка",
-            key: PersistanceKeys.capacityKey,
             positionKey: PersistancePositionKeys.capacityPositionKey,
             values: ["kg", "lb"]
             )
@@ -72,7 +68,6 @@ extension SettingsTableViewController: UITableViewDataSource {
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
             guard let self = self else { return }
-            self.defaults.set(self.settingsArray[indexPath.row].values[selectedIndex], forKey: self.settingsArray[indexPath.row].key)
             self.defaults.set(selectedIndex, forKey: self.settingsArray[indexPath.row].positionKey)
             self.completion?()
         }

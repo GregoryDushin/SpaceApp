@@ -18,13 +18,6 @@ enum Url {
     static let launchUrl = "https://api.spacexdata.com/v4/launches"
 }
 
-enum PersistanceKeys {
-    static let heightKey = "Persistance.heightKey"
-    static let diameterKey = "Persistance.diameterKey"
-    static let massKey = "Persistance.massKey"
-    static let capacityKey = "Persistance.capaciryKey"
-}
-
 enum PersistancePositionKeys {
     static let heightPositionKey = "Persistance.heightPositionKey"
     static let diameterPositionKey = "Persistance.diameterPositionKey"

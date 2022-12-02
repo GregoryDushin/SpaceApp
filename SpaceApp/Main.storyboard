@@ -417,7 +417,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="N4N-cB-3D5" kind="relationship" relationship="rootViewController" destinationCreationSelector="transferLaunchInfo:" id="PNF-yX-ryf"/>
+                        <segue destination="N4N-cB-3D5" kind="relationship" relationship="rootViewController" id="PNF-yX-ryf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kS-8Z-Lqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

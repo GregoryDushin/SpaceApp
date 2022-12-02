@@ -8,6 +8,7 @@
 import UIKit
 
 final class RocketViewController: UIViewController {
+
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ListItem>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, ListItem>
 
@@ -15,6 +16,7 @@ final class RocketViewController: UIViewController {
 
     var index: Int = 0
     var id = ""
+
     var rocketData: RocketModelElement?
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
@@ -159,7 +161,7 @@ final class RocketViewController: UIViewController {
         let capacityName: String
         let capacityValue: String
 
-        if UserDefaults.standard.string(forKey: PersistanceKeys.heightKey) == "ft" {
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) == "1" {
             heightName = "Высота, ft"
             heightValue = String(rocket.height.feet ?? 0.0)
         } else {
@@ -167,7 +169,7 @@ final class RocketViewController: UIViewController {
             heightValue = String(rocket.height.meters ?? 0.0)
         }
 
-        if UserDefaults.standard.string(forKey: PersistanceKeys.diameterKey) == "ft" {
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) == "1" {
             diamName = "Диаметр, ft"
             diamValue = String(rocket.diameter.feet ?? 0.0)
         } else {
@@ -175,7 +177,7 @@ final class RocketViewController: UIViewController {
             diamValue = String(rocket.diameter.meters ?? 0.0)
         }
 
-        if UserDefaults.standard.string(forKey: PersistanceKeys.massKey) == "lb" {
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) == "1" {
             massName = "Масса, lb"
             massValue = String(rocket.mass.lb)
         } else {
@@ -183,7 +185,7 @@ final class RocketViewController: UIViewController {
             massValue = String(rocket.mass.kg)
         }
 
-        if UserDefaults.standard.string(forKey: PersistanceKeys.capacityKey) == "lb" {
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) == "1" {
             capacityName = "Масса, lb"
             capacityValue = String(rocket.payloadWeights[0].lb)
         } else {
@@ -290,7 +292,9 @@ final class RocketViewController: UIViewController {
 
     @IBSegueAction
     func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
-        LaunchViewController(coder: coder, newId: self.id)
+        let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: id)
+
+       return LaunchViewController(coder: coder, presenter: presenter)
     }
 
     @IBSegueAction
