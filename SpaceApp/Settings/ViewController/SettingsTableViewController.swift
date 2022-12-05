@@ -22,30 +22,13 @@ final class SettingsTableViewController: UIViewController {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
-    private let settingsArray = [
-        Setting(
-            title: "Высота",
-            positionKey: PersistancePositionKeys.heightPositionKey,
-            values: ["m", "ft"]
-        ),
-        Setting(
-            title: "Диаметр",
-            positionKey: PersistancePositionKeys.diameterPositionKey,
-            values: ["m", "ft"]
-        ),
-        Setting(
-            title: "Масса",
-            positionKey: PersistancePositionKeys.massPositionKey,
-            values: ["kg", "lb"]
-            ),
-        Setting(
-            title: "Полезная нагрузка",
-            positionKey: PersistancePositionKeys.capacityPositionKey,
-            values: ["kg", "lb"]
-            )
-    ]
-
     private let defaults = UserDefaults.standard
+  //  private var presenter: SettingsViewPresenterProtocol!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            //presenter.view = self
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -53,7 +36,7 @@ final class SettingsTableViewController: UIViewController {
 extension SettingsTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        settingsArray.count
+        Setting.settingsArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,12 +44,16 @@ extension SettingsTableViewController: UITableViewDataSource {
             withIdentifier: SettingsTableViewCell.reuseIdentifier
         ) as? SettingsTableViewCell else { return UITableViewCell() }
 
-        cell.cellConfigure(settings: settingsArray[indexPath.row])
+        cell.cellConfigure(settings: Setting.settingsArray[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
             guard let self = self else { return }
-            self.defaults.set(selectedIndex, forKey: self.settingsArray[indexPath.row].positionKey)
+//            self.presenter?.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
+            self.defaults.set(selectedIndex, forKey: Setting.settingsArray[indexPath.row].positionKey)
             self.completion?()
         }
         return cell
     }
+}
+extension SettingsTableViewController: SettingsViewProtocol {
+
 }
