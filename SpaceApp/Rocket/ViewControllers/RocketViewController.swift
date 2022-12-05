@@ -294,7 +294,7 @@ final class RocketViewController: UIViewController {
     func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
         let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: id)
 
-       return LaunchViewController(coder: coder, presenter: presenter)
+        return LaunchViewController(coder: coder, presenter: presenter)
     }
 
     @IBSegueAction

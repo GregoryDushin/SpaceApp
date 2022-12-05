@@ -45,7 +45,6 @@ final class CustomPageViewController: UIPageViewController {
             return
         }
             setViewControllers([startingViewController], direction: .forward, animated: true)
-
     }
 
     private func passViewControllerAt(index: Int) -> RocketViewController? {
@@ -110,6 +109,7 @@ extension CustomPageViewController: UIPageViewControllerDataSource {
         return passViewControllerAt(index: currentIndex)
     }
 }
+
 // MARK: - UIPageViewControllerDelegate
 
 extension CustomPageViewController: UIPageViewControllerDelegate {

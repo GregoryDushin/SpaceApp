@@ -56,14 +56,10 @@ extension SettingsTableViewController: UITableViewDataSource {
         settingsArray.count
     }
 
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = settingsTableView.dequeueReusableCell(
             withIdentifier: SettingsTableViewCell.reuseIdentifier
-        ) as? SettingsTableViewCell else { return UITableViewCell()
-        }
+        ) as? SettingsTableViewCell else { return UITableViewCell() }
 
         cell.cellConfigure(settings: settingsArray[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
