@@ -8,25 +8,21 @@
 import Foundation
 import UIKit
 
-// MARK: протокол реализует VC, ссылку держит презентер
-
 protocol LaunchViewProtocol: AnyObject {
     func succes(data: [LaunchData])
     func failure(error: Error)
 }
-
-// MARK: протокол реализует презентер, ссылку держит VC
 
 protocol LaunchViewPresenterProtocol: AnyObject {
     func getData()
     var view: LaunchViewProtocol? { get set }
 }
 
-class LaunchPresenter: LaunchViewPresenterProtocol {
+final class LaunchPresenter: LaunchViewPresenterProtocol {
     weak var view: LaunchViewProtocol?
-    var id: String
-    let launchLoader: LaunchLoaderProtocol
-    var launchImage = UIImage(named: LaunchImages.unknown)
+    private let id: String
+    private let launchLoader: LaunchLoaderProtocol
+    private let launchImage = UIImage(named: LaunchImages.unknown)
 
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -40,15 +36,13 @@ class LaunchPresenter: LaunchViewPresenterProtocol {
         getData()
     }
 
-    // MARK: получаем данные
-
     func getData() {
         launchLoader.launchDataLoad(id: id ) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let launches):
-                    self.convertingIntoNewModel(old: launches)
+                    self.convertingIntoNewModel(launches)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
@@ -56,9 +50,7 @@ class LaunchPresenter: LaunchViewPresenterProtocol {
         }
     }
 
-    // MARK: конвертация данных в новую модель
-
-    func convertingIntoNewModel(old: [LaunchModelElement]) {
+    private func convertingIntoNewModel(_ old: [LaunchModelElement]) {
         var data = [LaunchData]()
 
         for i in 0..<old.count {

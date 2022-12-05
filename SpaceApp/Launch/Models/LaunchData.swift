@@ -1,10 +1,3 @@
-//
-//  Launch.swift
-//  SpaceApp
-//
-//  Created by Григорий Душин on 29.11.2022.
-//
-
 import Foundation
 import UIKit
 

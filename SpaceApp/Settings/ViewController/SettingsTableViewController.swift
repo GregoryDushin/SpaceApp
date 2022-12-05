@@ -44,7 +44,7 @@ final class SettingsTableViewController: UIViewController {
             values: ["kg", "lb"]
             )
     ]
-    private var selectedIndexPath: Int = 0
+
     private let defaults = UserDefaults.standard
 }
 

@@ -132,19 +132,18 @@
 		F34139652923BD81004156C5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 				F327818A2935FBC700020C94 /* LaunchPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		F34139662923BDB8004156C5 /* Model */ = {
+		F34139662923BDB8004156C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
 				F327818C2935FD1C00020C94 /* LaunchData.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F34139672923BDE2004156C5 /* ViewController */ = {
@@ -220,10 +219,11 @@
 		F3759B9C291E37FB00B52A22 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				F34139662923BDB8004156C5 /* Models */,
 				F34139622923BD3E004156C5 /* ViewController */,
-				F34139642923BD66004156C5 /* Cell */,
-				F34139662923BDB8004156C5 /* Model */,
 				F34139652923BD81004156C5 /* Presenter */,
+				F3AB0B2C293DD80800E48B40 /* Loader */,
+				F34139642923BD66004156C5 /* Cell */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -272,6 +272,14 @@
 				F34139682923BDF0004156C5 /* Cell */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		F3AB0B2C293DD80800E48B40 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
+			);
+			path = Loader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
