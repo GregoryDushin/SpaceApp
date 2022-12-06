@@ -12,18 +12,18 @@ protocol SettingsViewProtocol: AnyObject {
 }
 
 protocol SettingsViewPresenterProtocol: AnyObject {
-    func saveData(selectedIndex: Int, indexPath: Int)
     func showData()
+    func saveData(selectedIndex: Int, indexPath: Int)
     var view: SettingsViewProtocol? { get set }
 }
 
 final class SettingsPresenter: SettingsViewPresenterProtocol {
 
     weak var view: SettingsViewProtocol?
-    let defaults = UserDefaults.standard
-    var completion: (() -> Void)?
+    private let defaults = UserDefaults.standard
+    private let completion: (() -> Void)?
 
-    let settingsArray = [
+    private let settingsArray = [
         Setting(
             title: "Высота",
             positionKey: PersistancePositionKeys.heightPositionKey,
@@ -48,7 +48,6 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
 
     required init (completion: (() -> Void)?) {
         self.completion = completion
-        self.showData()
     }
 
     func saveData(selectedIndex: Int, indexPath: Int) {

@@ -8,6 +8,7 @@
 import UIKit
 
 final class SettingsTableViewController: UIViewController {
+
     @IBOutlet private var settingsTableView: UITableView!
 
     private var settings: [Setting] = []
@@ -26,6 +27,7 @@ final class SettingsTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
+        self.presenter.showData()
     }
 }
 
@@ -47,9 +49,13 @@ extension SettingsTableViewController: UITableViewDataSource {
             guard let self = self else { return }
             self.presenter.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
         }
+
         return cell
     }
 }
+
+// MARK: - SettingsViewProtocol
+
 extension SettingsTableViewController: SettingsViewProtocol {
     func present(data: [Setting]) {
         self.settings = data
