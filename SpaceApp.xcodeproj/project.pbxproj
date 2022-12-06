@@ -16,7 +16,6 @@
 		F327818B2935FBC700020C94 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327818A2935FBC700020C94 /* LaunchPresenter.swift */; };
 		F327818D2935FD1C00020C94 /* LaunchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327818C2935FD1C00020C94 /* LaunchData.swift */; };
 		F341396129227813004156C5 /* IdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341396029227813004156C5 /* IdExtensions.swift */; };
-		F349B287293DF4BB00B9DE38 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F349B286293DF4BB00B9DE38 /* .swiftlint.yml */; };
 		F349B28A293DF52900B9DE38 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349B289293DF52900B9DE38 /* SettingsPresenter.swift */; };
 		F34C5E36291936210091690A /* RocketHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C5E35291936210091690A /* RocketHeaderCell.swift */; };
 		F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */; };
@@ -49,7 +48,6 @@
 		F327818A2935FBC700020C94 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		F327818C2935FD1C00020C94 /* LaunchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchData.swift; sourceTree = "<group>"; };
 		F341396029227813004156C5 /* IdExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdExtensions.swift; sourceTree = "<group>"; };
-		F349B286293DF4BB00B9DE38 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F349B289293DF52900B9DE38 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		F34C5E35291936210091690A /* RocketHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketHeaderCell.swift; sourceTree = "<group>"; };
 		F37AA74D28F5CC8400F1ADB9 /* SpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,7 +239,6 @@
 		F37AA74428F5CC8400F1ADB9 = {
 			isa = PBXGroup;
 			children = (
-				F349B286293DF4BB00B9DE38 /* .swiftlint.yml */,
 				F37AA74F28F5CC8400F1ADB9 /* SpaceApp */,
 				F37AA74E28F5CC8400F1ADB9 /* Products */,
 				68B7B0EDE10CCAB4AFD656CD /* Pods */,
@@ -365,7 +362,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F349B287293DF4BB00B9DE38 /* .swiftlint.yml in Resources */,
 				F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */,
 				F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */,
 				F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */,

@@ -78,7 +78,10 @@ extension LaunchViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - LaunchViewProtocol
+
 extension LaunchViewController: LaunchViewProtocol {
+
     func succes(data: [LaunchData]) {
         self.launches = data
         self.launchCollectionView.reloadData()
