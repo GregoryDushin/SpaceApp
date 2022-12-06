@@ -10,10 +10,11 @@ import UIKit
 final class SettingsTableViewController: UIViewController {
     @IBOutlet private var settingsTableView: UITableView!
 
-    var completion: (() -> Void)?
+    private var settings: [Setting] = []
+    private var presenter: SettingsViewPresenterProtocol
 
-    init?(coder: NSCoder, completion: (() -> Void)?) {
-        self.completion = completion
+    init?(coder: NSCoder, presenter: SettingsViewPresenterProtocol) {
+        self.presenter = presenter
         super.init(coder: coder)
     }
 
@@ -22,12 +23,9 @@ final class SettingsTableViewController: UIViewController {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
-    private let defaults = UserDefaults.standard
-  //  private var presenter: SettingsViewPresenterProtocol!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-            //presenter.view = self
+        presenter.view = self
     }
 }
 
@@ -36,7 +34,7 @@ final class SettingsTableViewController: UIViewController {
 extension SettingsTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Setting.settingsArray.count
+        settings.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,16 +42,17 @@ extension SettingsTableViewController: UITableViewDataSource {
             withIdentifier: SettingsTableViewCell.reuseIdentifier
         ) as? SettingsTableViewCell else { return UITableViewCell() }
 
-        cell.cellConfigure(settings: Setting.settingsArray[indexPath.row])
+        cell.cellConfigure(settings: settings[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
             guard let self = self else { return }
-//            self.presenter?.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
-            self.defaults.set(selectedIndex, forKey: Setting.settingsArray[indexPath.row].positionKey)
-            self.completion?()
+            self.presenter.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
         }
         return cell
     }
 }
 extension SettingsTableViewController: SettingsViewProtocol {
-
+    func present(data: [Setting]) {
+        self.settings = data
+        self.settingsTableView.reloadData()
+    }
 }

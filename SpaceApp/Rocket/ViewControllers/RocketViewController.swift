@@ -299,10 +299,11 @@ final class RocketViewController: UIViewController {
 
     @IBSegueAction
     func transferSettingsInfo(_ coder: NSCoder) -> SettingsTableViewController? {
-        SettingsTableViewController(coder: coder) {[weak self] in
+        let presenter = SettingsPresenter { [weak self] in
             guard let self = self, let rocket = self.rocketData else { return }
             self.sections = self.mapRocketToSections(rocket: rocket)
             self.applySnapshot()
         }
+        return SettingsTableViewController(coder: coder, presenter: presenter)
     }
 }
