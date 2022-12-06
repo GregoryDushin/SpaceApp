@@ -30,7 +30,6 @@
 		F37AA77128F5CCE300F1ADB9 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */; };
 		F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA77228F5CCF000F1ADB9 /* Constants.swift */; };
 		F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA77428F5CCF800F1ADB9 /* Main.storyboard */; };
-		F37DBC07293F661700D5A902 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F37DBC06293F661700D5A902 /* .swiftlint.yml */; };
 		F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A128FD49180081166F /* SettingsTableViewCell.swift */; };
 		F385E7A828FEA3340081166F /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A728FEA3340081166F /* RocketViewController.swift */; };
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
@@ -65,7 +64,6 @@
 		F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		F37AA77228F5CCF000F1ADB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37AA77428F5CCF800F1ADB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F37DBC06293F661700D5A902 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F385E7A128FD49180081166F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F385E7A728FEA3340081166F /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 		F37AA74428F5CC8400F1ADB9 = {
 			isa = PBXGroup;
 			children = (
-				F37DBC06293F661700D5A902 /* .swiftlint.yml */,
 				F37AA74F28F5CC8400F1ADB9 /* SpaceApp */,
 				F37AA74E28F5CC8400F1ADB9 /* Products */,
 				68B7B0EDE10CCAB4AFD656CD /* Pods */,
@@ -365,7 +362,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37DBC07293F661700D5A902 /* .swiftlint.yml in Resources */,
 				F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */,
 				F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */,
 				F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */,
