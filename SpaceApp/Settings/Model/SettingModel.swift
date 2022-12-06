@@ -5,4 +5,3 @@ struct Setting {
     let positionKey: String
     let values: [String]
 }
-
