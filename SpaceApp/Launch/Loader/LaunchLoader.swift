@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - JSON LAUNCH PARSING
+
 protocol LaunchLoaderProtocol {
     func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void)
 }
