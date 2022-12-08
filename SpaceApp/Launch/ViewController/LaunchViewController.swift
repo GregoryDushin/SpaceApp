@@ -16,6 +16,7 @@ final class LaunchViewController: UIViewController {
     init?(coder: NSCoder, presenter: LaunchViewPresenterProtocol) {
         self.presenter = presenter
         super.init(coder: coder)
+        presenter.view = self
     }
 
     @available(*, unavailable)
@@ -25,7 +26,7 @@ final class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
+        self.presenter.getData()
     }
 
     private func showAlert(_ error: String) {
@@ -69,11 +70,7 @@ extension LaunchViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? LaunchCell else { return UICollectionViewCell() }
 
-        cell.configure(
-            name: launches[indexPath.row].name,
-            date: launches[indexPath.row].date,
-            image: launches[indexPath.row].image
-        )
+        cell.configure(launchData: launches[indexPath.row])
         return cell
     }
 }
@@ -82,7 +79,7 @@ extension LaunchViewController: UICollectionViewDataSource {
 
 extension LaunchViewController: LaunchViewProtocol {
 
-    func succes(data: [LaunchData]) {
+    func success(data: [LaunchData]) {
         self.launches = data
         self.launchCollectionView.reloadData()
     }

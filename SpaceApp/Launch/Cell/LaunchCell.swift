@@ -17,9 +17,9 @@ final class LaunchCell: UICollectionViewCell {
         layer.cornerRadius = 12
     }
 
-    func configure(name: String, date: String, image: UIImage?) {
-        rocketNameLabel.text = name
-        dateOfLaunchLabel.text = date
-        isSucsessImage.image = image
+    func configure(launchData: LaunchData) {
+        rocketNameLabel.text = launchData.name
+        dateOfLaunchLabel.text = launchData.date
+        isSucsessImage.image = launchData.image
     }
 }

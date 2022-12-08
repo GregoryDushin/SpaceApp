@@ -17,6 +17,7 @@ final class SettingsTableViewController: UIViewController {
     init?(coder: NSCoder, presenter: SettingsViewPresenterProtocol) {
         self.presenter = presenter
         super.init(coder: coder)
+        presenter.view = self
     }
 
     @available(*, unavailable)
@@ -26,7 +27,6 @@ final class SettingsTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
         self.presenter.showData()
     }
 }
@@ -46,8 +46,7 @@ extension SettingsTableViewController: UITableViewDataSource {
 
         cell.cellConfigure(settings: settings[indexPath.row])
         cell.onSettingChanged = { [weak self] selectedIndex in
-            guard let self = self else { return }
-            self.presenter.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
+            self?.presenter.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
         }
 
         return cell

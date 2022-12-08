@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 struct LaunchData {
-    var name: String
-    var date: String
-    var image: UIImage?
+    let name: String
+    let date: String
+    let image: UIImage
 }

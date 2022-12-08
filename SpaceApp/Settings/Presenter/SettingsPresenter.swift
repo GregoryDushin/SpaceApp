@@ -21,7 +21,7 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
 
     weak var view: SettingsViewProtocol?
     private let defaults = UserDefaults.standard
-    private let completion: (() -> Void)?
+    private let onUpdateSetting: (() -> Void)
 
     private let settingsArray = [
         Setting(
@@ -46,13 +46,13 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
         )
     ]
 
-    required init (completion: (() -> Void)?) {
-        self.completion = completion
+    init (onUpdateSetting: @escaping (() -> Void)) {
+        self.onUpdateSetting = onUpdateSetting
     }
 
     func saveData(selectedIndex: Int, indexPath: Int) {
         defaults.set(selectedIndex, forKey: settingsArray[indexPath].positionKey)
-        completion?()
+        onUpdateSetting()
     }
 
     func showData() {

@@ -22,3 +22,13 @@ extension ReuseIdentifying {
 extension UICollectionReusableView: ReuseIdentifying {}
 
 extension UITableViewCell: ReuseIdentifying {}
+
+extension UIImage {
+  static func named(_ name: String) -> UIImage {
+    if let image = UIImage(named: name) {
+      return image
+    } else {
+      fatalError("Could not initialize \(UIImage.self) named \(name).")
+    }
+  }
+}

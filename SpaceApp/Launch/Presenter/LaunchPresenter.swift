@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol LaunchViewProtocol: AnyObject {
-    func succes(data: [LaunchData])
+    func success(data: [LaunchData])
     func failure(error: Error)
 }
 
@@ -22,7 +22,6 @@ final class LaunchPresenter: LaunchViewPresenterProtocol {
     weak var view: LaunchViewProtocol?
     private let id: String
     private let launchLoader: LaunchLoaderProtocol
-    private let launchImage = UIImage(named: LaunchImages.unknown)
 
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -33,7 +32,6 @@ final class LaunchPresenter: LaunchViewPresenterProtocol {
     required init(launchLoader: LaunchLoaderProtocol, id: String) {
         self.launchLoader = launchLoader
         self.id = id
-        getData()
     }
 
     func getData() {
@@ -42,7 +40,7 @@ final class LaunchPresenter: LaunchViewPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let launches):
-                    self.convertingIntoNewModel(launches)
+                    self.transferDataIntoLaunchVC(launches)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
@@ -50,24 +48,27 @@ final class LaunchPresenter: LaunchViewPresenterProtocol {
         }
     }
 
-    private func convertingIntoNewModel(_ old: [LaunchModelElement]) {
+    private func transferDataIntoLaunchVC(_ launchModel: [LaunchModelElement]) {
         var data = [LaunchData]()
 
-        for i in 0..<old.count {
-            var launchImage = UIImage(named: LaunchImages.unknown)
+        launchModel.map {
+            let launchImage: UIImage
 
-            if let launchingResult = old[i].success {
-                launchImage = UIImage(named: (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
+            if let launchingResult = $0.success {
+                launchImage = UIImage.named( (launchingResult ? LaunchImages.success : LaunchImages.unsucsess))
+            } else {
+                launchImage = UIImage.named(LaunchImages.unknown)
             }
 
             let launchData = LaunchData(
-                name: old[i].name,
-                date: dateFormatter.string(from: old[i].dateUtc),
+                name: $0.name,
+                date: dateFormatter.string(from: $0.dateUtc),
                 image: launchImage
             )
             data.append(launchData)
         }
 
-        self.view?.succes(data: data)
+        self.view?.success(data: data)
     }
+
 }
