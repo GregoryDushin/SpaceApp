@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SettingsTableViewController: UIViewController {
+final class SettingsViewController: UIViewController {
 
     @IBOutlet private var settingsTableView: UITableView!
 
@@ -33,7 +33,7 @@ final class SettingsTableViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension SettingsTableViewController: UITableViewDataSource {
+extension SettingsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         settings.count
@@ -55,7 +55,7 @@ extension SettingsTableViewController: UITableViewDataSource {
 
 // MARK: - SettingsViewProtocol
 
-extension SettingsTableViewController: SettingsViewProtocol {
+extension SettingsViewController: SettingsViewProtocol {
     func present(data: [Setting]) {
         self.settings = data
         self.settingsTableView.reloadData()

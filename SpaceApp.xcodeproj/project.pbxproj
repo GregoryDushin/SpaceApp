@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D7F5CC6E2F0D4BFDEEB89CBB /* Pods_SpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */; };
-		F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */; };
+		F30C91AD28F9632200C5D5F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C91AC28F9632200C5D5F6 /* SettingsViewController.swift */; };
 		F30E40DB290AB28B0046189B /* RocketVerticalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */; };
 		F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D7290AB28B0046189B /* RocketHorizontalInfoCell.swift */; };
 		F30E40DE290AB28B0046189B /* RocketImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D5290AB28B0046189B /* RocketImageCell.swift */; };
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2219D34D3BE59D88769D09B /* Pods-SpaceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.debug.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.debug.xcconfig"; sourceTree = "<group>"; };
-		F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F30C91AC28F9632200C5D5F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F30E40D5290AB28B0046189B /* RocketImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketImageCell.swift; sourceTree = "<group>"; };
 		F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchButtonCell.swift; sourceTree = "<group>"; };
 		F30E40D7290AB28B0046189B /* RocketHorizontalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketHorizontalInfoCell.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F30E40CD290A9F700046189B /* Cells */ = {
+		F30E40CD290A9F700046189B /* RocketCells */ = {
 			isa = PBXGroup;
 			children = (
 				F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */,
@@ -110,90 +110,90 @@
 				F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */,
 				F34C5E35291936210091690A /* RocketHeaderCell.swift */,
 			);
-			path = Cells;
+			path = RocketCells;
 			sourceTree = "<group>";
 		};
-		F34139622923BD3E004156C5 /* ViewController */ = {
+		F34139622923BD3E004156C5 /* LaunchViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
 			);
-			path = ViewController;
+			path = LaunchViewController;
 			sourceTree = "<group>";
 		};
-		F34139642923BD66004156C5 /* Cell */ = {
+		F34139642923BD66004156C5 /* LaunchCell */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */,
 			);
-			path = Cell;
+			path = LaunchCell;
 			sourceTree = "<group>";
 		};
-		F34139652923BD81004156C5 /* Presenter */ = {
+		F34139652923BD81004156C5 /* LaunchPresenter */ = {
 			isa = PBXGroup;
 			children = (
 				F327818A2935FBC700020C94 /* LaunchPresenter.swift */,
 			);
-			path = Presenter;
+			path = LaunchPresenter;
 			sourceTree = "<group>";
 		};
-		F34139662923BDB8004156C5 /* Models */ = {
+		F34139662923BDB8004156C5 /* LaunchModels */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
 				F327818C2935FD1C00020C94 /* LaunchData.swift */,
 			);
-			path = Models;
+			path = LaunchModels;
 			sourceTree = "<group>";
 		};
-		F34139672923BDE2004156C5 /* ViewController */ = {
+		F34139672923BDE2004156C5 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F30C91AC28F9632200C5D5F6 /* SettingsTableViewController.swift */,
+				F30C91AC28F9632200C5D5F6 /* SettingsViewController.swift */,
 			);
-			path = ViewController;
+			path = SettingsViewController;
 			sourceTree = "<group>";
 		};
-		F34139682923BDF0004156C5 /* Cell */ = {
+		F34139682923BDF0004156C5 /* SettingsCell */ = {
 			isa = PBXGroup;
 			children = (
 				F385E7A128FD49180081166F /* SettingsTableViewCell.swift */,
 			);
-			path = Cell;
+			path = SettingsCell;
 			sourceTree = "<group>";
 		};
-		F34139692923BE12004156C5 /* ViewControllers */ = {
+		F34139692923BE12004156C5 /* RocketViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F385E7A728FEA3340081166F /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
 			);
-			path = ViewControllers;
+			path = RocketViewControllers;
 			sourceTree = "<group>";
 		};
-		F341396A2923BE2D004156C5 /* Presenter */ = {
+		F341396A2923BE2D004156C5 /* RocketLoader */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
 			);
-			path = Presenter;
+			path = RocketLoader;
 			sourceTree = "<group>";
 		};
-		F341396B2923BE7F004156C5 /* Model */ = {
+		F341396B2923BE7F004156C5 /* SettingsModel */ = {
 			isa = PBXGroup;
 			children = (
 				F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */,
 			);
-			path = Model;
+			path = SettingsModel;
 			sourceTree = "<group>";
 		};
-		F341396C2923BE8F004156C5 /* Models */ = {
+		F341396C2923BE8F004156C5 /* RocketModels */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
 				F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */,
 			);
-			path = Models;
+			path = RocketModels;
 			sourceTree = "<group>";
 		};
 		F341BDCF28F69A8D00D32DEA /* Helpers */ = {
@@ -205,21 +205,21 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		F349B288293DF4E700B9DE38 /* Presenter */ = {
+		F349B288293DF4E700B9DE38 /* SettingsPresenter */ = {
 			isa = PBXGroup;
 			children = (
 				F349B289293DF52900B9DE38 /* SettingsPresenter.swift */,
 			);
-			path = Presenter;
+			path = SettingsPresenter;
 			sourceTree = "<group>";
 		};
 		F3759B9B291E378300B52A22 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
-				F341396C2923BE8F004156C5 /* Models */,
-				F34139692923BE12004156C5 /* ViewControllers */,
-				F30E40CD290A9F700046189B /* Cells */,
-				F341396A2923BE2D004156C5 /* Presenter */,
+				F341396C2923BE8F004156C5 /* RocketModels */,
+				F34139692923BE12004156C5 /* RocketViewControllers */,
+				F30E40CD290A9F700046189B /* RocketCells */,
+				F341396A2923BE2D004156C5 /* RocketLoader */,
 			);
 			path = Rocket;
 			sourceTree = "<group>";
@@ -227,11 +227,11 @@
 		F3759B9C291E37FB00B52A22 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				F34139662923BDB8004156C5 /* Models */,
-				F34139622923BD3E004156C5 /* ViewController */,
-				F34139652923BD81004156C5 /* Presenter */,
-				F3AB0B2C293DD80800E48B40 /* Loader */,
-				F34139642923BD66004156C5 /* Cell */,
+				F34139662923BDB8004156C5 /* LaunchModels */,
+				F34139622923BD3E004156C5 /* LaunchViewController */,
+				F34139652923BD81004156C5 /* LaunchPresenter */,
+				F3AB0B2C293DD80800E48B40 /* LaunchLoader */,
+				F34139642923BD66004156C5 /* LaunchCell */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -274,20 +274,20 @@
 		F3A46166291E3902007C1CDB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F349B288293DF4E700B9DE38 /* Presenter */,
-				F341396B2923BE7F004156C5 /* Model */,
-				F34139672923BDE2004156C5 /* ViewController */,
-				F34139682923BDF0004156C5 /* Cell */,
+				F341396B2923BE7F004156C5 /* SettingsModel */,
+				F34139672923BDE2004156C5 /* SettingsViewController */,
+				F349B288293DF4E700B9DE38 /* SettingsPresenter */,
+				F34139682923BDF0004156C5 /* SettingsCell */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		F3AB0B2C293DD80800E48B40 /* Loader */ = {
+		F3AB0B2C293DD80800E48B40 /* LaunchLoader */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 			);
-			path = Loader;
+			path = LaunchLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,7 +437,7 @@
 				F37AA77128F5CCE300F1ADB9 /* LaunchCell.swift in Sources */,
 				F37AA77328F5CCF000F1ADB9 /* Constants.swift in Sources */,
 				F37AA76528F5CC9B00F1ADB9 /* RocketModel.swift in Sources */,
-				F30C91AD28F9632200C5D5F6 /* SettingsTableViewController.swift in Sources */,
+				F30C91AD28F9632200C5D5F6 /* SettingsViewController.swift in Sources */,
 				F30E40DE290AB28B0046189B /* RocketImageCell.swift in Sources */,
 				F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */,
 				F30E40DF290AB28B0046189B /* RocketLaunchButtonCell.swift in Sources */,
