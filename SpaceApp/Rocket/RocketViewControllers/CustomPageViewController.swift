@@ -9,25 +9,26 @@ import UIKit
 
 final class CustomPageViewController: UIPageViewController {
 
+    private var presenter: CustomPageViewPresenterProtocol
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
-    private let rocketLoader = RocketLoader()
+
+    init?(coder: NSCoder, presenter: CustomPageViewPresenterProtocol) {
+        self.presenter = presenter
+        super.init(coder: coder)
+        presenter.view = self
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        preconditionFailure("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         delegate = self
-        rocketLoader.rocketDataLoad { rockets in
-            DispatchQueue.main.async {
-                switch rockets {
-                case .success(let rockets):
-                    self.rockets = rockets
-                    self.configureStartingVC()
-                case .failure(let error):
-                    self.showAlert(error.localizedDescription)
-                }
-            }
-        }
+        self.presenter.getData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -119,5 +120,16 @@ extension CustomPageViewController: UIPageViewControllerDelegate {
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         rockets.count
+    }
+}
+
+extension CustomPageViewController: CustomPageViewProtocol {
+
+    func success(data: [RocketModelElement]) {
+        self.rockets = data
+    }
+
+    func failure(error: Error) {
+        self.showAlert(error.localizedDescription)
     }
 }

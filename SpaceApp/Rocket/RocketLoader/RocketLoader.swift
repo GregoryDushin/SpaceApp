@@ -9,7 +9,11 @@ import Foundation
 
 // MARK: - JSON ROCKET PARSING
 
-final class RocketLoader {
+protocol RocketLoaderProtocol {
+    func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void)
+}
+
+final class RocketLoader: RocketLoaderProtocol {
     private let decoder = JSONDecoder()
     private let session = URLSession.shared
 

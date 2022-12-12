@@ -35,6 +35,8 @@
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
 		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
+		F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */; };
+		F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewPresenter.swift; sourceTree = "<group>"; };
+		F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagePresenter.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +220,7 @@
 		F3759B9B291E378300B52A22 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
+				F3EF48FE29447FC200FD12AD /* RocketPresenters */,
 				F341396C2923BE8F004156C5 /* RocketModels */,
 				F34139692923BE12004156C5 /* RocketViewControllers */,
 				F30E40CD290A9F700046189B /* RocketCells */,
@@ -288,6 +293,15 @@
 				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 			);
 			path = LaunchLoader;
+			sourceTree = "<group>";
+		};
+		F3EF48FE29447FC200FD12AD /* RocketPresenters */ = {
+			isa = PBXGroup;
+			children = (
+				F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */,
+				F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */,
+			);
+			path = RocketPresenters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +467,8 @@
 				F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */,
 				F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */,
 				F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */,
+				F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */,
+				F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */,
 				F37AA75328F5CC8400F1ADB9 /* SceneDelegate.swift in Sources */,
 				F37AA76B28F5CCC300F1ADB9 /* LaunchViewController.swift in Sources */,
 				F34C5E36291936210091690A /* RocketHeaderCell.swift in Sources */,
