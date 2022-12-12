@@ -14,6 +14,8 @@ final class RocketViewController: UIViewController {
 
     @IBOutlet private var collectionView: UICollectionView!
 
+//    private var presenter: RocketViewPresenterProtocol
+
     var index: Int = 0
     var id = ""
 
@@ -21,6 +23,17 @@ final class RocketViewController: UIViewController {
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
+
+//    init?(coder: NSCoder, presenter: RocketViewPresenterProtocol) {
+//        self.presenter = presenter
+//        super.init(coder: coder)
+//        presenter.view = self
+//    }
+
+//    @available(*, unavailable)
+//    required init?(coder: NSCoder) {
+//        preconditionFailure("init(coder:) has not been implemented")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -307,3 +320,9 @@ final class RocketViewController: UIViewController {
         return SettingsViewController(coder: coder, presenter: presenter)
     }
 }
+
+//extension RocketViewController: RocketViewProtocol {
+//    func present(data: [Section]) {
+//        self.sections = data
+//    }
+//}

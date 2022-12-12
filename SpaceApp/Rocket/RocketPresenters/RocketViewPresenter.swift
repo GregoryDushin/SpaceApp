@@ -20,6 +20,10 @@ final class RocketViewPresenter: RocketViewPresenterProtocol {
     weak var view: RocketViewProtocol?
     var rocketData: RocketModelElement?
 
+    required init(rocketData: RocketModelElement) {
+        self.rocketData = rocketData
+        mapRocketToSections(rocket: rocketData)
+    }
 
     func mapRocketToSections(rocket: RocketModelElement) {
         let heightName: String
