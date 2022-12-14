@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomPageViewController: UIPageViewController {
 
-    private var presenter: CustomPageViewPresenterProtocol
+    var presenter: CustomPageViewPresenterProtocol
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
 
