@@ -32,7 +32,6 @@ final class CustomPagePresenter: CustomPageViewPresenterProtocol {
                 switch result {
                 case .success(let rockets):
                     self.view?.success(data: rockets)
-                    print(rockets)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
