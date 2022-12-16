@@ -404,26 +404,6 @@
             </objects>
             <point key="canvasLocation" x="9968.115942028986" y="-650.22321428571422"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ldz-wA-6rk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbk-mj-Kd6" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vlj-HP-5YB">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="N4N-cB-3D5" kind="relationship" relationship="rootViewController" id="PNF-yX-ryf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1kS-8Z-Lqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8144.9275362318849" y="87.723214285714278"/>
-        </scene>
     </scenes>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>

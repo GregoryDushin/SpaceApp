@@ -18,11 +18,10 @@ protocol RocketViewPresenterProtocol: AnyObject {
 
 final class RocketViewPresenter: RocketViewPresenterProtocol {
     weak var view: RocketViewProtocol?
-    var rocket: RocketModelElement
+    private let rocket: RocketModelElement
 
      init(rocketData: RocketModelElement) {
         self.rocket = rocketData
-         mapRocketToSections(rocket: rocket)
     }
 
     func mapRocketToSections(rocket: RocketModelElement) {

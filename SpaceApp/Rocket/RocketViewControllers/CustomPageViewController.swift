@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomPageViewController: UIPageViewController {
 
-    var presenter: CustomPageViewPresenterProtocol!
+    var presenter: CustomPageViewPresenterProtocol?
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
 
@@ -17,8 +17,8 @@ final class CustomPageViewController: UIPageViewController {
         super.viewDidLoad()
         dataSource = self
         delegate = self
-        presenter.view = self
-        self.presenter.getData()
+        presenter?.view = self
+        self.presenter?.getData()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -14,7 +14,7 @@ final class RocketViewController: UIViewController {
 
     @IBOutlet private var collectionView: UICollectionView!
 
-    var presenter: RocketViewPresenterProtocol!
+    var presenter: RocketViewPresenterProtocol?
     var index: Int = 0
     var rocketData: RocketModelElement?
     private var sections = [Section]()
@@ -24,8 +24,8 @@ final class RocketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let rocket = rocketData else { return }
-        presenter.view = self
-        presenter.mapRocketToSections(rocket: rocket)
+        presenter?.view = self
+        presenter?.mapRocketToSections(rocket: rocket)
         collectionView.collectionViewLayout = createLayout()
         configureHeader()
         applySnapshot()
@@ -165,7 +165,7 @@ final class RocketViewController: UIViewController {
     func transferSettingsInfo(_ coder: NSCoder) -> SettingsViewController? {
         let presenter = SettingsPresenter { [weak self] in
             guard let self = self, let rocket = self.rocketData else { return }
-            self.presenter.mapRocketToSections(rocket: rocket)
+            self.presenter?.mapRocketToSections(rocket: rocket)
             self.applySnapshot()
         }
         return SettingsViewController(coder: coder, presenter: presenter)
