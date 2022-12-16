@@ -21,7 +21,7 @@ final class CustomPagePresenter: CustomPageViewPresenterProtocol {
     weak var view: CustomPageViewProtocol?
     private let rocketLoader: RocketLoaderProtocol
 
-    required init(rocketLoader: RocketLoaderProtocol) {
+     init(rocketLoader: RocketLoaderProtocol) {
         self.rocketLoader = rocketLoader
     }
 
@@ -32,6 +32,7 @@ final class CustomPagePresenter: CustomPageViewPresenterProtocol {
                 switch result {
                 case .success(let rockets):
                     self.view?.success(data: rockets)
+                    print(rockets)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }

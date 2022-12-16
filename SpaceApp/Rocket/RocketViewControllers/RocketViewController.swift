@@ -14,32 +14,19 @@ final class RocketViewController: UIViewController {
 
     @IBOutlet private var collectionView: UICollectionView!
 
-//    private var presenter: RocketViewPresenterProtocol
-
+    var presenter: RocketViewPresenterProtocol!
     var index: Int = 0
-    var id = ""
-
     var rocketData: RocketModelElement?
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
     private var snapshot = DataSourceSnapshot()
 
-//    init?(coder: NSCoder, presenter: RocketViewPresenterProtocol) {
-//        self.presenter = presenter
-//        super.init(coder: coder)
-//        presenter.view = self
-//    }
-
-//    @available(*, unavailable)
-//    required init?(coder: NSCoder) {
-//        preconditionFailure("init(coder:) has not been implemented")
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.collectionViewLayout = createLayout()
         guard let rocket = rocketData else { return }
-        sections = mapRocketToSections(rocket: rocket)
+        presenter.view = self
+        presenter.mapRocketToSections(rocket: rocket)
+        collectionView.collectionViewLayout = createLayout()
         configureHeader()
         applySnapshot()
     }
@@ -164,148 +151,12 @@ final class RocketViewController: UIViewController {
         }
     }
 
-    private func mapRocketToSections(rocket: RocketModelElement) -> [Section] {
-        let heightName: String
-        let heightValue: String
-        let diamName: String
-        let diamValue: String
-        let massName: String
-        let massValue: String
-        let capacityName: String
-        let capacityValue: String
-
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) == "1" {
-            heightName = "Высота, ft"
-            heightValue = String(rocket.height.feet ?? 0.0)
-        } else {
-            heightName = "Высота, m"
-            heightValue = String(rocket.height.meters ?? 0.0)
-        }
-
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) == "1" {
-            diamName = "Диаметр, ft"
-            diamValue = String(rocket.diameter.feet ?? 0.0)
-        } else {
-            diamName = "Диаметр, m"
-            diamValue = String(rocket.diameter.meters ?? 0.0)
-        }
-
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) == "1" {
-            massName = "Масса, lb"
-            massValue = String(rocket.mass.lb)
-        } else {
-            massName = "Масса, кг"
-            massValue = String(rocket.mass.kg)
-        }
-
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) == "1" {
-            capacityName = "Масса, lb"
-            capacityValue = String(rocket.payloadWeights[0].lb)
-        } else {
-            capacityName = "Масса, кг"
-            capacityValue = String(rocket.payloadWeights[0].kg)
-        }
-
-        var sections = [
-            Section(
-                sectionType: .horizontal,
-                title: nil,
-                items:
-                    [
-                        .horizontalInfo(
-                            title: heightName,
-                            value: heightValue
-                        ),
-                        .horizontalInfo(
-                            title: diamName,
-                            value: diamValue
-                        ),
-                        .horizontalInfo(
-                            title: massName,
-                            value: massValue
-                        ),
-                        .horizontalInfo(
-                            title: capacityName,
-                            value: capacityValue
-                        )
-                    ]
-            ),
-            Section(
-                sectionType: .vertical,
-                title: nil,
-                items:
-                    [
-                        .verticalInfo(
-                            title: "Первый запуск",
-                            value: rocket.firstFlight
-                        ),
-                        .verticalInfo(
-                            title: "Страна",
-                            value: "США"
-                        ),
-                        .verticalInfo(
-                            title: "Стоимость запуска",
-                            value: "$" + String((rocket.costPerLaunch) / 1_000_000) + " млн"
-                        )
-                    ]
-            ),
-            Section(
-                sectionType: .vertical,
-                title: "Первая ступень",
-                items:
-                    [
-                        .verticalInfo(
-                            title: "Количество двигателей",
-                            value: String(rocket.firstStage.engines)
-                        ),
-                        .verticalInfo(
-                            title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн"
-                        ),
-                        .verticalInfo(
-                            title: "Время сгорания",
-                            value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек"
-                        )
-                    ]
-            ),
-            Section(
-                sectionType: .vertical,
-                title: "Вторая ступень",
-                items:
-                    [
-                        .verticalInfo(
-                            title: "Количество двигателей",
-                            value: String(rocket.secondStage.engines)
-                        ),
-                        .verticalInfo(
-                            title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн"
-                        ),
-                        .verticalInfo(
-                            title: "Время сгорания",
-                            value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек"
-                        )
-                    ]
-            ),
-            Section(sectionType: .button, title: nil, items: [.button])
-        ]
-        if let url = URL(string: rocket.flickrImages[0]) {
-            let section = Section(
-                sectionType: .image,
-                title: nil,
-                items: [.image(url: url, rocketName: rocket.name)]
-            )
-            sections.insert(section, at: 0)
-        }
-
-        return sections
-    }
-
     // MARK: - Data transfer between View Controllers
 
     @IBSegueAction
     func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
-        let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: id)
+        guard let rocket = rocketData else { return nil }
+        let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: rocket.id)
 
         return LaunchViewController(coder: coder, presenter: presenter)
     }
@@ -314,15 +165,15 @@ final class RocketViewController: UIViewController {
     func transferSettingsInfo(_ coder: NSCoder) -> SettingsViewController? {
         let presenter = SettingsPresenter { [weak self] in
             guard let self = self, let rocket = self.rocketData else { return }
-            self.sections = self.mapRocketToSections(rocket: rocket)
+            self.presenter.mapRocketToSections(rocket: rocket)
             self.applySnapshot()
         }
         return SettingsViewController(coder: coder, presenter: presenter)
     }
 }
 
-//extension RocketViewController: RocketViewProtocol {
-//    func present(data: [Section]) {
-//        self.sections = data
-//    }
-//}
+extension RocketViewController: RocketViewProtocol {
+    func present(data: [Section]) {
+        self.sections = data
+    }
+}

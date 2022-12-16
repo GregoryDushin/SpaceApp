@@ -9,25 +9,15 @@ import UIKit
 
 final class CustomPageViewController: UIPageViewController {
 
-    var presenter: CustomPageViewPresenterProtocol
+    var presenter: CustomPageViewPresenterProtocol!
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
-
-    init?(coder: NSCoder, presenter: CustomPageViewPresenterProtocol) {
-        self.presenter = presenter
-        super.init(coder: coder)
-        presenter.view = self
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        preconditionFailure("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         delegate = self
+        presenter.view = self
         self.presenter.getData()
     }
 
@@ -49,7 +39,7 @@ final class CustomPageViewController: UIPageViewController {
     }
 
     private func passViewControllerAt(index: Int) -> RocketViewController? {
-        guard let dataViewController =
+        guard let rocketViewController =
                 storyboard?.instantiateViewController(
                     withIdentifier: String(
                         describing: RocketViewController.self
@@ -58,10 +48,11 @@ final class CustomPageViewController: UIPageViewController {
             return nil
         }
 
-        dataViewController.rocketData = rockets[index]
-        dataViewController.index = index
-        dataViewController.id = rockets[index].id
-        return dataViewController
+        rocketViewController.rocketData = rockets[index]
+        rocketViewController.index = index
+        rocketViewController.presenter = RocketViewPresenter(rocketData: rockets[index])
+
+        return rocketViewController
     }
 
     private func showAlert(_ error: String) {
@@ -127,6 +118,7 @@ extension CustomPageViewController: CustomPageViewProtocol {
 
     func success(data: [RocketModelElement]) {
         self.rockets = data
+        self.configureStartingVC()
     }
 
     func failure(error: Error) {
