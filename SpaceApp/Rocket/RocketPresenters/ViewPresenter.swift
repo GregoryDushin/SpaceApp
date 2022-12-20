@@ -13,18 +13,19 @@ protocol RocketViewProtocol: AnyObject {
 
 protocol RocketViewPresenterProtocol: AnyObject {
     var view: RocketViewProtocol? { get set }
-    func mapRocketToSections(rocket: RocketModelElement)
+    func getData()
 }
 
 final class RocketViewPresenter: RocketViewPresenterProtocol {
     weak var view: RocketViewProtocol?
-    private let rocket: RocketModelElement
+    var rocket: RocketModelElement
 
-     init(rocketData: RocketModelElement) {
+    init(rocketData: RocketModelElement) {
         self.rocket = rocketData
     }
 
-    func mapRocketToSections(rocket: RocketModelElement) {
+    func getData() {
+        let rocket = rocket
         let heightName: String
         let heightValue: String
         let diamName: String
@@ -156,8 +157,7 @@ final class RocketViewPresenter: RocketViewPresenterProtocol {
                 items: [.image(url: url, rocketName: rocket.name)]
             )
             sections.insert(section, at: 0)
-
-            self.view?.present(data: sections)
         }
+        self.view?.present(data: sections)
     }
 }

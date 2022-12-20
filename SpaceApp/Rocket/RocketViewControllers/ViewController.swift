@@ -14,21 +14,19 @@ final class RocketViewController: UIViewController {
 
     @IBOutlet private var collectionView: UICollectionView!
 
-    var presenter: RocketViewPresenterProtocol?
+    var presenter: RocketViewPresenterProtocol!
     var index: Int = 0
-    var rocketData: RocketModelElement?
+    var id: String = ""
+
     private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
-    private var snapshot = DataSourceSnapshot()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let rocket = rocketData else { return }
-        presenter?.view = self
-        presenter?.mapRocketToSections(rocket: rocket)
+        presenter.view = self
+        presenter.getData()
         collectionView.collectionViewLayout = createLayout()
         configureHeader()
-        applySnapshot()
     }
 
     // MARK: - Configure CollectionView DataSource
@@ -74,24 +72,13 @@ final class RocketViewController: UIViewController {
         return dataSource
     }
 
-    private func applySnapshot() {
-        snapshot = DataSourceSnapshot()
-        for section in sections {
-            snapshot.appendSections([section])
-            snapshot.appendItems(section.items, toSection: section)
-        }
-
-        dataSource.apply(snapshot)
-    }
-
     private func configureHeader() {
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: HeaderCell.reuseIdentifier,
                 for: indexPath
-            )
-                    as? HeaderCell else {return UICollectionReusableView()
+            ) as? HeaderCell else { return UICollectionReusableView()
             }
 
             header.setup(title: self.sections[indexPath.section].title ?? "")
@@ -155,8 +142,7 @@ final class RocketViewController: UIViewController {
 
     @IBSegueAction
     func transferLaunchInfo(_ coder: NSCoder) -> LaunchViewController? {
-        guard let rocket = rocketData else { return nil }
-        let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: rocket.id)
+        let presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: id)
 
         return LaunchViewController(coder: coder, presenter: presenter)
     }
@@ -164,10 +150,18 @@ final class RocketViewController: UIViewController {
     @IBSegueAction
     func transferSettingsInfo(_ coder: NSCoder) -> SettingsViewController? {
         let presenter = SettingsPresenter { [weak self] in
-            guard let self = self, let rocket = self.rocketData else { return }
-            self.presenter?.mapRocketToSections(rocket: rocket)
-            self.applySnapshot()
+            guard let self = self else { return }
+            self.presenter.getData()
+            var snapshot = DataSourceSnapshot()
+            snapshot = DataSourceSnapshot()
+            for section in self.sections {
+                snapshot.appendSections([section])
+                snapshot.appendItems(section.items, toSection: section)
+            }
+
+            self.dataSource.apply(snapshot)
         }
+
         return SettingsViewController(coder: coder, presenter: presenter)
     }
 }
@@ -175,5 +169,13 @@ final class RocketViewController: UIViewController {
 extension RocketViewController: RocketViewProtocol {
     func present(data: [Section]) {
         self.sections = data
+        var snapshot = DataSourceSnapshot()
+        snapshot = DataSourceSnapshot()
+        for section in sections {
+            snapshot.appendSections([section])
+            snapshot.appendItems(section.items, toSection: section)
+        }
+
+        dataSource.apply(snapshot)
     }
 }
