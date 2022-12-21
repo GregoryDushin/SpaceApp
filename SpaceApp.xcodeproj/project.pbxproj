@@ -34,9 +34,20 @@
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
 		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
+		F3E308B629531F0C00163530 /* RocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B529531F0C00163530 /* RocketTest.swift */; };
 		F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */; };
 		F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3E308B029531DE300163530 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F37AA74528F5CC8400F1ADB9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F37AA74C28F5CC8400F1ADB9;
+			remoteInfo = SpaceApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7E76FD06916D81B616172F76 /* Pods_SpaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +80,8 @@
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		F3E308AC29531DE300163530 /* SpaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E308B529531F0C00163530 /* RocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketTest.swift; sourceTree = "<group>"; };
 		F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewPresenter.swift; sourceTree = "<group>"; };
 		F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagePresenter.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +93,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F5CC6E2F0D4BFDEEB89CBB /* Pods_SpaceApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3E308A929531DE300163530 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				F37AA74F28F5CC8400F1ADB9 /* SpaceApp */,
+				F3E308AD29531DE300163530 /* SpaceAppTests */,
 				F37AA74E28F5CC8400F1ADB9 /* Products */,
 				68B7B0EDE10CCAB4AFD656CD /* Pods */,
 				DFBA1F7FD4DBC0C9F33D2408 /* Frameworks */,
@@ -253,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				F37AA74D28F5CC8400F1ADB9 /* SpaceApp.app */,
+				F3E308AC29531DE300163530 /* SpaceAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,6 +312,14 @@
 				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 			);
 			path = LaunchLoader;
+			sourceTree = "<group>";
+		};
+		F3E308AD29531DE300163530 /* SpaceAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3E308B529531F0C00163530 /* RocketTest.swift */,
+			);
+			path = SpaceAppTests;
 			sourceTree = "<group>";
 		};
 		F3EF48FE29447FC200FD12AD /* RocketPresenters */ = {
@@ -335,6 +365,24 @@
 			productReference = F37AA74D28F5CC8400F1ADB9 /* SpaceApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F3E308AB29531DE300163530 /* SpaceAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3E308B429531DE300163530 /* Build configuration list for PBXNativeTarget "SpaceAppTests" */;
+			buildPhases = (
+				F3E308A829531DE300163530 /* Sources */,
+				F3E308A929531DE300163530 /* Frameworks */,
+				F3E308AA29531DE300163530 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3E308B129531DE300163530 /* PBXTargetDependency */,
+			);
+			name = SpaceAppTests;
+			productName = SpaceAppTests;
+			productReference = F3E308AC29531DE300163530 /* SpaceAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -347,6 +395,11 @@
 				TargetAttributes = {
 					F37AA74C28F5CC8400F1ADB9 = {
 						CreatedOnToolsVersion = 13.3.1;
+					};
+					F3E308AB29531DE300163530 = {
+						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1330;
+						TestTargetID = F37AA74C28F5CC8400F1ADB9;
 					};
 				};
 			};
@@ -364,6 +417,7 @@
 			projectRoot = "";
 			targets = (
 				F37AA74C28F5CC8400F1ADB9 /* SpaceApp */,
+				F3E308AB29531DE300163530 /* SpaceAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +430,13 @@
 				F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */,
 				F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */,
 				F37AA77528F5CCF800F1ADB9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3E308AA29531DE300163530 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +534,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3E308A829531DE300163530 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3E308B629531F0C00163530 /* RocketTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3E308B129531DE300163530 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F37AA74C28F5CC8400F1ADB9 /* SpaceApp */;
+			targetProxy = F3E308B029531DE300163530 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */ = {
@@ -657,6 +734,55 @@
 			};
 			name = Release;
 		};
+		F3E308B229531DE300163530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7CB7M9962J;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.SpaceAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceApp.app/SpaceApp";
+			};
+			name = Debug;
+		};
+		F3E308B329531DE300163530 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7CB7M9962J;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.SpaceAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceApp.app/SpaceApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -674,6 +800,15 @@
 			buildConfigurations = (
 				F37AA76228F5CC8700F1ADB9 /* Debug */,
 				F37AA76328F5CC8700F1ADB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3E308B429531DE300163530 /* Build configuration list for PBXNativeTarget "SpaceAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3E308B229531DE300163530 /* Debug */,
+				F3E308B329531DE300163530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
