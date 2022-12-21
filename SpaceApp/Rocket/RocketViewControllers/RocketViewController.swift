@@ -18,7 +18,6 @@ final class RocketViewController: UIViewController {
     var index: Int = 0
     var id: String = ""
 
-    private var sections = [Section]()
     private lazy var dataSource = configureCollectionViewDataSource()
 
     override func viewDidLoad() {
@@ -80,8 +79,7 @@ final class RocketViewController: UIViewController {
                 for: indexPath
             ) as? HeaderCell else { return UICollectionReusableView()
             }
-
-            header.setup(title: self.sections[indexPath.section].title ?? "")
+            header.setup(title: self.dataSource.snapshot().sectionIdentifiers[indexPath.section].title ?? "")
             return header
         }
     }
@@ -152,14 +150,6 @@ final class RocketViewController: UIViewController {
         let presenter = SettingsPresenter { [weak self] in
             guard let self = self else { return }
             self.presenter.getData()
-            var snapshot = DataSourceSnapshot()
-            snapshot = DataSourceSnapshot()
-            for section in self.sections {
-                snapshot.appendSections([section])
-                snapshot.appendItems(section.items, toSection: section)
-            }
-
-            self.dataSource.apply(snapshot)
         }
 
         return SettingsViewController(coder: coder, presenter: presenter)
@@ -168,10 +158,9 @@ final class RocketViewController: UIViewController {
 
 extension RocketViewController: RocketViewProtocol {
     func present(data: [Section]) {
-        self.sections = data
         var snapshot = DataSourceSnapshot()
         snapshot = DataSourceSnapshot()
-        for section in sections {
+        for section in data {
             snapshot.appendSections([section])
             snapshot.appendItems(section.items, toSection: section)
         }
