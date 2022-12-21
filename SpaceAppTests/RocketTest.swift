@@ -12,7 +12,7 @@ class MockView: RocketViewProtocol {
     var titleTest: String?
 
     func present(data: [Section]) {
-        self.titleTest = data[0].title
+        self.titleTest = data[3].title
     }
 }
 
@@ -41,23 +41,22 @@ class RocketTest: XCTestCase {
         )
         presenter = RocketViewPresenter(rocketData: rocket)
         presenter.view = view
-
-
     }
 
     override func tearDownWithError() throws {
-
+         view = nil
+         rocket = nil
+         presenter = nil
     }
 
-    func testExample() throws {
-
+    func testRocketIsNotNil() {
+        XCTAssertNotNil(view, "view is not nil")
+        XCTAssertNotNil(presenter, "presenter is not nil")
+        XCTAssertNotNil(rocket, "rocket is not nil")
     }
 
-    func testPerformanceExample() throws {
-
-        self.measure {
-
-        }
+    func testView() {
+        presenter.getData()
+        XCTAssertEqual(view.titleTest, "Первая ступень")
     }
-
 }
