@@ -8,29 +8,40 @@
 import XCTest
 @testable import SpaceApp
 
+class MockLaunchView: LaunchViewProtocol {
+    var titleTest: String?
+
+    func failure(error: Error) {
+        titleTest = "failure"
+    }
+
+    func success(data: [LaunchData]) {
+        titleTest = data[0].name
+    }
+}
+
 class LaunchTests: XCTestCase {
+    var view: MockLaunchView!
+    var presenter: LaunchPresenter!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        view = MockLaunchView()
+        presenter = LaunchPresenter(launchLoader: LaunchLoader(), id: "5e9d0d95eda69973a809d1ec") // id для Falcon 1
+        presenter.view = view
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        view = nil
+        presenter = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testLaunchViewIsNotNil() {
+        XCTAssertNotNil(view, "view is not nil")
+        XCTAssertNotNil(presenter, "presenter is not nil")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testLaunchView() {
+        presenter.getData()
+        XCTAssertEqual(view.titleTest, "Falcon 1")   // так же nil???
     }
-
 }

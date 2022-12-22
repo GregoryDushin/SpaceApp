@@ -292,9 +292,8 @@
 				F3759B9C291E37FB00B52A22 /* Launch */,
 				F3A46166291E3902007C1CDB /* Settings */,
 				F341BDCF28F69A8D00D32DEA /* Helpers */,
-				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
+				F3E308BD295445FE00163530 /* Resources */,
 				F37AA77428F5CCF800F1ADB9 /* Main.storyboard */,
-				F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */,
 				F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */,
 				F37AA75E28F5CC8700F1ADB9 /* Info.plist */,
 			);
@@ -329,6 +328,15 @@
 				F3E308BB295444CB00163530 /* SettingsTests.swift */,
 			);
 			path = SpaceAppTests;
+			sourceTree = "<group>";
+		};
+		F3E308BD295445FE00163530 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
+				F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		F3EF48FE29447FC200FD12AD /* RocketPresenters */ = {
