@@ -15,7 +15,7 @@ protocol RocketLoaderProtocol {
 
 final class RocketLoader: RocketLoaderProtocol {
     private let decoder = JSONDecoder()
-    private let session = URLSession.shared
+    var session = URLSession.shared
 
     init() {
         decoder.keyDecodingStrategy = .convertFromSnakeCase

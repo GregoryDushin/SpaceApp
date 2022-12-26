@@ -55,7 +55,7 @@ final class RocketViewPresenter: RocketViewPresenterProtocol {
             massName = "Масса, lb"
             massValue = String(rocket.mass.lb)
         } else {
-            massName = "Масса, кг"
+            massName = "Масса, kg"
             massValue = String(rocket.mass.kg)
         }
 
@@ -63,7 +63,7 @@ final class RocketViewPresenter: RocketViewPresenterProtocol {
             capacityName = "Масса, lb"
             capacityValue = String(rocket.payloadWeights[0].lb)
         } else {
-            capacityName = "Масса, кг"
+            capacityName = "Масса, kg"
             capacityValue = String(rocket.payloadWeights[0].kg)
         }
 
