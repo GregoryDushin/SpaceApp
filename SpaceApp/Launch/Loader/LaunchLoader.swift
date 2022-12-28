@@ -15,13 +15,14 @@ protocol LaunchLoaderProtocol {
 
 final class LaunchLoader: LaunchLoaderProtocol {
     private let decoder = JSONDecoder()
-    private let session = URLSession.shared
+    var session: URLSession
 
-    init() {
+    init(urlSession: URLSession = .shared) {
         let dateFormatter = DateFormatter()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        self.session = urlSession
     }
 
     func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {

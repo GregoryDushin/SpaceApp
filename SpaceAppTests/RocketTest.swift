@@ -30,12 +30,11 @@ class RocketTest: XCTestCase {
             mass: .init(kg: 1, lb: 1),
             firstStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
             secondStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
-            payloadWeights: [.init(id: "hui", name: "hui", kg: 1, lb: 1)],
+            payloadWeights: [.init(kg: 1, lb: 1)],
             flickrImages: ["hui", "hui"],
             name: "hui",
             stages: 1,
             costPerLaunch: 1,
-            successRatePct: 1,
             firstFlight: "hui",
             id: "hui"
         )

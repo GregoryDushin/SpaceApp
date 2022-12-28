@@ -35,6 +35,7 @@
 		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
 		F3CF239129597CEA00159EF3 /* NetworkRocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */; };
+		F3DC6E4A295C29820089C735 /* NetworkLaunchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */; };
 		F3E308B629531F0C00163530 /* RocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B529531F0C00163530 /* RocketTest.swift */; };
 		F3E308B82954448D00163530 /* CustomPageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B72954448D00163530 /* CustomPageViewTests.swift */; };
 		F3E308BA295444B400163530 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B9295444B400163530 /* LaunchTests.swift */; };
@@ -85,6 +86,7 @@
 		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRocketTest.swift; sourceTree = "<group>"; };
+		F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLaunchTest.swift; sourceTree = "<group>"; };
 		F3E308AC29531DE300163530 /* SpaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E308B529531F0C00163530 /* RocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketTest.swift; sourceTree = "<group>"; };
 		F3E308B72954448D00163530 /* CustomPageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewTests.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				F3E308B9295444B400163530 /* LaunchTests.swift */,
 				F3E308BB295444CB00163530 /* SettingsTests.swift */,
 				F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */,
+				F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */,
 			);
 			path = SpaceAppTests;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3E308B82954448D00163530 /* CustomPageViewTests.swift in Sources */,
+				F3DC6E4A295C29820089C735 /* NetworkLaunchTest.swift in Sources */,
 				F3E308BA295444B400163530 /* LaunchTests.swift in Sources */,
 				F3CF239129597CEA00159EF3 /* NetworkRocketTest.swift in Sources */,
 				F3E308BC295444CB00163530 /* SettingsTests.swift in Sources */,

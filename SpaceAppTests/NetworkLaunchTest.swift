@@ -1,29 +1,14 @@
 //
-//  LaunchTests.swift
+//  NetworkLaunchTest.swift
 //  SpaceAppTests
 //
-//  Created by Григорий Душин on 22.12.2022.
+//  Created by Григорий Душин on 28.12.2022.
 //
 
 import XCTest
 @testable import SpaceApp
 
-class MockLaunchView: LaunchViewProtocol {
-    var titleTest: String?
-
-    func failure(error: Error) {
-        titleTest = "failure"
-    }
-
-    func success(data: [LaunchData]) {
-        titleTest = data[0].name //данные приходят
-        print(titleTest)
-    }
-}
-
-class LaunchTests: XCTestCase {
-    var view: MockLaunchView!
-    var presenter: LaunchPresenter!
+class NetworkLaunchTest: XCTestCase {
 
     override func setUpWithError() throws {
     }
@@ -31,7 +16,7 @@ class LaunchTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-    func testLaunchView() {
+    func testNetwork() {
         let error: Error? = nil
         let url = URL(string: "https://api.spacexdata.com/v4/launches")
         let response = HTTPURLResponse(url: url!, statusCode: 200, httpVersion: nil, headerFields: nil)
@@ -53,9 +38,20 @@ class LaunchTests: XCTestCase {
         sessionConfiguration.protocolClasses = [URLProtocolMock.self]
 
         let mockedSession = URLSession(configuration: sessionConfiguration)
+        let launchLoader = LaunchLoader(urlSession: mockedSession)
 
-        presenter = LaunchPresenter(launchLoader: LaunchLoader(urlSession: mockedSession), id: "5e9d0d95eda69955f709d1eb")
-        presenter.view = view
-        presenter.getData()
+        launchLoader.launchDataLoad(id: "5e9d0d95eda69955f709d1eb") { launches in
+            DispatchQueue.main.async {
+                switch launches {
+                case .success(let launches):
+                    print(launches)  // данные приходят
+                    XCTAssertEqual(launches[0].name, "hui")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    XCTAssertNil(error)
+                }
+            }
+        }
     }
+
 }

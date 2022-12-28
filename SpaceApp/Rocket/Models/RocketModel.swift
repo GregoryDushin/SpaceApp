@@ -13,7 +13,6 @@ struct RocketModelElement: Decodable {
     let name: String
     let stages: Int
     let costPerLaunch: Int
-    let successRatePct: Int
     let firstFlight: String
     let id: String
 }
@@ -44,8 +43,6 @@ extension RocketModelElement {
 // MARK: - PayloadWeight
 
     struct PayloadWeight: Decodable {
-        let id: String
-        let name: String
         let kg: Int
         let lb: Int
     }
