@@ -41,5 +41,3 @@ class SettingsTests: XCTestCase {
         XCTAssertEqual(view.titleTest, "m")
     }
 }
-
-
