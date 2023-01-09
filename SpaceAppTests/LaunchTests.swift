@@ -8,46 +8,28 @@
 import XCTest
 @testable import SpaceApp
 
-class MockLaunchNetworkManager: LaunchLoaderProtocol {
+final class LaunchTests: XCTestCase {
 
-    let data: [LaunchModelElement] = [LaunchModelElement(success: true, name: "TestName", dateUtc: Date(timeIntervalSince1970: .pi), rocket: "TestRocket")]
+    private var view: MockLaunchView!
+    private var presenter: LaunchPresenter!
+    private var testData: [LaunchData]?
 
-    func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
-        completion(.success(data))
-    }
-}
-
-class MockLaunchView: LaunchViewProtocol {
-    var titleTest: String?
-
-    func failure(error: Error) {
-        titleTest = "failure"
-    }
-
-    func success(data: [LaunchData]) {
-        titleTest = data[0].name
-    }
-}
-
-class LaunchTests: XCTestCase {
-
-    var view: MockLaunchView!
-    var presenter: LaunchPresenter!
-
-    override func setUpWithError() throws {
+    override func setUp() {
         view = MockLaunchView()
         presenter = LaunchPresenter(launchLoader: MockLaunchNetworkManager(), id: "5e9d0d95eda69955f709d1eb")
         presenter.view = view
+        testData = [
+            LaunchData(
+                name: "TestName",
+                date: "01/01/70",
+                image: UIImage.named(LaunchImages.success)
+            )
+        ]
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         view = nil
         presenter = nil
-    }
-
-    func testRocketIsNotNil() {
-        XCTAssertNotNil(view, "view is not nil")
-        XCTAssertNotNil(presenter, "presenter is not nil")
     }
 
     func testLaunchView() async throws {
@@ -58,6 +40,41 @@ class LaunchTests: XCTestCase {
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(view.titleTest, "TestName")
+        XCTAssertEqual(view.testArray, testData)
+        XCTAssertNil(view.testError)
     }
+}
+
+private extension LaunchTests {
+
+    final class MockLaunchNetworkManager: LaunchLoaderProtocol {
+
+        private let data: [LaunchModelElement] = [
+            LaunchModelElement(
+                success: true,
+                name: "TestName",
+                dateUtc: Date(timeIntervalSince1970: .pi),
+                rocket: "TestRocket"
+            )
+        ]
+
+        func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
+            completion(.success(data))
+        }
+    }
+
+   final class MockLaunchView: LaunchViewProtocol {
+
+        var testArray: [LaunchData]?
+        var testError: Error?
+
+        func failure(error: Error) {
+            testError = error
+        }
+
+        func success(data: [LaunchData]) {
+            testArray = data
+        }
+    }
+
 }

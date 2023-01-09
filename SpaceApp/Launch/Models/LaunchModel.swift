@@ -1,6 +1,6 @@
 import Foundation
 
-struct LaunchModelElement: Decodable {
+struct LaunchModelElement: Decodable, Equatable {
     let success: Bool?
     let name: String
     let dateUtc: Date

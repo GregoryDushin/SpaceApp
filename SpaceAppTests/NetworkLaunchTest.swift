@@ -8,38 +8,55 @@
 import XCTest
 @testable import SpaceApp
 
-class NetworkLaunchTest: XCTestCase {
-    var launchLoader: LaunchLoader!
-    var launchData: [LaunchModelElement] = []
-    let error: Error? = nil
-    let response = HTTPURLResponse(url: URL(string: "https://api.spacexdata.com/v4/launches")!, statusCode: 200, httpVersion: nil, headerFields: nil)
-    let data = """
-      [
-        {
-    "rocket":"5e9d0d95eda69955f709d1eb",
-    "success":false,
-    "name":"FalconSat_Test",
-    "date_utc":"2006-03-24T22:30:00.000Z"
-    }
-      ]
-    """.data(using: .utf8)
+final class NetworkLaunchTest: XCTestCase {
+    private var launchLoader: LaunchLoader!
+    private var launchData: [LaunchModelElement] = []
+    private let error: Error? = nil
+    private var testData: [LaunchModelElement]!
 
-    override func setUpWithError() throws {
+    private func makeMockSession() -> URLSession {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.spacexdata.com/v4/launches")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil
+        )
+        let data = """
+          [
+            {
+        "rocket":"5e9d0d95eda69955f709d1eb",
+        "success":false,
+        "name":"FalconSat_Test",
+        "date_utc":"1970-01-01T04:00:03.142+0400"
+        }
+          ]
+        """.data(using: .utf8)
         URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/launches")!: (error, data, response)]
-
         let sessionConfiguration = URLSessionConfiguration.ephemeral
 
         sessionConfiguration.protocolClasses = [URLProtocolMock.self]
 
-        let mockedSession = URLSession(configuration: sessionConfiguration)
-        launchLoader = LaunchLoader(urlSession: mockedSession)
+        return URLSession(configuration: sessionConfiguration)
     }
 
-    override func tearDownWithError() throws {
+    override func setUp() {
+
+        launchLoader = LaunchLoader(urlSession: makeMockSession())
+
+        testData = [LaunchModelElement(
+            success: false,
+            name: "FalconSat_Test",
+            dateUtc: Date(timeIntervalSince1970: .pi),
+            rocket: "5e9d0d95eda69955f709d1eb"
+        )
+        ]
+    }
+
+    override func tearDown() {
         launchLoader = nil
     }
 
-    func testNetwork() {
+    func testLaunvhDataRecieving() {
 
         let exp = expectation(description: "Loading data")
 
@@ -49,8 +66,8 @@ class NetworkLaunchTest: XCTestCase {
                 case .success(let launches):
                     self.launchData = launches
                     exp.fulfill()
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure:
+                    XCTFail("Request failed")
                 }
             }
         }
@@ -58,5 +75,9 @@ class NetworkLaunchTest: XCTestCase {
         waitForExpectations(timeout: 3)
 
         XCTAssertEqual(launchData[0].name, "FalconSat_Test")
+        XCTAssertEqual(launchData[0].name, testData[0].name)
+        XCTAssertEqual(launchData[0].rocket, testData[0].rocket)
+        XCTAssertEqual(launchData[0].success, testData[0].success)
+        // XCTAssertEqual(launchData[0].dateUtc, testData[0].dateUtc)
     }
 }

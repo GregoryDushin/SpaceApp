@@ -8,36 +8,60 @@
 import XCTest
 @testable import SpaceApp
 
-class MockSettingsView: SettingsViewProtocol {
-    var titleTest: String?
+final class SettingsTests: XCTestCase {
 
-    func present(data: [Setting]) {
-        titleTest = data[0].values[0]
-    }
-}
+    private var view: MockSettingsView!
+    private var presenter: SettingsPresenter!
+    private var testArray: [Setting]?
 
-class SettingsTests: XCTestCase {
-    var view: MockSettingsView!
-    var presenter: SettingsPresenter!
-
-    override func setUpWithError() throws {
+    override func setUp() {
         view = MockSettingsView()
         presenter = SettingsPresenter(onUpdateSetting: { })
         presenter.view = view
+        testArray = [
+            Setting(
+                title: "Высота",
+                positionKey: PersistancePositionKeys.heightPositionKey,
+                values: ["m", "ft"]
+            ),
+            Setting(
+                title: "Диаметр",
+                positionKey: PersistancePositionKeys.diameterPositionKey,
+                values: ["m", "ft"]
+            ),
+            Setting(
+                title: "Масса",
+                positionKey: PersistancePositionKeys.massPositionKey,
+                values: ["kg", "lb"]
+            ),
+            Setting(
+                title: "Полезная нагрузка",
+                positionKey: PersistancePositionKeys.capacityPositionKey,
+                values: ["kg", "lb"]
+            )
+        ]
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         view = nil
         presenter = nil
     }
 
-    func testSettingsIsNotNil() {
-        XCTAssertNotNil(view, "view is not nil")
-        XCTAssertNotNil(presenter, "presenter is not nil")
-    }
-
     func testSettingsView() {
         presenter.showData()
-        XCTAssertEqual(view.titleTest, "m")
+        XCTAssertEqual(view.testArray, testArray)
     }
+}
+
+private extension SettingsTests {
+
+    final class MockSettingsView: SettingsViewProtocol {
+        var titleTest: String?
+        var testArray: [Setting]?
+
+        func present(data: [Setting]) {
+            testArray = data
+        }
+    }
+
 }

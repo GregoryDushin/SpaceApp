@@ -15,7 +15,7 @@ protocol LaunchLoaderProtocol {
 
 final class LaunchLoader: LaunchLoaderProtocol {
     private let decoder = JSONDecoder()
-    var session: URLSession
+    private let session: URLSession
 
     init(urlSession: URLSession = .shared) {
         let dateFormatter = DateFormatter()
