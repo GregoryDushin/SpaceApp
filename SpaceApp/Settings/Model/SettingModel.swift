@@ -1,6 +1,6 @@
 import Foundation
 
-struct Setting {
+struct Setting: Equatable {
     let title: String
     let positionKey: String
     let values: [String]

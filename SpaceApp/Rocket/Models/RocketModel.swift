@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - CodableRocketModel
 
-struct RocketModelElement: Decodable {
+struct RocketModelElement: Decodable, Equatable {
     let height: Diameter
     let diameter: Diameter
     let mass: Mass
@@ -13,7 +13,6 @@ struct RocketModelElement: Decodable {
     let name: String
     let stages: Int
     let costPerLaunch: Int
-    let successRatePct: Int
     let firstFlight: String
     let id: String
 }
@@ -21,14 +20,14 @@ struct RocketModelElement: Decodable {
 // MARK: - Diameter
 
 extension RocketModelElement {
-    struct Diameter: Decodable {
+    struct Diameter: Decodable, Equatable {
         let meters: Double?
         let feet: Double?
     }
 
 // MARK: - FirstStage
 
-    struct FirstStage: Decodable {
+    struct FirstStage: Decodable, Equatable {
         let engines: Int
         let fuelAmountTons: Double
         let burnTimeSec: Int?
@@ -36,23 +35,21 @@ extension RocketModelElement {
 
 // MARK: - Mass
 
-    struct Mass: Decodable {
+    struct Mass: Decodable, Equatable {
         let kg: Int
         let lb: Int
     }
 
 // MARK: - PayloadWeight
 
-    struct PayloadWeight: Decodable {
-        let id: String
-        let name: String
+    struct PayloadWeight: Decodable, Equatable {
         let kg: Int
         let lb: Int
     }
 
 // MARK: - SecondStage
 
-    struct SecondStage: Decodable {
+    struct SecondStage: Decodable, Equatable {
         let engines: Int
         let fuelAmountTons: Double
         let burnTimeSec: Int?

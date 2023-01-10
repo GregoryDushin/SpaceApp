@@ -88,10 +88,10 @@ excluded:
   - vendor
 
 line_length:
-  warning: 140
-  ignores_comments: true
-  ignores_urls: true
-  ignores_interpolated_strings: true
+   warning: 140
+   ignores_comments: true
+   ignores_urls: true
+   ignores_interpolated_strings: true
 
 type_body_length: 500
 

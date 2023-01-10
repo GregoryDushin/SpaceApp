@@ -18,6 +18,7 @@
 		F341396129227813004156C5 /* IdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341396029227813004156C5 /* IdExtensions.swift */; };
 		F349B28A293DF52900B9DE38 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349B289293DF52900B9DE38 /* SettingsPresenter.swift */; };
 		F34C5E36291936210091690A /* RocketHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C5E35291936210091690A /* RocketHeaderCell.swift */; };
+		F36E0AA5296C279700441587 /* UrlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E0AA4296C279700441587 /* UrlMock.swift */; };
 		F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */; };
 		F37AA75A28F5CC8700F1ADB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */; };
 		F37AA75D28F5CC8700F1ADB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */; };
@@ -34,7 +35,12 @@
 		F385E7AA28FEA41C0081166F /* CustomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385E7A928FEA41C0081166F /* CustomPageViewController.swift */; };
 		F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */; };
 		F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */; };
+		F3CF239129597CEA00159EF3 /* NetworkRocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */; };
+		F3DC6E4A295C29820089C735 /* NetworkLaunchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */; };
 		F3E308B629531F0C00163530 /* RocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B529531F0C00163530 /* RocketTest.swift */; };
+		F3E308B82954448D00163530 /* CustomPageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B72954448D00163530 /* CustomPageViewTests.swift */; };
+		F3E308BA295444B400163530 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B9295444B400163530 /* LaunchTests.swift */; };
+		F3E308BC295444CB00163530 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308BB295444CB00163530 /* SettingsTests.swift */; };
 		F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */; };
 		F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +68,7 @@
 		F341396029227813004156C5 /* IdExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdExtensions.swift; sourceTree = "<group>"; };
 		F349B289293DF52900B9DE38 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		F34C5E35291936210091690A /* RocketHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketHeaderCell.swift; sourceTree = "<group>"; };
+		F36E0AA4296C279700441587 /* UrlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlMock.swift; sourceTree = "<group>"; };
 		F37AA74D28F5CC8400F1ADB9 /* SpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,8 +87,13 @@
 		F385E7A928FEA41C0081166F /* CustomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewController.swift; sourceTree = "<group>"; };
 		F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketsData.swift; sourceTree = "<group>"; };
 		F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRocketTest.swift; sourceTree = "<group>"; };
+		F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLaunchTest.swift; sourceTree = "<group>"; };
 		F3E308AC29531DE300163530 /* SpaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E308B529531F0C00163530 /* RocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketTest.swift; sourceTree = "<group>"; };
+		F3E308B72954448D00163530 /* CustomPageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewTests.swift; sourceTree = "<group>"; };
+		F3E308B9295444B400163530 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
+		F3E308BB295444CB00163530 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewPresenter.swift; sourceTree = "<group>"; };
 		F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagePresenter.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,7 +135,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F30E40CD290A9F700046189B /* RocketCells */ = {
+		F30E40CD290A9F700046189B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */,
@@ -132,90 +144,90 @@
 				F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */,
 				F34C5E35291936210091690A /* RocketHeaderCell.swift */,
 			);
-			path = RocketCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		F34139622923BD3E004156C5 /* LaunchViewController */ = {
+		F34139622923BD3E004156C5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76A28F5CCC300F1ADB9 /* LaunchViewController.swift */,
 			);
-			path = LaunchViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		F34139642923BD66004156C5 /* LaunchCell */ = {
+		F34139642923BD66004156C5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA77028F5CCE300F1ADB9 /* LaunchCell.swift */,
 			);
-			path = LaunchCell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
-		F34139652923BD81004156C5 /* LaunchPresenter */ = {
+		F34139652923BD81004156C5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				F327818A2935FBC700020C94 /* LaunchPresenter.swift */,
 			);
-			path = LaunchPresenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
-		F34139662923BDB8004156C5 /* LaunchModels */ = {
+		F34139662923BDB8004156C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76628F5CCA500F1ADB9 /* LaunchModel.swift */,
 				F327818C2935FD1C00020C94 /* LaunchData.swift */,
 			);
-			path = LaunchModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		F34139672923BDE2004156C5 /* SettingsViewController */ = {
+		F34139672923BDE2004156C5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				F30C91AC28F9632200C5D5F6 /* SettingsViewController.swift */,
 			);
-			path = SettingsViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		F34139682923BDF0004156C5 /* SettingsCell */ = {
+		F34139682923BDF0004156C5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				F385E7A128FD49180081166F /* SettingsTableViewCell.swift */,
 			);
-			path = SettingsCell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
-		F34139692923BE12004156C5 /* RocketViewControllers */ = {
+		F34139692923BE12004156C5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F385E7A728FEA3340081166F /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
 			);
-			path = RocketViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F341396A2923BE2D004156C5 /* RocketLoader */ = {
+		F341396A2923BE2D004156C5 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76C28F5CCCD00F1ADB9 /* RocketLoader.swift */,
 			);
-			path = RocketLoader;
+			path = Loader;
 			sourceTree = "<group>";
 		};
-		F341396B2923BE7F004156C5 /* SettingsModel */ = {
+		F341396B2923BE7F004156C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F3CE8FBD2902B02D0089FAEC /* SettingModel.swift */,
 			);
-			path = SettingsModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		F341396C2923BE8F004156C5 /* RocketModels */ = {
+		F341396C2923BE8F004156C5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76428F5CC9B00F1ADB9 /* RocketModel.swift */,
 				F3AA3B1E291277AE0091CCF7 /* RocketsData.swift */,
 			);
-			path = RocketModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F341BDCF28F69A8D00D32DEA /* Helpers */ = {
@@ -227,22 +239,30 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		F349B288293DF4E700B9DE38 /* SettingsPresenter */ = {
+		F349B288293DF4E700B9DE38 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				F349B289293DF52900B9DE38 /* SettingsPresenter.swift */,
 			);
-			path = SettingsPresenter;
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		F36E0AA1296C21AE00441587 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F36E0AA4296C279700441587 /* UrlMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		F3759B9B291E378300B52A22 /* Rocket */ = {
 			isa = PBXGroup;
 			children = (
-				F3EF48FE29447FC200FD12AD /* RocketPresenters */,
-				F341396C2923BE8F004156C5 /* RocketModels */,
-				F34139692923BE12004156C5 /* RocketViewControllers */,
-				F30E40CD290A9F700046189B /* RocketCells */,
-				F341396A2923BE2D004156C5 /* RocketLoader */,
+				F3EF48FE29447FC200FD12AD /* Presenters */,
+				F341396C2923BE8F004156C5 /* Models */,
+				F34139692923BE12004156C5 /* ViewControllers */,
+				F30E40CD290A9F700046189B /* Cells */,
+				F341396A2923BE2D004156C5 /* Loader */,
 			);
 			path = Rocket;
 			sourceTree = "<group>";
@@ -250,11 +270,11 @@
 		F3759B9C291E37FB00B52A22 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				F34139662923BDB8004156C5 /* LaunchModels */,
-				F34139622923BD3E004156C5 /* LaunchViewController */,
-				F34139652923BD81004156C5 /* LaunchPresenter */,
-				F3AB0B2C293DD80800E48B40 /* LaunchLoader */,
-				F34139642923BD66004156C5 /* LaunchCell */,
+				F34139662923BDB8004156C5 /* Models */,
+				F34139622923BD3E004156C5 /* ViewController */,
+				F34139652923BD81004156C5 /* Presenter */,
+				F3AB0B2C293DD80800E48B40 /* Loader */,
+				F34139642923BD66004156C5 /* Cell */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -286,9 +306,8 @@
 				F3759B9C291E37FB00B52A22 /* Launch */,
 				F3A46166291E3902007C1CDB /* Settings */,
 				F341BDCF28F69A8D00D32DEA /* Helpers */,
-				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
+				F3E308BD295445FE00163530 /* Resources */,
 				F37AA77428F5CCF800F1ADB9 /* Main.storyboard */,
-				F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */,
 				F37AA75B28F5CC8700F1ADB9 /* LaunchScreen.storyboard */,
 				F37AA75E28F5CC8700F1ADB9 /* Info.plist */,
 			);
@@ -298,37 +317,52 @@
 		F3A46166291E3902007C1CDB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F341396B2923BE7F004156C5 /* SettingsModel */,
-				F34139672923BDE2004156C5 /* SettingsViewController */,
-				F349B288293DF4E700B9DE38 /* SettingsPresenter */,
-				F34139682923BDF0004156C5 /* SettingsCell */,
+				F341396B2923BE7F004156C5 /* Model */,
+				F34139672923BDE2004156C5 /* ViewController */,
+				F349B288293DF4E700B9DE38 /* Presenter */,
+				F34139682923BDF0004156C5 /* Cell */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		F3AB0B2C293DD80800E48B40 /* LaunchLoader */ = {
+		F3AB0B2C293DD80800E48B40 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
 				F37AA76E28F5CCD600F1ADB9 /* LaunchLoader.swift */,
 			);
-			path = LaunchLoader;
+			path = Loader;
 			sourceTree = "<group>";
 		};
 		F3E308AD29531DE300163530 /* SpaceAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				F36E0AA1296C21AE00441587 /* Mocks */,
 				F3E308B529531F0C00163530 /* RocketTest.swift */,
+				F3E308B72954448D00163530 /* CustomPageViewTests.swift */,
+				F3E308B9295444B400163530 /* LaunchTests.swift */,
+				F3E308BB295444CB00163530 /* SettingsTests.swift */,
+				F3CF239029597CEA00159EF3 /* NetworkRocketTest.swift */,
+				F3DC6E49295C29820089C735 /* NetworkLaunchTest.swift */,
 			);
 			path = SpaceAppTests;
 			sourceTree = "<group>";
 		};
-		F3EF48FE29447FC200FD12AD /* RocketPresenters */ = {
+		F3E308BD295445FE00163530 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F37AA75028F5CC8400F1ADB9 /* AppDelegate.swift */,
+				F37AA75928F5CC8700F1ADB9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F3EF48FE29447FC200FD12AD /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
 				F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */,
 				F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */,
 			);
-			path = RocketPresenters;
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,6 +572,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E308B82954448D00163530 /* CustomPageViewTests.swift in Sources */,
+				F3DC6E4A295C29820089C735 /* NetworkLaunchTest.swift in Sources */,
+				F3E308BA295444B400163530 /* LaunchTests.swift in Sources */,
+				F3CF239129597CEA00159EF3 /* NetworkRocketTest.swift in Sources */,
+				F36E0AA5296C279700441587 /* UrlMock.swift in Sources */,
+				F3E308BC295444CB00163530 /* SettingsTests.swift in Sources */,
 				F3E308B629531F0C00163530 /* RocketTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

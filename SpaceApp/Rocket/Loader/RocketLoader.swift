@@ -15,10 +15,11 @@ protocol RocketLoaderProtocol {
 
 final class RocketLoader: RocketLoaderProtocol {
     private let decoder = JSONDecoder()
-    private let session = URLSession.shared
+    private let session: URLSession
 
-    init() {
+    init(urlSession: URLSession = .shared) {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        self.session = urlSession
     }
 
     func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
