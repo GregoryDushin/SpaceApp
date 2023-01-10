@@ -2,7 +2,6 @@ disabled_rules:
   - nesting
   - indentation_width
   - closure_end_indentation
-  - line_length
 
 opt_in_rules:
   - anyobject_protocol
@@ -88,6 +87,11 @@ excluded:
   - Pods
   - vendor
 
+line_length:
+   warning: 140
+   ignores_comments: true
+   ignores_urls: true
+   ignores_interpolated_strings: true
 
 type_body_length: 500
 
