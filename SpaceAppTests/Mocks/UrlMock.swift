@@ -7,7 +7,7 @@
 
 import XCTest
 
-class URLProtocolMock: URLProtocol {
+final class URLProtocolMock: URLProtocol {
 
    static var mockURLs = [URL?: (error: Error?, data: Data?, response: HTTPURLResponse?)]()
 

@@ -80,23 +80,22 @@ final class NetworkRocketTest: XCTestCase {
         rocketLoader = nil
     }
 
-    func testRocketDataRecieving() {
+    func testRocketDataRecieving() async {
 
         let exp = expectation(description: "Loading data")
 
         rocketLoader.rocketDataLoad { rockets in
-            DispatchQueue.main.async {
-                switch rockets {
-                case .success(let rockets):
-                    self.rocketData = rockets
-                    exp.fulfill()
-                case .failure(let error):
-                    self.testError = error
-                }
+            switch rockets {
+            case .success(let rockets):
+                self.rocketData = rockets
+                exp.fulfill()
+            case .failure(let error):
+                //               XCTFail("Request failed")
+                self.testError = error
             }
         }
 
-        waitForExpectations(timeout: 3)
+        await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(rocketData, rocketDataTest)
         XCTAssertNil(testError)

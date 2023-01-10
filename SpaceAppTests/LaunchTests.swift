@@ -11,7 +11,7 @@ import XCTest
 final class LaunchTests: XCTestCase {
 
     private var view: MockLaunchView!
-    private var presenter: LaunchViewPresenterProtocol!
+    private var presenter: LaunchPresenter!
     private var testData: [LaunchData]?
 
     override func setUp() {
@@ -32,7 +32,7 @@ final class LaunchTests: XCTestCase {
         presenter = nil
     }
 
-    func testLaunchView() async throws {
+    func testLaunchView() async {
         let exp = expectation(description: "Loading data")
 
         presenter.getData()

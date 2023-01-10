@@ -41,7 +41,7 @@ final class CustomPageViewTests: XCTestCase {
         presenter = nil
     }
 
-    func testCustomPageView() async throws {
+    func testCustomPageView() async {
         let exp = expectation(description: "Loading data")
         presenter.getData()
         exp.fulfill()

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import UIKit
 @testable import SpaceApp
 
 final class RocketTest: XCTestCase {
@@ -130,7 +131,7 @@ final class RocketTest: XCTestCase {
          presenter = nil
     }
 
-    func testView() {
+    func testRocketView() {
         presenter.getData()
 
         XCTAssertEqual(view.arrayTest.count, testSection.count)
@@ -140,6 +141,8 @@ final class RocketTest: XCTestCase {
             XCTAssertEqual(view.arrayTest[i].sectionType, testSection[i].sectionType)
             XCTAssertEqual(view.arrayTest[i].items.count, testSection[i].items.count)
         }
+        var hui: [ListItem]!
+        
     }
 }
 

@@ -43,12 +43,13 @@ final class NetworkLaunchTest: XCTestCase {
 
         launchLoader = LaunchLoader(urlSession: makeMockSession())
 
-        testData = [LaunchModelElement(
-            success: false,
-            name: "FalconSat_Test",
-            dateUtc: Date(timeIntervalSinceReferenceDate: 0.0),
-            rocket: "test"
-        )
+        testData = [
+            LaunchModelElement(
+                success: false,
+                name: "FalconSat_Test",
+                dateUtc: Date(timeIntervalSinceReferenceDate: 0.0),
+                rocket: "test"
+            )
         ]
     }
 
@@ -56,28 +57,27 @@ final class NetworkLaunchTest: XCTestCase {
         launchLoader = nil
     }
 
-    func testLaunvhDataRecieving() {
+    func testLaunvhDataRecieving() async {
 
         let exp = expectation(description: "Loading data")
 
         launchLoader.launchDataLoad(id: "test") { launches in
-            DispatchQueue.main.async {
-                switch launches {
-                case .success(let launches):
-                    self.launchData = launches
-                    exp.fulfill()
-                case .failure:
-                    XCTFail("Request failed")
-                }
+            switch launches {
+            case .success(let launches):
+                self.launchData = launches
+                exp.fulfill()
+            case .failure:
+                XCTFail("Request failed")
             }
         }
 
-        waitForExpectations(timeout: 3)
+        await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(launchData[0].name, "FalconSat_Test")
         XCTAssertEqual(launchData[0].name, testData[0].name)
         XCTAssertEqual(launchData[0].rocket, testData[0].rocket)
         XCTAssertEqual(launchData[0].success, testData[0].success)
         XCTAssertEqual(launchData[0].dateUtc, testData[0].dateUtc)
+        
     }
 }
