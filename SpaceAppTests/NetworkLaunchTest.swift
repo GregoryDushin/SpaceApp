@@ -24,10 +24,10 @@ final class NetworkLaunchTest: XCTestCase {
         let data = """
           [
             {
-        "rocket":"5e9d0d95eda69955f709d1eb",
+        "rocket":"test",
         "success":false,
         "name":"FalconSat_Test",
-        "date_utc":"1970-01-01T04:00:03.142+0400"
+        "date_utc":"2001-01-01T04:00:00.000+0400"
         }
           ]
         """.data(using: .utf8)
@@ -46,8 +46,8 @@ final class NetworkLaunchTest: XCTestCase {
         testData = [LaunchModelElement(
             success: false,
             name: "FalconSat_Test",
-            dateUtc: Date(timeIntervalSince1970: .pi),
-            rocket: "5e9d0d95eda69955f709d1eb"
+            dateUtc: Date(timeIntervalSinceReferenceDate: 0.0),
+            rocket: "test"
         )
         ]
     }
@@ -60,7 +60,7 @@ final class NetworkLaunchTest: XCTestCase {
 
         let exp = expectation(description: "Loading data")
 
-        launchLoader.launchDataLoad(id: "5e9d0d95eda69955f709d1eb") { launches in
+        launchLoader.launchDataLoad(id: "test") { launches in
             DispatchQueue.main.async {
                 switch launches {
                 case .success(let launches):
@@ -78,6 +78,6 @@ final class NetworkLaunchTest: XCTestCase {
         XCTAssertEqual(launchData[0].name, testData[0].name)
         XCTAssertEqual(launchData[0].rocket, testData[0].rocket)
         XCTAssertEqual(launchData[0].success, testData[0].success)
-        // XCTAssertEqual(launchData[0].dateUtc, testData[0].dateUtc)
+        XCTAssertEqual(launchData[0].dateUtc, testData[0].dateUtc)
     }
 }

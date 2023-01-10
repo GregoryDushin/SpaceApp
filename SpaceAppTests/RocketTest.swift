@@ -36,6 +36,11 @@ final class RocketTest: XCTestCase {
 
         testSection = [
             Section(
+                sectionType: .image,
+                title: nil,
+                items: [.image(url: URL(string: "test")!, rocketName: "test")]
+            ),
+            Section(
                 sectionType: .horizontal,
                 title: nil,
                 items:
@@ -65,7 +70,7 @@ final class RocketTest: XCTestCase {
                     [
                         .verticalInfo(
                             title: "Первый запуск",
-                            value: rocket.firstFlight
+                            value: "test"
                         ),
                         .verticalInfo(
                             title: "Страна",
@@ -73,7 +78,7 @@ final class RocketTest: XCTestCase {
                         ),
                         .verticalInfo(
                             title: "Стоимость запуска",
-                            value: "$" + String((rocket.costPerLaunch) / 1_000_000) + " млн"
+                            value: "$" + String((1) / 1_000_000) + " млн"
                         )
                     ]
             ),
@@ -84,15 +89,15 @@ final class RocketTest: XCTestCase {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(rocket.firstStage.engines)
+                            value: String(1)
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.firstStage.fuelAmountTons) as String) + " тонн"
+                            value: (NSString(format: "%.0f", 0.1) as String) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(rocket.firstStage.burnTimeSec ?? 0) + " сек"
+                            value: String(0.1) + " сек"
                         )
                     ]
             ),
@@ -103,15 +108,15 @@ final class RocketTest: XCTestCase {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(rocket.secondStage.engines)
+                            value: String(1)
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", rocket.secondStage.fuelAmountTons) as String) + " тонн"
+                            value: (NSString(format: "%.0f", 0.1) as String) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(rocket.secondStage.burnTimeSec ?? 0) + " сек"
+                            value: String(0.1) + " сек"
                         )
                     ]
             ),
@@ -127,9 +132,14 @@ final class RocketTest: XCTestCase {
 
     func testView() {
         presenter.getData()
-        XCTAssertEqual(view.arrayTest[0].title, testSection[0].title)
-        XCTAssertEqual(view.arrayTest[1].sectionType, testSection[0].sectionType)
 
+        XCTAssertEqual(view.arrayTest.count, testSection.count)
+
+        for  i in 0..<view.arrayTest.count - 1 {
+            XCTAssertEqual(view.arrayTest[i].title, testSection[i].title)
+            XCTAssertEqual(view.arrayTest[i].sectionType, testSection[i].sectionType)
+            XCTAssertEqual(view.arrayTest[i].items.count, testSection[i].items.count)
+        }
     }
 }
 

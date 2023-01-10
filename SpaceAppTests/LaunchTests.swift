@@ -11,12 +11,12 @@ import XCTest
 final class LaunchTests: XCTestCase {
 
     private var view: MockLaunchView!
-    private var presenter: LaunchPresenter!
+    private var presenter: LaunchViewPresenterProtocol!
     private var testData: [LaunchData]?
 
     override func setUp() {
         view = MockLaunchView()
-        presenter = LaunchPresenter(launchLoader: MockLaunchNetworkManager(), id: "5e9d0d95eda69955f709d1eb")
+        presenter = LaunchPresenter(launchLoader: MockLaunchNetworkManager(), id: "test")
         presenter.view = view
         testData = [
             LaunchData(

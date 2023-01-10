@@ -13,6 +13,7 @@ final class NetworkRocketTest: XCTestCase {
     private var rocketData: [RocketModelElement] = []
     private let error: Error? = nil
     private var rocketDataTest: [RocketModelElement]!
+    private var testError: Error!
 
     private func makeMockSession() -> URLSession {
         let response = HTTPURLResponse(
@@ -45,6 +46,7 @@ final class NetworkRocketTest: XCTestCase {
             }
           ]
         """.data(using: .utf8)
+
         URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/rockets")!: (error, data, response)]
         let sessionConfiguration = URLSessionConfiguration.ephemeral
 
@@ -88,8 +90,8 @@ final class NetworkRocketTest: XCTestCase {
                 case .success(let rockets):
                     self.rocketData = rockets
                     exp.fulfill()
-                case .failure:
-                    XCTFail("Request failed")
+                case .failure(let error):
+                    self.testError = error
                 }
             }
         }
@@ -97,5 +99,6 @@ final class NetworkRocketTest: XCTestCase {
         waitForExpectations(timeout: 3)
 
         XCTAssertEqual(rocketData, rocketDataTest)
+        XCTAssertNil(testError)
     }
 }
