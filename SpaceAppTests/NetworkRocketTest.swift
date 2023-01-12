@@ -90,7 +90,6 @@ final class NetworkRocketTest: XCTestCase {
                 self.rocketData = rockets
                 exp.fulfill()
             case .failure(let error):
-                //               XCTFail("Request failed")
                 self.testError = error
             }
         }

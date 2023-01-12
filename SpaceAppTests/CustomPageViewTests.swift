@@ -42,14 +42,15 @@ final class CustomPageViewTests: XCTestCase {
     }
 
     func testCustomPageView() async {
+        
         let exp = expectation(description: "Loading data")
         presenter.getData()
-        exp.fulfill()
-
-        await waitForExpectations(timeout: 3)
-
         XCTAssertEqual(view.testArray, testRocket)
         XCTAssertNil(view.error)
+        exp.fulfill()
+        
+        await waitForExpectations(timeout: 3)
+        
     }
 }
 

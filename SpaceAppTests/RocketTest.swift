@@ -18,13 +18,53 @@ final class RocketTest: XCTestCase {
 
     override func setUp() {
         view = MockView()
+        let heightName: String
+        let heightValue: String
+        let diamName: String
+        let diamValue: String
+        let massName: String
+        let massValue: String
+        let capacityName: String
+        let capacityValue: String
+
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) == "1" {
+            heightName = "Высота, ft"
+            heightValue = String(2.0)
+        } else {
+            heightName = "Высота, m"
+            heightValue = String(1.0)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) == "1" {
+            diamName = "Диаметр, ft"
+            diamValue = String(2.0)
+        } else {
+            diamName = "Диаметр, m"
+            diamValue = String(1.0)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) == "1" {
+            massName = "Масса, lb"
+            massValue = String(2)
+        } else {
+            massName = "Масса, kg"
+            massValue = String(1)
+        }
+
+        if UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) == "1" {
+            capacityName = "Масса, lb"
+            capacityValue = String(2)
+        } else {
+            capacityName = "Масса, kg"
+            capacityValue = String(1)
+        }
         rocket = RocketModelElement(
-            height: .init(meters: 0.1, feet: 0.1),
-            diameter: .init(meters: 0.1, feet: 0.1),
-            mass: .init(kg: 1, lb: 1),
-            firstStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
-            secondStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
-            payloadWeights: [.init(kg: 1, lb: 1)],
+            height: .init(meters: 1.0, feet: 2.0),
+            diameter: .init(meters: 1.0, feet: 2.0),
+            mass: .init(kg: 1, lb: 2),
+            firstStage: .init(engines: 1, fuelAmountTons: 1, burnTimeSec: 1),
+            secondStage: .init(engines: 1, fuelAmountTons: 1, burnTimeSec: 1),
+            payloadWeights: [.init(kg: 1, lb: 2)],
             flickrImages: ["test", "test"],
             name: "test",
             stages: 1,
@@ -47,20 +87,20 @@ final class RocketTest: XCTestCase {
                 items:
                     [
                         .horizontalInfo(
-                            title: "Высота, m",
-                            value: "0.1"
+                            title: heightName,
+                            value: heightValue
                         ),
                         .horizontalInfo(
-                            title: "Диаметр, m",
-                            value: "0.1"
+                            title: diamName,
+                            value: diamValue
                         ),
                         .horizontalInfo(
-                            title: "Масса, kg",
-                            value: "1"
+                            title: massName,
+                            value: massValue
                         ),
                         .horizontalInfo(
-                            title: "Масса, kg",
-                            value: "1"
+                            title: capacityName,
+                            value: capacityValue
                         )
                     ]
             ),
@@ -94,11 +134,11 @@ final class RocketTest: XCTestCase {
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", 0.1) as String) + " тонн"
+                            value: String(1) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(0.1) + " сек"
+                            value: String(1) + " сек"
                         )
                     ]
             ),
@@ -113,11 +153,11 @@ final class RocketTest: XCTestCase {
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: (NSString(format: "%.0f", 0.1) as String) + " тонн"
+                            value: String(1) + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(0.1) + " сек"
+                            value: String(1) + " сек"
                         )
                     ]
             ),
@@ -132,6 +172,12 @@ final class RocketTest: XCTestCase {
     }
 
     func testRocketView() {
+
+        let defaults = UserDefaults.standard
+        defaults.set(1, forKey: PersistancePositionKeys.heightPositionKey)
+        defaults.set(1, forKey: PersistancePositionKeys.capacityPositionKey)
+        defaults.set(1, forKey: PersistancePositionKeys.diameterPositionKey)
+        defaults.set(1, forKey: PersistancePositionKeys.massPositionKey)
         presenter.getData()
 
         XCTAssertEqual(view.arrayTest.count, testSection.count)
@@ -140,12 +186,38 @@ final class RocketTest: XCTestCase {
             XCTAssertEqual(view.arrayTest[i].title, testSection[i].title)
             XCTAssertEqual(view.arrayTest[i].sectionType, testSection[i].sectionType)
             XCTAssertEqual(view.arrayTest[i].items.count, testSection[i].items.count)
+            let sequence = zip(view.arrayTest[i].items, testSection[i].items)
+            for (el1, el2) in sequence {
+                switch (el1, el2) {
+                case let (.horizontalInfo(title1, value1), .horizontalInfo(title2, value2)):
+                    XCTAssertEqual(title1, title2)
+                    XCTAssertEqual(value1, value2)
+                case let (.verticalInfo(title1, value1, _), .verticalInfo(title2, value2, _)):
+                    XCTAssertEqual(title1, title2)
+                    XCTAssertEqual(value1, value2)
+                case let (.image(url1, rocketName1), .image(url2, rocketName2)):
+                    XCTAssertEqual(url1, url2)
+                    XCTAssertEqual(rocketName1, rocketName2)
+                case (.button, .button):
+                    print("hz")
+
+                case (.image(url: let url, rocketName: let rocketName), _):
+                    print("hz")
+                case (.verticalInfo(title: let title, value: let value, id: let id), _):
+                    print("hz")
+                case (.horizontalInfo(title: let title, value: let value), _):
+                    print("hz")
+                case (_, .image(url: let url, rocketName: let rocketName)):
+                    print("hz")
+                case (_, .verticalInfo(title: let title, value: let value, id: let id)):
+                    print("hz")
+                case (_, .horizontalInfo(title: let title, value: let value)):
+                    print("hz")
+                }
+            }
         }
-        var hui: [ListItem]!
-        
     }
 }
-
 private extension RocketTest {
 
     final class MockView: RocketViewProtocol {
