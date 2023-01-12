@@ -197,20 +197,7 @@ final class RocketTest: XCTestCase {
                 case let (.image(url1, rocketName1), .image(url2, rocketName2)):
                     XCTAssertEqual(url1, url2)
                     XCTAssertEqual(rocketName1, rocketName2)
-                case (.button, .button):
-                    print("hz")
-
-                case (.image(url: let url, rocketName: let rocketName), _):
-                    print("hz")
-                case (.verticalInfo(title: let title, value: let value, id: let id), _):
-                    print("hz")
-                case (.horizontalInfo(title: let title, value: let value), _):
-                    print("hz")
-                case (_, .image(url: let url, rocketName: let rocketName)):
-                    print("hz")
-                case (_, .verticalInfo(title: let title, value: let value, id: let id)):
-                    print("hz")
-                case (_, .horizontalInfo(title: let title, value: let value)):
+                default:
                     print("hz")
                 }
             }
