@@ -4,10 +4,8 @@
 //
 //  Created by Григорий Душин on 21.12.2022.
 //
-
-import XCTest
-import UIKit
 @testable import SpaceApp
+import XCTest
 
 final class RocketTest: XCTestCase {
 
@@ -58,6 +56,7 @@ final class RocketTest: XCTestCase {
             capacityName = "Масса, kg"
             capacityValue = String(1)
         }
+
         rocket = RocketModelElement(
             height: .init(meters: 1.0, feet: 2.0),
             diameter: .init(meters: 1.0, feet: 2.0),
@@ -166,9 +165,9 @@ final class RocketTest: XCTestCase {
     }
 
     override func tearDown() {
-         view = nil
-         rocket = nil
-         presenter = nil
+        view = nil
+        rocket = nil
+        presenter = nil
     }
 
     func testRocketView() {
@@ -218,6 +217,7 @@ final class RocketTest: XCTestCase {
         }
     }
 }
+
 private extension RocketTest {
 
     final class MockView: RocketViewProtocol {
