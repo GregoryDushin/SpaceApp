@@ -41,7 +41,8 @@
 		F3E308B82954448D00163530 /* CustomPageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B72954448D00163530 /* CustomPageViewTests.swift */; };
 		F3E308BA295444B400163530 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308B9295444B400163530 /* LaunchTests.swift */; };
 		F3E308BC295444CB00163530 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E308BB295444CB00163530 /* SettingsTests.swift */; };
-		F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */; };
+		F3EA3E69297172B400230FBD /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA3E68297172B400230FBD /* SettingsRepository.swift */; };
+		F3EF4900294480A200FD12AD /* RocketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF48FF294480A200FD12AD /* RocketPresenter.swift */; };
 		F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +95,8 @@
 		F3E308B72954448D00163530 /* CustomPageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageViewTests.swift; sourceTree = "<group>"; };
 		F3E308B9295444B400163530 /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		F3E308BB295444CB00163530 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
-		F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewPresenter.swift; sourceTree = "<group>"; };
+		F3EA3E68297172B400230FBD /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
+		F3EF48FF294480A200FD12AD /* RocketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPresenter.swift; sourceTree = "<group>"; };
 		F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagePresenter.swift; sourceTree = "<group>"; };
 		FB17311C7A2572AA013DBF18 /* Pods-SpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceApp.release.xcconfig"; path = "Target Support Files/Pods-SpaceApp/Pods-SpaceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 			children = (
 				F385E7A728FEA3340081166F /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
+				F3EA3E68297172B400230FBD /* SettingsRepository.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -359,7 +362,7 @@
 		F3EF48FE29447FC200FD12AD /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				F3EF48FF294480A200FD12AD /* RocketViewPresenter.swift */,
+				F3EF48FF294480A200FD12AD /* RocketPresenter.swift */,
 				F3EF4901294480BA00FD12AD /* CustomPagePresenter.swift */,
 			);
 			path = Presenters;
@@ -548,6 +551,7 @@
 				F3CE8FBE2902B02D0089FAEC /* SettingModel.swift in Sources */,
 				F30E40DF290AB28B0046189B /* RocketLaunchButtonCell.swift in Sources */,
 				F3AA3B1F291277AE0091CCF7 /* RocketsData.swift in Sources */,
+				F3EA3E69297172B400230FBD /* SettingsRepository.swift in Sources */,
 				F385E7A228FD49180081166F /* SettingsTableViewCell.swift in Sources */,
 				F37AA75128F5CC8400F1ADB9 /* AppDelegate.swift in Sources */,
 				F327818D2935FD1C00020C94 /* LaunchData.swift in Sources */,
@@ -559,7 +563,7 @@
 				F37AA76D28F5CCCD00F1ADB9 /* RocketLoader.swift in Sources */,
 				F37AA76F28F5CCD600F1ADB9 /* LaunchLoader.swift in Sources */,
 				F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */,
-				F3EF4900294480A200FD12AD /* RocketViewPresenter.swift in Sources */,
+				F3EF4900294480A200FD12AD /* RocketPresenter.swift in Sources */,
 				F3EF4902294480BA00FD12AD /* CustomPagePresenter.swift in Sources */,
 				F37AA76B28F5CCC300F1ADB9 /* LaunchViewController.swift in Sources */,
 				F34C5E36291936210091690A /* RocketHeaderCell.swift in Sources */,

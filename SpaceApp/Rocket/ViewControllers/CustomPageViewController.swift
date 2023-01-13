@@ -12,6 +12,7 @@ final class CustomPageViewController: UIPageViewController {
     var presenter: CustomPageViewPresenterProtocol!
     private var currentViewControllerIndex = 0
     private var rockets: [RocketModelElement] = []
+    private var settings = SettingsRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ final class CustomPageViewController: UIPageViewController {
 
         rocketViewController.id = rockets[index].id
         rocketViewController.index = index
-        rocketViewController.presenter = RocketViewPresenter(rocketData: rockets[index])
+        rocketViewController.presenter = RocketPresenter(rocketData: rockets[index], settingsRepository: settings)
 
         return rocketViewController
     }

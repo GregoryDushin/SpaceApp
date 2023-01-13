@@ -16,15 +16,47 @@ protocol RocketViewPresenterProtocol: AnyObject {
     func getData()
 }
 
-final class RocketViewPresenter: RocketViewPresenterProtocol {
-    weak var view: RocketViewProtocol?
-    var rocket: RocketModelElement
+protocol SettingsRepositoryProtocol {
+    func `set`(setting: String, value: String)
 
-    init(rocketData: RocketModelElement) {
+    func `get`(setting: String) -> String?
+}
+
+final class RocketPresenter: RocketViewPresenterProtocol {
+    weak var view: RocketViewProtocol?
+    private let rocket: RocketModelElement
+    private let settingsRepository: SettingsRepositoryProtocol
+
+    init(rocketData: RocketModelElement, settingsRepository: SettingsRepositoryProtocol) {
         self.rocket = rocketData
+        self.settingsRepository = settingsRepository
     }
 
+    private func updateSettings() {
+        settingsRepository.set(
+            setting: PersistancePositionKeys.heightPositionKey,
+            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) ?? "0"
+        )
+        settingsRepository.set(
+            setting: PersistancePositionKeys.capacityPositionKey,
+            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) ?? "0"
+        )
+        settingsRepository.set(
+            setting: PersistancePositionKeys.diameterPositionKey,
+            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) ?? "0"
+        )
+        settingsRepository.set(
+            setting: PersistancePositionKeys.massPositionKey,
+            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) ?? "0"
+        )
+    }
+}
+
+extension RocketPresenter {
     func getData() {
+
+        updateSettings()
+
         let rocket = rocket
         let heightName: String
         let heightValue: String
@@ -35,7 +67,7 @@ final class RocketViewPresenter: RocketViewPresenterProtocol {
         let capacityName: String
         let capacityValue: String
 
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) == "1" {
+        if settingsRepository.get(setting: PersistancePositionKeys.heightPositionKey) == "1" {
             heightName = "Высота, ft"
             heightValue = String(rocket.height.feet ?? 0.0)
         } else {
