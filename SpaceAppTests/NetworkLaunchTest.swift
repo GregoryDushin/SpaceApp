@@ -13,6 +13,7 @@ final class NetworkLaunchTest: XCTestCase {
     private var launchData: [LaunchModelElement] = []
     private let error: Error? = nil
     private var testData: [LaunchModelElement]!
+    private var testError: Error!
 
     private func makeMockSession() -> URLSession {
         let response = HTTPURLResponse(
@@ -31,6 +32,7 @@ final class NetworkLaunchTest: XCTestCase {
         }
           ]
         """.data(using: .utf8)
+
         URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/launches")!: (error, data, response)]
         let sessionConfiguration = URLSessionConfiguration.ephemeral
 
@@ -66,18 +68,15 @@ final class NetworkLaunchTest: XCTestCase {
             case .success(let launches):
                 self.launchData = launches
                 exp.fulfill()
-            case .failure:
-                XCTFail("Request failed")
+            case .failure(let error):
+                self.testError = error
             }
         }
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(launchData[0].name, "FalconSat_Test")
-        XCTAssertEqual(launchData[0].name, testData[0].name)
-        XCTAssertEqual(launchData[0].rocket, testData[0].rocket)
-        XCTAssertEqual(launchData[0].success, testData[0].success)
-        XCTAssertEqual(launchData[0].dateUtc, testData[0].dateUtc)
+        XCTAssertEqual(launchData, testData)
+        XCTAssertNil(testError)
         
     }
 }

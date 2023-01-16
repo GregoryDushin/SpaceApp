@@ -46,7 +46,7 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
         )
     ]
 
-    init (onUpdateSetting: @escaping (() -> Void)) {
+    init(onUpdateSetting: @escaping (() -> Void)) {
         self.onUpdateSetting = onUpdateSetting
     }
 

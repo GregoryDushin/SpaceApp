@@ -14,7 +14,7 @@ final class RocketViewController: UIViewController {
 
     @IBOutlet private var collectionView: UICollectionView!
 
-    var presenter: RocketViewPresenterProtocol!
+    var presenter: RocketPresenterProtocol!
     var index: Int = 0
     var id: String = ""
 
@@ -23,6 +23,7 @@ final class RocketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
+        presenter.updateSettings()
         presenter.getData()
         collectionView.collectionViewLayout = createLayout()
         configureHeader()
@@ -149,6 +150,7 @@ final class RocketViewController: UIViewController {
     func transferSettingsInfo(_ coder: NSCoder) -> SettingsViewController? {
         let presenter = SettingsPresenter { [weak self] in
             guard let self = self else { return }
+            self.presenter.updateSettings()
             self.presenter.getData()
         }
 

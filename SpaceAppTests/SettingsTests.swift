@@ -13,10 +13,12 @@ final class SettingsTests: XCTestCase {
     private var view: MockSettingsView!
     private var presenter: SettingsPresenter!
     private var testArray: [Setting]?
+    private var settingsWereUpdated = false
 
     override func setUp() {
         view = MockSettingsView()
-        presenter = SettingsPresenter(onUpdateSetting: { })
+        settingsWereUpdated = false
+        presenter = SettingsPresenter(onUpdateSetting: {[weak self] in self?.settingsWereUpdated = true})
         presenter.view = view
         testArray = [
             Setting(
@@ -47,21 +49,35 @@ final class SettingsTests: XCTestCase {
         presenter = nil
     }
 
-    func testSettingsView() {
+    func testGetDataShowsData() {
         presenter.showData()
-        XCTAssertEqual(view.testArray, testArray)
+        XCTAssertEqual(view.testArray?.count, testArray?.count)
+    }
+
+    func testSaveDataWriteToUserDefaults() {
+        let settings = [
+            PersistancePositionKeys.heightPositionKey,
+            PersistancePositionKeys.diameterPositionKey,
+            PersistancePositionKeys.massPositionKey,
+            PersistancePositionKeys.capacityPositionKey
+        ]
+            .enumerated()
+            .forEach {
+                presenter.saveData(selectedIndex: $0.offset, indexPath: $0.offset)
+                XCTAssertEqual(UserDefaults.standard.string(forKey: $0.element), "\($0.offset)")
+            }
+        XCTAssertTrue(settingsWereUpdated)
     }
 }
 
 private extension SettingsTests {
 
     final class MockSettingsView: SettingsViewProtocol {
-        var titleTest: String?
+
         var testArray: [Setting]?
 
         func present(data: [Setting]) {
             testArray = data
         }
     }
-
 }

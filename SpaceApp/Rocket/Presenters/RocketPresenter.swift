@@ -11,8 +11,9 @@ protocol RocketViewProtocol: AnyObject {
     func present(data: [Section])
 }
 
-protocol RocketViewPresenterProtocol: AnyObject {
+protocol RocketPresenterProtocol: AnyObject {
     var view: RocketViewProtocol? { get set }
+    func updateSettings()
     func getData()
 }
 
@@ -22,7 +23,7 @@ protocol SettingsRepositoryProtocol {
     func `get`(setting: String) -> String?
 }
 
-final class RocketPresenter: RocketViewPresenterProtocol {
+final class RocketPresenter: RocketPresenterProtocol {
     weak var view: RocketViewProtocol?
     private let rocket: RocketModelElement
     private let settingsRepository: SettingsRepositoryProtocol
@@ -32,7 +33,7 @@ final class RocketPresenter: RocketViewPresenterProtocol {
         self.settingsRepository = settingsRepository
     }
 
-    private func updateSettings() {
+    func updateSettings() {
         settingsRepository.set(
             setting: PersistancePositionKeys.heightPositionKey,
             value: UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) ?? "0"
@@ -54,9 +55,6 @@ final class RocketPresenter: RocketViewPresenterProtocol {
 
 extension RocketPresenter {
     func getData() {
-
-        updateSettings()
-
         let rocket = rocket
         let heightName: String
         let heightValue: String
@@ -75,7 +73,7 @@ extension RocketPresenter {
             heightValue = String(rocket.height.meters ?? 0.0)
         }
 
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) == "1" {
+        if settingsRepository.get(setting: PersistancePositionKeys.diameterPositionKey) == "1" {
             diamName = "Диаметр, ft"
             diamValue = String(rocket.diameter.feet ?? 0.0)
         } else {
@@ -83,7 +81,7 @@ extension RocketPresenter {
             diamValue = String(rocket.diameter.meters ?? 0.0)
         }
 
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) == "1" {
+        if settingsRepository.get(setting: PersistancePositionKeys.massPositionKey) == "1" {
             massName = "Масса, lb"
             massValue = String(rocket.mass.lb)
         } else {
@@ -91,7 +89,7 @@ extension RocketPresenter {
             massValue = String(rocket.mass.kg)
         }
 
-        if UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) == "1" {
+        if settingsRepository.get(setting: PersistancePositionKeys.capacityPositionKey) == "1" {
             capacityName = "Масса, lb"
             capacityValue = String(rocket.payloadWeights[0].lb)
         } else {

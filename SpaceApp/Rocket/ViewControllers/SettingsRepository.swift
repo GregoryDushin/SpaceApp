@@ -8,7 +8,7 @@
 import Foundation
 
 final class SettingsRepository: SettingsRepositoryProtocol {
-  //  var values = [String: String]()
+
     var savedValues = [String: String]()
 
     func get(setting: String) -> String? {
