@@ -35,7 +35,6 @@ final class NetworkLaunchTest: XCTestCase {
 
         URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/launches")!: (error, data, response)]
         let sessionConfiguration = URLSessionConfiguration.ephemeral
-
         sessionConfiguration.protocolClasses = [URLProtocolMock.self]
 
         return URLSession(configuration: sessionConfiguration)
@@ -61,7 +60,7 @@ final class NetworkLaunchTest: XCTestCase {
 
     func testLaunvhDataRecieving() async {
         let exp = expectation(description: "Loading data")
-
+        
         launchLoader.launchDataLoad(id: "test") { launches in
             switch launches {
             case .success(let launches):

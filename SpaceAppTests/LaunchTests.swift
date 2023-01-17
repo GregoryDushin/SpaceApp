@@ -32,7 +32,7 @@ final class LaunchTests: XCTestCase {
         presenter = nil
     }
 
-// MARK: Норм ли называть функции в таком формате с такой длиной?
+    // MARK: Норм ли называть функции в таком формате с такой длиной?
     func testLaunchDataRecievingFromMockLaunchNetworkManagerConverting() async {
         let exp = expectation(description: "Loading data")
         exp.fulfill()
@@ -42,7 +42,7 @@ final class LaunchTests: XCTestCase {
         XCTAssertEqual(mockView.dataFromPresenter, testData)
         XCTAssertNil(mockView.errorFromPresenter)
 
-// MARK: Без идей что еще проверять, если приходит Error. Во вью контроллерах если из лоадера приходит еррор - вылезает алерт, хз как это проверить.
+        // MARK: Без идей что еще проверять, если приходит Error. Во вью контроллерах если из лоадера приходит еррор - вылезает алерт, хз как это проверить.
 
     }
 }
@@ -65,7 +65,7 @@ private extension LaunchTests {
         }
     }
 
-   final class MockLaunchView: LaunchViewProtocol {
+    final class MockLaunchView: LaunchViewProtocol {
 
         var dataFromPresenter: [LaunchData]?
         var errorFromPresenter: Error?
@@ -78,5 +78,4 @@ private extension LaunchTests {
             dataFromPresenter = data
         }
     }
-
 }

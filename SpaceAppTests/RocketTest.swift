@@ -12,7 +12,7 @@ final class RocketTest: XCTestCase {
 
     override func setUp() {
 
-// MARK: действительно ли нужен super call каждый раз при вызове этих методов (свифтлинг ругается)? зачем?
+    // MARK: действительно ли нужен super call каждый раз при вызове этих методов (свифтлинг ругается)? зачем?
 
         mockView = MockView()
         mockRocket = RocketModelElement(
@@ -33,7 +33,6 @@ final class RocketTest: XCTestCase {
         presenter = RocketPresenter(rocketData: mockRocket, settingsRepository: settingsRepositryMock)
         presenter.view = mockView
         mockSection = makeMockedSetctions()
-
     }
 
     override func tearDown() {
@@ -90,7 +89,7 @@ final class RocketTest: XCTestCase {
                     XCTAssertEqual(rocketName1, rocketName2)
                 default:
 
- // MARK: По дефолту так же у нас приходит пустой "Button", нам там нечего сравнивать. Что в таком случае исполнять в defaults или же в case.button, если его все таки объявлять?
+     // MARK: По дефолту так же у нас приходит пустой "Button", нам там нечего сравнивать. Что в таком случае исполнять в defaults или же в case.button, если его все таки объявлять?
 
                     print("?")
                 }

@@ -20,7 +20,7 @@ final class SettingsTests: XCTestCase {
         settingsWereUpdated = false
         presenter = SettingsPresenter(onUpdateSetting: { [weak self] in self?.settingsWereUpdated = true })
 
-// MARK: не увидел проблем с trailing_closure  ???
+        // MARK: не увидел проблем с trailing_closure  ???
 
         presenter.view = mockView
         testArrayForComparingData = [
@@ -58,8 +58,7 @@ final class SettingsTests: XCTestCase {
     }
 
     func testSaveDataWriteToUserDefaults() {
-        let settings =
-        [
+        let settings = [
             PersistancePositionKeys.heightPositionKey,
             PersistancePositionKeys.diameterPositionKey,
             PersistancePositionKeys.massPositionKey,
@@ -70,6 +69,7 @@ final class SettingsTests: XCTestCase {
                 presenter.saveData(selectedIndex: $0.offset, indexPath: $0.offset)
                 XCTAssertEqual(UserDefaults.standard.string(forKey: $0.element), "\($0.offset)")
             }
+
         XCTAssertTrue(settingsWereUpdated)
     }
 }

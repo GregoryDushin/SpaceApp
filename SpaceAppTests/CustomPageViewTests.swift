@@ -14,7 +14,7 @@ final class CustomPageViewTests: XCTestCase {
     private var presenter: CustomPagePresenter!
     private var rocketArrayForComparingData = [RocketModelElement]()
 
-// MARK: Презентер только получает данные из лоадера,ничего с ними не делая, чтобы потом вью передал их же в рокетс, выглядит тупо, по сути мы передаем тестовый массив и проверяем его же. Но больше ведь нечего проверять.
+    // MARK: Презентер только получает данные из лоадера,ничего с ними не делая, чтобы потом вью передал их же в рокетс, выглядит тупо, по сути мы передаем тестовый массив и проверяем его же. Но больше ведь нечего проверять.
 
     override func setUp() {
         mockView = MockCustomView()
@@ -52,13 +52,13 @@ final class CustomPageViewTests: XCTestCase {
         XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
         XCTAssertNil(mockView.error)
 
-// MARK: Получается, что здесь (и в ЛаунчТестс) waitForExpectations только для того, чтобы создать паузу(ждет само себя), чтобы успели прийти данные к тестам. Не знаю на что заменить, чтобы было корректно.
+        // MARK: Получается, что здесь (и в ЛаунчТестс) waitForExpectations только для того, чтобы создать паузу(ждет само себя), чтобы успели прийти данные к тестам. Не знаю на что заменить, чтобы было корректно.
 
     }
 }
 
 private extension CustomPageViewTests {
-
+    
     final class MockRocketNetworkManager: RocketLoaderProtocol {
 
         private let mockRocket: [RocketModelElement] = [
