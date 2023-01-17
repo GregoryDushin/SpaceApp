@@ -10,17 +10,20 @@ import XCTest
 
 final class SettingsTests: XCTestCase {
 
-    private var view: MockSettingsView!
+    private var mockView: MockSettingsView!
     private var presenter: SettingsPresenter!
-    private var testArray: [Setting]?
+    private var testArrayForComparingData = [Setting]()
     private var settingsWereUpdated = false
 
     override func setUp() {
-        view = MockSettingsView()
+        mockView = MockSettingsView()
         settingsWereUpdated = false
-        presenter = SettingsPresenter(onUpdateSetting: {[weak self] in self?.settingsWereUpdated = true})
-        presenter.view = view
-        testArray = [
+        presenter = SettingsPresenter(onUpdateSetting: { [weak self] in self?.settingsWereUpdated = true })
+
+// MARK: не увидел проблем с trailing_closure  ???
+
+        presenter.view = mockView
+        testArrayForComparingData = [
             Setting(
                 title: "Высота",
                 positionKey: PersistancePositionKeys.heightPositionKey,
@@ -45,17 +48,18 @@ final class SettingsTests: XCTestCase {
     }
 
     override func tearDown() {
-        view = nil
+        mockView = nil
         presenter = nil
     }
 
     func testGetDataShowsData() {
         presenter.showData()
-        XCTAssertEqual(view.testArray?.count, testArray?.count)
+        XCTAssertEqual(mockView.dataFromPresenter?.count, testArrayForComparingData.count)
     }
 
     func testSaveDataWriteToUserDefaults() {
-        let settings = [
+        let settings =
+        [
             PersistancePositionKeys.heightPositionKey,
             PersistancePositionKeys.diameterPositionKey,
             PersistancePositionKeys.massPositionKey,
@@ -73,11 +77,10 @@ final class SettingsTests: XCTestCase {
 private extension SettingsTests {
 
     final class MockSettingsView: SettingsViewProtocol {
-
-        var testArray: [Setting]?
+        var dataFromPresenter: [Setting]?
 
         func present(data: [Setting]) {
-            testArray = data
+            dataFromPresenter = data
         }
     }
 }

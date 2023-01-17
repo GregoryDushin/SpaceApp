@@ -10,10 +10,10 @@ import XCTest
 
 final class NetworkLaunchTest: XCTestCase {
     private var launchLoader: LaunchLoader!
-    private var launchData: [LaunchModelElement] = []
+    private var launchDataFromPresenter = [LaunchModelElement]()
     private let error: Error? = nil
-    private var testData: [LaunchModelElement]!
-    private var testError: Error!
+    private var launchArrayForComparingData = [LaunchModelElement]()
+    private var errorFromPresenter: Error!
 
     private func makeMockSession() -> URLSession {
         let response = HTTPURLResponse(
@@ -45,7 +45,7 @@ final class NetworkLaunchTest: XCTestCase {
 
         launchLoader = LaunchLoader(urlSession: makeMockSession())
 
-        testData = [
+        launchArrayForComparingData = [
             LaunchModelElement(
                 success: false,
                 name: "FalconSat_Test",
@@ -60,23 +60,21 @@ final class NetworkLaunchTest: XCTestCase {
     }
 
     func testLaunvhDataRecieving() async {
-
         let exp = expectation(description: "Loading data")
 
         launchLoader.launchDataLoad(id: "test") { launches in
             switch launches {
             case .success(let launches):
-                self.launchData = launches
+                self.launchDataFromPresenter = launches
                 exp.fulfill()
             case .failure(let error):
-                self.testError = error
+                self.errorFromPresenter = error
             }
         }
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(launchData, testData)
-        XCTAssertNil(testError)
-        
+        XCTAssertEqual(launchDataFromPresenter, launchArrayForComparingData)
+        XCTAssertNil(errorFromPresenter)
     }
 }

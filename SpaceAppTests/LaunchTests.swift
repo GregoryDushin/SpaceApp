@@ -10,14 +10,14 @@ import XCTest
 
 final class LaunchTests: XCTestCase {
 
-    private var view: MockLaunchView!
+    private var mockView: MockLaunchView!
     private var presenter: LaunchPresenter!
-    private var testData: [LaunchData]?
+    private var testData = [LaunchData]()
 
     override func setUp() {
-        view = MockLaunchView()
+        mockView = MockLaunchView()
         presenter = LaunchPresenter(launchLoader: MockLaunchNetworkManager(), id: "test")
-        presenter.view = view
+        presenter.view = mockView
         testData = [
             LaunchData(
                 name: "TestName",
@@ -28,11 +28,12 @@ final class LaunchTests: XCTestCase {
     }
 
     override func tearDown() {
-        view = nil
+        mockView = nil
         presenter = nil
     }
 
-    func testLaunchView() async {
+// MARK: Норм ли называть функции в таком формате с такой длиной?
+    func testLaunchDataRecievingFromMockLaunchNetworkManagerConverting() async {
         let exp = expectation(description: "Loading data")
 
         presenter.getData()
@@ -40,8 +41,11 @@ final class LaunchTests: XCTestCase {
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(view.testArray, testData)
-        XCTAssertNil(view.testError)
+        XCTAssertEqual(mockView.dataFromPresenter, testData)
+        XCTAssertNil(mockView.errorFromPresenter)
+        
+// MARK: Без идей что еще проверять, если приходит Error. Во вью контроллерах если из лоадера приходит еррор - вылезает алерт, хз как это проверить.
+
     }
 }
 
@@ -49,7 +53,7 @@ private extension LaunchTests {
 
     final class MockLaunchNetworkManager: LaunchLoaderProtocol {
 
-        private let data: [LaunchModelElement] = [
+        private let mockData: [LaunchModelElement] = [
             LaunchModelElement(
                 success: true,
                 name: "TestName",
@@ -59,21 +63,21 @@ private extension LaunchTests {
         ]
 
         func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
-            completion(.success(data))
+            completion(.success(mockData))
         }
     }
 
    final class MockLaunchView: LaunchViewProtocol {
 
-        var testArray: [LaunchData]?
-        var testError: Error?
+        var dataFromPresenter: [LaunchData]?
+        var errorFromPresenter: Error?
 
         func failure(error: Error) {
-            testError = error
+            errorFromPresenter = error
         }
 
         func success(data: [LaunchData]) {
-            testArray = data
+            dataFromPresenter = data
         }
     }
 

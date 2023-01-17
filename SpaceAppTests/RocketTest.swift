@@ -2,30 +2,20 @@
 @testable import SpaceApp
 import XCTest
 
-final class SettingsRepositoryMock: SettingsRepositoryProtocol {
-
-    var savedValues = [String: String]()
-
-    func get(setting: String) -> String? {
-        savedValues[setting]
-    }
-
-    func set(setting: String, value: String) {
-        savedValues[setting] = value
-    }
-}
-
 final class RocketTest: XCTestCase {
 
-    private var view: MockView!
-    private var rocket: RocketModelElement!
-    private var mockPresenter: RocketPresenter!
-    private var testSection: [Section]!
-    private var mock = SettingsRepositoryMock()
+    private var mockView: MockView!
+    private var mockRocket: RocketModelElement!
+    private var presenter: RocketPresenter!
+    private var mockSection = [Section]()
+    private var settingsRepositryMock: SettingsRepositoryMock!
 
     override func setUp() {
-        view = MockView()
-        rocket = RocketModelElement(
+
+// MARK: действительно ли нужен super call каждый раз при вызове этих методов (свифтлинг ругается)? зачем?
+
+        mockView = MockView()
+        mockRocket = RocketModelElement(
             height: .init(meters: 1.0, feet: 2.0),
             diameter: .init(meters: 1.0, feet: 2.0),
             mass: .init(kg: 1, lb: 2),
@@ -39,63 +29,46 @@ final class RocketTest: XCTestCase {
             firstFlight: "test",
             id: "test"
         )
-        mockPresenter = RocketPresenter(rocketData: rocket, settingsRepository: mock)
-        mockPresenter.view = view
-        testSection = makeMockedSetctions()
+        settingsRepositryMock = SettingsRepositoryMock()
+        presenter = RocketPresenter(rocketData: mockRocket, settingsRepository: settingsRepositryMock)
+        presenter.view = mockView
+        mockSection = makeMockedSetctions()
 
     }
 
     override func tearDown() {
-        view = nil
-        rocket = nil
-        mockPresenter = nil
+        mockView = nil
+        presenter = nil
+        settingsRepositryMock = nil
     }
     func testGetDataMapRocketToSections() {
-        // Given
-
-        // When
-        mockPresenter.getData()
-
-        // Then
+        presenter.getData()
         let expectedSections = makeMockedSetctions()
-        assertEqual(lhs: view.dataFromPresent, rhs: expectedSections)
+        assertEqual(lhs: mockView.dataFromPresenter, rhs: expectedSections)
     }
 
     func testHeightSettingChangeUnits() {
-        // Given
-        mock.set(setting: PersistancePositionKeys.heightPositionKey, value: "0")
-        // When
-        mockPresenter.getData()
-        // Then
-        XCTAssertEqual(view.dataFromPresent[1].items[0], .horizontalInfo(title: "Высота, m", value: "1.0"))
+        settingsRepositryMock.set(setting: PersistancePositionKeys.heightPositionKey, value: "0")
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[0], .horizontalInfo(title: "Высота, m", value: "1.0"))
     }
 
     func testDiametrSettingChangeUnits() {
-        // Given
-        mock.set(setting: PersistancePositionKeys.diameterPositionKey, value: "0")
-        // When
-        mockPresenter.getData()
-
-        // Then
-        XCTAssertEqual(view.dataFromPresent[1].items[1], .horizontalInfo(title: "Диаметр, m", value: "1.0"))
+        settingsRepositryMock.set(setting: PersistancePositionKeys.diameterPositionKey, value: "0")
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[1], .horizontalInfo(title: "Диаметр, m", value: "1.0"))
     }
 
-    func testMassChangeUnits() {
-        // Given
-        mock.set(setting: PersistancePositionKeys.massPositionKey, value: "0")
-        // When
-        mockPresenter.getData()
-        // Then
-        XCTAssertEqual(view.dataFromPresent[1].items[2], .horizontalInfo(title: "Масса, kg", value: "1"))
+    func testMassSettingChangeUnits() {
+        settingsRepositryMock.set(setting: PersistancePositionKeys.massPositionKey, value: "0")
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[2], .horizontalInfo(title: "Масса, kg", value: "1"))
     }
 
-    func testCapacityChangeUnits() {
-        // Given
-        mock.set(setting: PersistancePositionKeys.capacityPositionKey, value: "0")
-        // When
-        mockPresenter.getData()
-        // Then
-        XCTAssertEqual(view.dataFromPresent[1].items[3], .horizontalInfo(title: "Масса, kg", value: "1"))
+    func testCapacitySettingChangeUnits() {
+        settingsRepositryMock.set(setting: PersistancePositionKeys.capacityPositionKey, value: "0")
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[3], .horizontalInfo(title: "Масса, kg", value: "1"))
     }
 
     func assertEqual(lhs: [Section], rhs: [Section]) {
@@ -116,7 +89,10 @@ final class RocketTest: XCTestCase {
                     XCTAssertEqual(url1, url2)
                     XCTAssertEqual(rocketName1, rocketName2)
                 default:
-                    print("hahaha")
+
+ // MARK: По дефолту так же у нас приходит пустой "Button", нам там нечего сравнивать. Что в таком случае исполнять в defaults или же в case.button, если его все таки объявлять?
+
+                    print("?")
                 }
             }
         }
@@ -127,10 +103,23 @@ private extension RocketTest {
 
     class MockView: RocketViewProtocol {
 
-        var dataFromPresent = [Section]()
+        var dataFromPresenter = [Section]()
 
         func present(data: [Section]) {
-            self.dataFromPresent = data
+            self.dataFromPresenter = data
+        }
+    }
+
+    class SettingsRepositoryMock: SettingsRepositoryProtocol {
+
+        var savedValues = [String: String]()
+
+        func get(setting: String) -> String? {
+            savedValues[setting]
+        }
+
+        func set(setting: String, value: String) {
+            savedValues[setting] = value
         }
     }
 
@@ -190,15 +179,15 @@ private extension RocketTest {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(1)
+                            value: "1"
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: String(1) + " тонн"
+                            value: "1" + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(1) + " сек"
+                            value: "1" + " сек"
                         )
                     ]
             ),
@@ -209,15 +198,15 @@ private extension RocketTest {
                     [
                         .verticalInfo(
                             title: "Количество двигателей",
-                            value: String(1)
+                            value: "1"
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: String(1) + " тонн"
+                            value: "1" + " тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: String(1) + " сек"
+                            value: "1" + " сек"
                         )
                     ]
             ),

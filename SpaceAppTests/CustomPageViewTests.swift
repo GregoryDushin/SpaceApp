@@ -10,15 +10,17 @@ import XCTest
 
 final class CustomPageViewTests: XCTestCase {
 
-    private var view: MockCustomView!
+    private var mockView: MockCustomView!
     private var presenter: CustomPagePresenter!
-    private var testRocket: [RocketModelElement]?
+    private var rocketArrayForComparingData = [RocketModelElement]()
+
+// MARK: Презентер только получает данные из лоадера,ничего с ними не делая, чтобы потом вью передал их же в рокетс, выглядит тупо, по сути мы передаем тестовый массив и проверяем его же. Но больше ведь нечего проверять.
 
     override func setUp() {
-        view = MockCustomView()
+        mockView = MockCustomView()
         presenter = CustomPagePresenter(rocketLoader: MockRocketNetworkManager())
-        presenter.view = view
-        testRocket = [
+        presenter.view = mockView
+        rocketArrayForComparingData = [
             RocketModelElement(
                 height: .init(meters: 0.1, feet: 0.1),
                 diameter: .init(meters: 0.1, feet: 0.1),
@@ -37,16 +39,16 @@ final class CustomPageViewTests: XCTestCase {
     }
 
     override func tearDown() {
-        view = nil
+        mockView = nil
         presenter = nil
     }
 
-    func testCustomPageView() async {
+    func testRecievingDataFromMockRocketNetworkManager() async {
 
         let exp = expectation(description: "Loading data")
         presenter.getData()
-        XCTAssertEqual(view.testArray, testRocket)
-        XCTAssertNil(view.error)
+        XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
+        XCTAssertNil(mockView.error)
         exp.fulfill()
 
         await waitForExpectations(timeout: 3)
@@ -83,7 +85,7 @@ private extension CustomPageViewTests {
     final class MockCustomView: CustomPageViewProtocol {
 
         private var titleTest: String?
-        var testArray: [RocketModelElement]?
+        var dataFromPresenter: [RocketModelElement]?
         var error: Error?
 
         func failure(error: Error) {
@@ -91,7 +93,7 @@ private extension CustomPageViewTests {
         }
 
         func success(data: [RocketModelElement]) {
-            self.testArray = data
+            self.dataFromPresenter = data
         }
     }
 }

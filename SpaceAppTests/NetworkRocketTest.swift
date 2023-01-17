@@ -10,10 +10,10 @@ import XCTest
 
 final class NetworkRocketTest: XCTestCase {
     private var rocketLoader: RocketLoader!
-    private var rocketData: [RocketModelElement] = []
+    private var rocketDataFromPresenter = [RocketModelElement]()
     private let error: Error? = nil
-    private var rocketDataTest: [RocketModelElement]!
-    private var testError: Error!
+    private var rocketArrayForComparingData = [RocketModelElement]()
+    private var errorFromPresenter: Error!
 
     private func makeMockSession() -> URLSession {
         let response = HTTPURLResponse(
@@ -56,9 +56,8 @@ final class NetworkRocketTest: XCTestCase {
     }
 
     override func setUp() {
-
         rocketLoader = RocketLoader(urlSession: makeMockSession())
-        rocketDataTest = [
+        rocketArrayForComparingData = [
             RocketModelElement(
                 height: .init(meters: 22.25, feet: 73),
                 diameter: .init(meters: 1.68, feet: 5.9),
@@ -87,16 +86,16 @@ final class NetworkRocketTest: XCTestCase {
         rocketLoader.rocketDataLoad { rockets in
             switch rockets {
             case .success(let rockets):
-                self.rocketData = rockets
+                self.rocketDataFromPresenter = rockets
                 exp.fulfill()
             case .failure(let error):
-                self.testError = error
+                self.errorFromPresenter = error
             }
         }
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(rocketData, rocketDataTest)
-        XCTAssertNil(testError)
+        XCTAssertEqual(rocketDataFromPresenter, rocketArrayForComparingData)
+        XCTAssertNil(errorFromPresenter)
     }
 }

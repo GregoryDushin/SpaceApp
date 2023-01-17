@@ -19,7 +19,6 @@ protocol RocketPresenterProtocol: AnyObject {
 
 protocol SettingsRepositoryProtocol {
     func `set`(setting: String, value: String)
-
     func `get`(setting: String) -> String?
 }
 
@@ -54,6 +53,7 @@ final class RocketPresenter: RocketPresenterProtocol {
 }
 
 extension RocketPresenter {
+
     func getData() {
         let rocket = rocket
         let heightName: String
