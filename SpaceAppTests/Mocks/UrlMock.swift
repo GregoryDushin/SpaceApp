@@ -42,3 +42,5 @@ final class URLProtocolMock: URLProtocol {
    override func stopLoading() {
    }
 }
+
+//MARK: В чем проблема в форматировании этого мока?

@@ -46,12 +46,13 @@ final class CustomPageViewTests: XCTestCase {
     func testRecievingDataFromMockRocketNetworkManager() async {
 
         let exp = expectation(description: "Loading data")
+        exp.fulfill()
         presenter.getData()
+        await waitForExpectations(timeout: 3)
         XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
         XCTAssertNil(mockView.error)
-        exp.fulfill()
 
-        await waitForExpectations(timeout: 3)
+// MARK: Получается, что здесь (и в ЛаунчТестс) waitForExpectations только для того, чтобы создать паузу(ждет само себя), чтобы успели прийти данные к тестам. Не знаю на что заменить, чтобы было корректно.
 
     }
 }

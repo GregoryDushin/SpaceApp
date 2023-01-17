@@ -35,15 +35,13 @@ final class LaunchTests: XCTestCase {
 // MARK: Норм ли называть функции в таком формате с такой длиной?
     func testLaunchDataRecievingFromMockLaunchNetworkManagerConverting() async {
         let exp = expectation(description: "Loading data")
-
-        presenter.getData()
         exp.fulfill()
-
+        presenter.getData()
         await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(mockView.dataFromPresenter, testData)
         XCTAssertNil(mockView.errorFromPresenter)
-        
+
 // MARK: Без идей что еще проверять, если приходит Error. Во вью контроллерах если из лоадера приходит еррор - вылезает алерт, хз как это проверить.
 
     }
