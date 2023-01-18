@@ -20,9 +20,8 @@ final class URLProtocolMock: URLProtocol {
     }
 
     override func startLoading() {
-        if let url = request.url {
-            if let (error, data, response) = URLProtocolMock.mockURLs[url] {
-
+        guard let url = request.url, let (error, data, response) = URLProtocolMock.mockURLs[url] else { return }
+ 
                 if let responseStrong = response {
                     self.client?.urlProtocol(self, didReceive: responseStrong, cacheStoragePolicy: .notAllowed)
                 }
@@ -34,9 +33,6 @@ final class URLProtocolMock: URLProtocol {
                 if let errorStrong = error {
                     self.client?.urlProtocol(self, didFailWithError: errorStrong)
                 }
-            }
-        }
-
         self.client?.urlProtocolDidFinishLoading(self)
     }
 
@@ -44,5 +40,3 @@ final class URLProtocolMock: URLProtocol {
     }
 
 }
-
-// MARK: В чем проблема в форматировании этого мока?

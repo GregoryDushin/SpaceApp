@@ -12,13 +12,13 @@ final class LaunchTests: XCTestCase {
 
     private var mockView: MockLaunchView!
     private var presenter: LaunchPresenter!
-    private var testData = [LaunchData]()
+    private var launchDataForComparing = [LaunchData]()
 
     override func setUp() {
         mockView = MockLaunchView()
         presenter = LaunchPresenter(launchLoader: MockLaunchNetworkManager(), id: "test")
         presenter.view = mockView
-        testData = [
+        launchDataForComparing = [
             LaunchData(
                 name: "TestName",
                 date: "01/01/70",
@@ -32,17 +32,14 @@ final class LaunchTests: XCTestCase {
         presenter = nil
     }
 
-    // MARK: Норм ли называть функции в таком формате с такой длиной?
-    func testLaunchDataRecievingFromMockLaunchNetworkManagerConverting() async {
+    func testLaunchDataRecieveFromMockLaunchNetworkManagerConverting() async {
         let exp = expectation(description: "Loading data")
-        exp.fulfill()
         presenter.getData()
+        exp.fulfill()
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(mockView.dataFromPresenter, testData)
+        XCTAssertEqual(mockView.dataFromPresenter, launchDataForComparing)
         XCTAssertNil(mockView.errorFromPresenter)
-
-        // MARK: Без идей что еще проверять, если приходит Error. Во вью контроллерах если из лоадера приходит еррор - вылезает алерт, хз как это проверить.
 
     }
 }
@@ -50,7 +47,6 @@ final class LaunchTests: XCTestCase {
 private extension LaunchTests {
 
     final class MockLaunchNetworkManager: LaunchLoaderProtocol {
-
         private let mockData: [LaunchModelElement] = [
             LaunchModelElement(
                 success: true,

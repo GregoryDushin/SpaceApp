@@ -14,25 +14,16 @@ final class NetworkLaunchTest: XCTestCase {
     private let error: Error? = nil
     private var launchArrayForComparingData = [LaunchModelElement]()
     private var errorFromPresenter: Error!
+    private var correctData = Data()
+    private var wrongData = Data()
 
-    private func makeMockSession() -> URLSession {
+    private func makeMockSession(data: Data) -> URLSession {
         let response = HTTPURLResponse(
             url: URL(string: "https://api.spacexdata.com/v4/launches")!,
             statusCode: 200,
             httpVersion: nil,
             headerFields: nil
         )
-        let data = """
-          [
-            {
-        "rocket":"test",
-        "success":false,
-        "name":"FalconSat_Test",
-        "date_utc":"2001-01-01T04:00:00.000+0400"
-        }
-          ]
-        """.data(using: .utf8)
-
         URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/launches")!: (error, data, response)]
         let sessionConfiguration = URLSessionConfiguration.ephemeral
         sessionConfiguration.protocolClasses = [URLProtocolMock.self]
@@ -41,9 +32,6 @@ final class NetworkLaunchTest: XCTestCase {
     }
 
     override func setUp() {
-
-        launchLoader = LaunchLoader(urlSession: makeMockSession())
-
         launchArrayForComparingData = [
             LaunchModelElement(
                 success: false,
@@ -52,28 +40,57 @@ final class NetworkLaunchTest: XCTestCase {
                 rocket: "test"
             )
         ]
+        correctData = """
+                   [
+                     {
+                 "rocket":"test",
+                 "success":false,
+                 "name":"FalconSat_Test",
+                 "date_utc":"2001-01-01T04:00:00.000+0400"
+                 }
+                   ]
+                 """.data(using: .utf8)!
+        wrongData = "testDataForError".data(using: .utf8)!
     }
 
     override func tearDown() {
         launchLoader = nil
     }
 
-    func testLaunvhDataRecieving() async {
-        let exp = expectation(description: "Loading data")
-        
+    func testDataRecievingFromLaunchLoader() async {
+        let exp = expectation(description: "Recieving data")
+        launchLoader = LaunchLoader(urlSession: makeMockSession(data: correctData))
         launchLoader.launchDataLoad(id: "test") { launches in
             switch launches {
             case .success(let launches):
                 self.launchDataFromPresenter = launches
-                exp.fulfill()
             case .failure(let error):
                 self.errorFromPresenter = error
             }
+
+            exp.fulfill()
         }
 
         await waitForExpectations(timeout: 3)
-
         XCTAssertEqual(launchDataFromPresenter, launchArrayForComparingData)
         XCTAssertNil(errorFromPresenter)
+    }
+
+    func testErrorRecievingFromLaunchLoader() async {
+        let exp = expectation(description: "Recieving error")
+        launchLoader = LaunchLoader(urlSession: makeMockSession(data: wrongData))
+        launchLoader.launchDataLoad(id: "test") { launches in
+            switch launches {
+            case .success(let launches):
+                self.launchDataFromPresenter = launches
+            case .failure(let error):
+                self.errorFromPresenter = error
+            }
+
+            exp.fulfill()
+        }
+
+        await waitForExpectations(timeout: 3)
+        XCTAssertNotNil(errorFromPresenter)
     }
 }

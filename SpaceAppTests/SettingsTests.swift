@@ -77,6 +77,7 @@ final class SettingsTests: XCTestCase {
 private extension SettingsTests {
 
     final class MockSettingsView: SettingsViewProtocol {
+
         var dataFromPresenter: [Setting]?
 
         func present(data: [Setting]) {

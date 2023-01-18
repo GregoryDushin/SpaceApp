@@ -11,9 +11,6 @@ final class RocketTest: XCTestCase {
     private var settingsRepositryMock: SettingsRepositoryMock!
 
     override func setUp() {
-
-    // MARK: действительно ли нужен super call каждый раз при вызове этих методов (свифтлинг ругается)? зачем?
-
         mockView = MockView()
         mockRocket = RocketModelElement(
             height: .init(meters: 1.0, feet: 2.0),
@@ -100,7 +97,7 @@ final class RocketTest: XCTestCase {
 
 private extension RocketTest {
 
-    class MockView: RocketViewProtocol {
+    final class MockView: RocketViewProtocol {
 
         var dataFromPresenter = [Section]()
 
@@ -109,7 +106,7 @@ private extension RocketTest {
         }
     }
 
-    class SettingsRepositoryMock: SettingsRepositoryProtocol {
+    final class SettingsRepositoryMock: SettingsRepositoryProtocol {
 
         var savedValues = [String: String]()
 
