@@ -119,7 +119,6 @@ final class NetworkRocketTest: XCTestCase {
         }
 
         await waitForExpectations(timeout: 3)
-
         XCTAssertNotNil(errorFromPresenter)
     }
 }

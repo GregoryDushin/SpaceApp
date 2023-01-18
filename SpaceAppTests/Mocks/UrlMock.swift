@@ -21,7 +21,7 @@ final class URLProtocolMock: URLProtocol {
 
     override func startLoading() {
         guard let url = request.url, let (error, data, response) = URLProtocolMock.mockURLs[url] else { return }
- 
+
                 if let responseStrong = response {
                     self.client?.urlProtocol(self, didReceive: responseStrong, cacheStoragePolicy: .notAllowed)
                 }
@@ -33,10 +33,10 @@ final class URLProtocolMock: URLProtocol {
                 if let errorStrong = error {
                     self.client?.urlProtocol(self, didFailWithError: errorStrong)
                 }
+
         self.client?.urlProtocolDidFinishLoading(self)
     }
 
     override func stopLoading() {
     }
-
 }
