@@ -11,13 +11,12 @@ import XCTest
 final class NetworkRocketTest: XCTestCase {
     private var rocketLoader: RocketLoader!
     private var rocketDataFromPresenter = [RocketModelElement]()
-    private let error: Error? = nil
     private var rocketArrayForComparingData = [RocketModelElement]()
-    private var errorFromPresenter: Error!
-    private var correctData = Data()
-    private var wrongData = Data()
+    private let errorForComparing = TestError()
+    private var errorFromLoader: TestError? = nil
+    private var mockData = Data()
 
-    private func makeMockSession(data: Data) -> URLSession {
+    private func makeMockSession(data: Data?, error: Error?) -> URLSession {
         let response = HTTPURLResponse(
             url: URL(string: "https://api.spacexdata.com/v4/rockets")!,
             statusCode: 200,
@@ -33,7 +32,7 @@ final class NetworkRocketTest: XCTestCase {
     }
 
     override func setUp() {
-        correctData = """
+        mockData = """
           [
             {
                 "height":{"meters":22.25,"feet":73},
@@ -58,8 +57,6 @@ final class NetworkRocketTest: XCTestCase {
           ]
         """.data(using: .utf8)!
 
-        wrongData = "testDataForError".data(using: .utf8)!
-
         rocketArrayForComparingData = [
             RocketModelElement(
                 height: .init(meters: 22.25, feet: 73),
@@ -83,7 +80,7 @@ final class NetworkRocketTest: XCTestCase {
     }
 
     func testRocketDataRecieving() async {
-        rocketLoader = RocketLoader(urlSession: makeMockSession(data: correctData))
+        rocketLoader = RocketLoader(urlSession: makeMockSession(data: mockData, error: nil))
 
         let exp = expectation(description: "Loading data")
 
@@ -91,20 +88,22 @@ final class NetworkRocketTest: XCTestCase {
             switch rockets {
             case .success(let rockets):
                 self.rocketDataFromPresenter = rockets
-                exp.fulfill()
             case .failure(let error):
-                self.errorFromPresenter = error
+                self.errorFromLoader = error as? TestError
             }
+            exp.fulfill()
         }
 
         await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(rocketDataFromPresenter, rocketArrayForComparingData)
-        XCTAssertNil(errorFromPresenter)
+        XCTAssertNil(errorFromLoader)
     }
-
+    
+ // MARK: Если я подставляю любой error, отличный от нуля, то в любом случае получаю finished with error [1] Error Domain=SpaceAppTests.TestError Code=1 (даже если data корректная) , не совсем понимаю в каком месте он может анализировать 
+    
     func testRocketErrorRecieving() async {
-        rocketLoader = RocketLoader(urlSession: makeMockSession(data: wrongData))
+        rocketLoader = RocketLoader(urlSession: makeMockSession(data: nil, error: errorForComparing))
 
         let exp = expectation(description: "Loading error")
 
@@ -113,12 +112,12 @@ final class NetworkRocketTest: XCTestCase {
             case .success(let rockets):
                 self.rocketDataFromPresenter = rockets
             case .failure(let error):
-                self.errorFromPresenter = error
+                self.errorFromLoader = error as? TestError
             }
             exp.fulfill()
         }
 
         await waitForExpectations(timeout: 3)
-        XCTAssertNotNil(errorFromPresenter)
+        XCTAssertEqual(errorFromLoader, errorForComparing)
     }
 }

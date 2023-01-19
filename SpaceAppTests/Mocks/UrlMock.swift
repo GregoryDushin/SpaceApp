@@ -22,16 +22,16 @@ final class URLProtocolMock: URLProtocol {
     override func startLoading() {
         guard let url = request.url, let (error, data, response) = URLProtocolMock.mockURLs[url] else { return }
 
-                if let responseStrong = response {
-                    self.client?.urlProtocol(self, didReceive: responseStrong, cacheStoragePolicy: .notAllowed)
+                if let response = response {
+                    self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
                 }
 
-                if let dataStrong = data {
-                    self.client?.urlProtocol(self, didLoad: dataStrong)
+                if let data = data {
+                    self.client?.urlProtocol(self, didLoad: data)
                 }
 
-                if let errorStrong = error {
-                    self.client?.urlProtocol(self, didFailWithError: errorStrong)
+                if let error = error {
+                    self.client?.urlProtocol(self, didFailWithError: error)
                 }
 
         self.client?.urlProtocolDidFinishLoading(self)

@@ -13,6 +13,7 @@ final class LaunchTests: XCTestCase {
     private var mockView: MockLaunchView!
     private var presenter: LaunchPresenter!
     private var launchDataForComparing = [LaunchData]()
+    private var mockErrorForComparing = TestError()
 
     override func setUp() {
         mockView = MockLaunchView()
@@ -39,14 +40,16 @@ final class LaunchTests: XCTestCase {
         await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(mockView.dataFromPresenter, launchDataForComparing)
-        XCTAssertNil(mockView.errorFromPresenter)
+        XCTAssertEqual(mockView.errorFromPresenter, mockErrorForComparing)
 
     }
 }
 
-private extension LaunchTests {
+extension LaunchTests {
 
     final class MockLaunchNetworkManager: LaunchLoaderProtocol {
+
+        private let mockErrorForTesting = TestError()
         private let mockData: [LaunchModelElement] = [
             LaunchModelElement(
                 success: true,
@@ -58,20 +61,24 @@ private extension LaunchTests {
 
         func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
             completion(.success(mockData))
+            completion(.failure(mockErrorForTesting))
         }
     }
 
     final class MockLaunchView: LaunchViewProtocol {
 
         var dataFromPresenter: [LaunchData]?
-        var errorFromPresenter: Error?
+        var errorFromPresenter: TestError?
 
         func failure(error: Error) {
-            errorFromPresenter = error
+            errorFromPresenter = error as? TestError
         }
 
         func success(data: [LaunchData]) {
             dataFromPresenter = data
         }
     }
+}
+
+struct TestError: Error, Equatable {
 }

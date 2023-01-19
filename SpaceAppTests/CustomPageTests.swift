@@ -13,6 +13,7 @@ final class CustomPageTests: XCTestCase {
     private var mockView: MockCustomView!
     private var presenter: CustomPagePresenter!
     private var rocketArrayForComparingData = [RocketModelElement]()
+    private var errorForComparing = TestError()
 
     override func setUp() {
         mockView = MockCustomView()
@@ -50,8 +51,7 @@ final class CustomPageTests: XCTestCase {
 
         await waitForExpectations(timeout: 3)
         XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
-        XCTAssertNil(mockView.error)
-
+        XCTAssertEqual(mockView.errorFromPresenter, errorForComparing)
     }
 }
 
@@ -59,6 +59,7 @@ private extension CustomPageTests {
 
     final class MockRocketNetworkManager: RocketLoaderProtocol {
 
+        private let mockErrorForTesting = TestError()
         private let mockRocket: [RocketModelElement] = [
             RocketModelElement(
                 height: .init(meters: 0.1, feet: 0.1),
@@ -78,17 +79,17 @@ private extension CustomPageTests {
 
         func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
             completion(.success(mockRocket))
+            completion(.failure(mockErrorForTesting))
         }
     }
 
     final class MockCustomView: CustomPageViewProtocol {
 
-        private var titleTest: String?
         var dataFromPresenter: [RocketModelElement]?
-        var error: Error?
+        var errorFromPresenter: TestError?
 
         func failure(error: Error) {
-            self.error = error
+            self.errorFromPresenter = error as? TestError
         }
 
         func success(data: [RocketModelElement]) {
