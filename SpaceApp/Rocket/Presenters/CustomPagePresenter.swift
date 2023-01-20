@@ -28,13 +28,11 @@ final class CustomPagePresenter: CustomPageViewPresenterProtocol {
     func getData() {
         rocketLoader.rocketDataLoad { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let rockets):
-                    self.view?.success(data: rockets)
-                case .failure(let error):
-                    self.view?.failure(error: error)
-                }
+            switch result {
+            case .success(let rockets):
+                self.view?.success(data: rockets)
+            case .failure(let error):
+                self.view?.failure(error: error)
             }
         }
     }

@@ -118,11 +118,15 @@ extension CustomPageViewController: UIPageViewControllerDelegate {
 extension CustomPageViewController: CustomPageViewProtocol {
 
     func success(data: [RocketModelElement]) {
-        self.rockets = data
-        self.configureStartingVC()
+        DispatchQueue.main.async {
+            self.rockets = data
+            self.configureStartingVC()
+        }
     }
 
     func failure(error: Error) {
-        self.showAlert(error.localizedDescription)
+        DispatchQueue.main.async {
+            self.showAlert(error.localizedDescription)
+        }
     }
 }

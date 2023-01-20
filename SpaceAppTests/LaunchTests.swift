@@ -33,11 +33,9 @@ final class LaunchTests: XCTestCase {
         presenter = nil
     }
 
-    func testLaunchDataRecieveFromMockLaunchNetworkManagerConverting() async {
-        let exp = expectation(description: "Loading data")
+    func testLaunchDataRecieveFromMockLaunchNetworkManagerConverting()  {
+
         presenter.getData()
-        exp.fulfill()
-        await waitForExpectations(timeout: 3)
 
         XCTAssertEqual(mockView.dataFromPresenter, launchDataForComparing)
         XCTAssertEqual(mockView.errorFromPresenter, mockErrorForComparing)

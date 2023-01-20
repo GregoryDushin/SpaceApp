@@ -80,11 +80,15 @@ extension LaunchViewController: UICollectionViewDataSource {
 extension LaunchViewController: LaunchViewProtocol {
 
     func success(data: [LaunchData]) {
-        self.launches = data
-        self.launchCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.launches = data
+            self.launchCollectionView.reloadData()
+        }
     }
-
+    
     func failure(error: Error) {
-        self.showAlert(error.localizedDescription)
+        DispatchQueue.main.async {
+            self.showAlert(error.localizedDescription)
+        }
     }
 }

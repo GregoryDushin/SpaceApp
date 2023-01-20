@@ -42,14 +42,10 @@ final class CustomPageTests: XCTestCase {
         presenter = nil
     }
 
-    func testRecievingDataFromMockRocketNetworkManager() async {
-
-        let exp = expectation(description: "Loading data")
+    func testRecievingDataFromMockRocketNetworkManager() {
 
         presenter.getData()
-        exp.fulfill()
 
-        await waitForExpectations(timeout: 3)
         XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
         XCTAssertEqual(mockView.errorFromPresenter, errorForComparing)
     }
