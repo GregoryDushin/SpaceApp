@@ -100,8 +100,6 @@ final class NetworkRocketTest: XCTestCase {
         XCTAssertNil(errorFromLoader)
     }
 
- // MARK: Если я подставляю любой error, отличный от нуля, то в любом случае получаю finished with error [1] Error Domain=SpaceAppTests.TestError Code=1 (даже если data корректная) , не совсем понимаю в каком месте он может анализировать 
-
     func testRocketErrorRecieving() async {
         rocketLoader = RocketLoader(urlSession: makeMockSession(data: nil, error: nil))
 
