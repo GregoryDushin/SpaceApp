@@ -8,18 +8,20 @@
 import XCTest
 @testable import SpaceApp
 
-final class CustomPageTests: XCTestCase {
+final class CustomPagePresenterTests: XCTestCase {
 
     private var mockView: MockCustomView!
     private var presenter: CustomPagePresenter!
-    private var rocketArrayForComparingData = [RocketModelElement]()
-    private var errorForComparing = TestError()
+    private var mockRocket = [RocketModelElement]()
+    private var mockError = MockError()
+    private var mockRocketNetworkManager: MockRocketNetworkManager!
 
     override func setUp() {
         mockView = MockCustomView()
-        presenter = CustomPagePresenter(rocketLoader: MockRocketNetworkManager())
+        mockRocketNetworkManager = MockRocketNetworkManager()
+        presenter = CustomPagePresenter(rocketLoader: mockRocketNetworkManager)
         presenter.view = mockView
-        rocketArrayForComparingData = [
+        mockRocket = [
             RocketModelElement(
                 height: .init(meters: 0.1, feet: 0.1),
                 diameter: .init(meters: 0.1, feet: 0.1),
@@ -40,52 +42,45 @@ final class CustomPageTests: XCTestCase {
     override func tearDown() {
         mockView = nil
         presenter = nil
+        mockRocketNetworkManager = nil
     }
 
-    func testRecievingDataFromMockRocketNetworkManager() {
-
+    func testRecievingDataSuccess() {
+        mockRocketNetworkManager.mockRocket = mockRocket
         presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter, mockRocket)
+    }
 
-        XCTAssertEqual(mockView.dataFromPresenter, rocketArrayForComparingData)
-        XCTAssertEqual(mockView.errorFromPresenter, errorForComparing)
+    func testRecievingDataFailure() {
+        mockRocketNetworkManager.mockError = mockError
+        presenter.getData()
+        XCTAssertEqual(mockView.errorFromPresenter, mockError)
     }
 }
 
-private extension CustomPageTests {
+private extension CustomPagePresenterTests {
 
     final class MockRocketNetworkManager: RocketLoaderProtocol {
 
-        private let mockErrorForTesting = TestError()
-        private let mockRocket: [RocketModelElement] = [
-            RocketModelElement(
-                height: .init(meters: 0.1, feet: 0.1),
-                diameter: .init(meters: 0.1, feet: 0.1),
-                mass: .init(kg: 1, lb: 1),
-                firstStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
-                secondStage: .init(engines: 1, fuelAmountTons: 0.1, burnTimeSec: 1),
-                payloadWeights: [.init(kg: 1, lb: 1)],
-                flickrImages: ["TestImg", "TestImg"],
-                name: "TestRocket",
-                stages: 1,
-                costPerLaunch: 1,
-                firstFlight: "TestFlight",
-                id: "TextId"
-            )
-        ]
+        var mockError: MockError?
+        var mockRocket: [RocketModelElement]?
 
         func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
-            completion(.success(mockRocket))
-            completion(.failure(mockErrorForTesting))
+            if let mockRocket = mockRocket {
+                completion(.success(mockRocket))
+            } else if let mockError = mockError {
+                completion(.failure(mockError))
+            }
         }
     }
 
     final class MockCustomView: CustomPageViewProtocol {
 
         var dataFromPresenter: [RocketModelElement]?
-        var errorFromPresenter: TestError?
+        var errorFromPresenter: MockError?
 
         func failure(error: Error) {
-            self.errorFromPresenter = error as? TestError
+            self.errorFromPresenter = error as? MockError
         }
 
         func success(data: [RocketModelElement]) {

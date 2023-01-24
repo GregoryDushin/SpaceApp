@@ -85,7 +85,7 @@ extension LaunchViewController: LaunchViewProtocol {
             self.launchCollectionView.reloadData()
         }
     }
-    
+
     func failure(error: Error) {
         DispatchQueue.main.async {
             self.showAlert(error.localizedDescription)

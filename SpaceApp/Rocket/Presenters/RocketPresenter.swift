@@ -13,13 +13,7 @@ protocol RocketViewProtocol: AnyObject {
 
 protocol RocketPresenterProtocol: AnyObject {
     var view: RocketViewProtocol? { get set }
-    func updateSettings()
     func getData()
-}
-
-protocol SettingsRepositoryProtocol {
-    func `set`(setting: String, value: String)
-    func `get`(setting: String) -> String?
 }
 
 final class RocketPresenter: RocketPresenterProtocol {
@@ -30,25 +24,6 @@ final class RocketPresenter: RocketPresenterProtocol {
     init(rocketData: RocketModelElement, settingsRepository: SettingsRepositoryProtocol) {
         self.rocket = rocketData
         self.settingsRepository = settingsRepository
-    }
-
-    func updateSettings() {
-        settingsRepository.set(
-            setting: PersistancePositionKeys.heightPositionKey,
-            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.heightPositionKey) ?? "0"
-        )
-        settingsRepository.set(
-            setting: PersistancePositionKeys.capacityPositionKey,
-            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.capacityPositionKey) ?? "0"
-        )
-        settingsRepository.set(
-            setting: PersistancePositionKeys.diameterPositionKey,
-            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.diameterPositionKey) ?? "0"
-        )
-        settingsRepository.set(
-            setting: PersistancePositionKeys.massPositionKey,
-            value: UserDefaults.standard.string(forKey: PersistancePositionKeys.massPositionKey) ?? "0"
-        )
     }
 }
 

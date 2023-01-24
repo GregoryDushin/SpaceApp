@@ -8,22 +8,23 @@
 import XCTest
 @testable import SpaceApp
 
-final class SettingsTests: XCTestCase {
+final class SettingsPresenterTests: XCTestCase {
 
     private var mockView: MockSettingsView!
     private var presenter: SettingsPresenter!
-    private var testArrayForComparingData = [Setting]()
+    private var mockArray = [Setting]()
     private var settingsWereUpdated = false
+    private var settingsRepositryMock = SettingsRepositoryMock()
 
     override func setUp() {
         mockView = MockSettingsView()
-        settingsWereUpdated = false
-        presenter = SettingsPresenter(onUpdateSetting: { [weak self] in self?.settingsWereUpdated = true })
-
-        // MARK: не увидел проблем с trailing_closure  ???
+        presenter = SettingsPresenter(
+            onUpdateSetting: { [weak self] in self?.settingsWereUpdated = true },
+            settingsRepository: settingsRepositryMock
+        )
 
         presenter.view = mockView
-        testArrayForComparingData = [
+        mockArray = [
             Setting(
                 title: "Высота",
                 positionKey: PersistancePositionKeys.heightPositionKey,
@@ -54,7 +55,7 @@ final class SettingsTests: XCTestCase {
 
     func testGetDataShowsData() {
         presenter.showData()
-        XCTAssertEqual(mockView.dataFromPresenter?.count, testArrayForComparingData.count)
+        XCTAssertEqual(mockView.dataFromPresenter?.count, mockArray.count)
     }
 
     func testSaveDataWriteToUserDefaults() {
@@ -67,14 +68,14 @@ final class SettingsTests: XCTestCase {
             .enumerated()
             .forEach {
                 presenter.saveData(selectedIndex: $0.offset, indexPath: $0.offset)
-                XCTAssertEqual(UserDefaults.standard.string(forKey: $0.element), "\($0.offset)")
+                XCTAssertEqual(settingsRepositryMock.savedValues[$0.element], "\($0.offset)")
             }
 
         XCTAssertTrue(settingsWereUpdated)
     }
 }
 
-private extension SettingsTests {
+private extension SettingsPresenterTests {
 
     final class MockSettingsView: SettingsViewProtocol {
 

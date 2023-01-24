@@ -123,7 +123,7 @@ extension CustomPageViewController: CustomPageViewProtocol {
             self.configureStartingVC()
         }
     }
-
+    
     func failure(error: Error) {
         DispatchQueue.main.async {
             self.showAlert(error.localizedDescription)

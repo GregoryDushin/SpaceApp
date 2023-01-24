@@ -7,15 +7,18 @@
 
 import Foundation
 
+protocol SettingsRepositoryProtocol {
+    func `set`(setting: String, value: String)
+    func `get`(setting: String) -> String?
+}
+
 final class SettingsRepository: SettingsRepositoryProtocol {
 
-    var savedValues = [String: String]()
-
     func get(setting: String) -> String? {
-        savedValues[setting]
+        UserDefaults.standard.string(forKey: setting)
     }
 
     func set(setting: String, value: String) {
-        savedValues[setting] = value
+        UserDefaults.standard.set(value, forKey: setting)
     }
 }

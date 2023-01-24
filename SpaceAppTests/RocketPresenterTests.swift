@@ -2,7 +2,7 @@
 @testable import SpaceApp
 import XCTest
 
-final class RocketTest: XCTestCase {
+final class RocketPresenterTests: XCTestCase {
 
     private var mockView: MockView!
     private var mockRocket: RocketModelElement!
@@ -43,28 +43,53 @@ final class RocketTest: XCTestCase {
         assertEqual(lhs: mockView.dataFromPresenter, rhs: expectedSections)
     }
 
-    func testHeightSettingChangeUnits() {
-        settingsRepositryMock.set(setting: PersistancePositionKeys.heightPositionKey, value: "0")
+    func testHeightSettingChangeUnitsInMeters() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.heightPositionKey] = "0"
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[0], .horizontalInfo(title: "Высота, m", value: "1.0"))
     }
+    func testHeightSettingChangeUnitsInFeets() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.heightPositionKey] = "1"
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[0], .horizontalInfo(title: "Высота, ft", value: "2.0"))
+    }
 
-    func testDiametrSettingChangeUnits() {
-        settingsRepositryMock.set(setting: PersistancePositionKeys.diameterPositionKey, value: "0")
+    func testDiametrSettingChangeUnitsInMeters() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.diameterPositionKey] = "0"
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[1], .horizontalInfo(title: "Диаметр, m", value: "1.0"))
     }
 
-    func testMassSettingChangeUnits() {
-        settingsRepositryMock.set(setting: PersistancePositionKeys.massPositionKey, value: "0")
+    func testDiametrSettingChangeUnitsInFeets() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.diameterPositionKey] = "1"
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[1], .horizontalInfo(title: "Диаметр, ft", value: "2.0"))
+    }
+
+    func testMassSettingChangeUnitsInKilograms() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.massPositionKey] = "0"
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[2], .horizontalInfo(title: "Масса, kg", value: "1"))
     }
+    
+    func testMassSettingChangeUnitsInPounds() {
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.massPositionKey] = "1"
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[2], .horizontalInfo(title: "Масса, lb", value: "2"))
+    }
 
-    func testCapacitySettingChangeUnits() {
-        settingsRepositryMock.set(setting: PersistancePositionKeys.capacityPositionKey, value: "0")
+    func testCapacitySettingChangeUnitsInKilograms() {
+
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.capacityPositionKey] = "0"
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[3], .horizontalInfo(title: "Масса, kg", value: "1"))
+    }
+    
+    func testCapacitySettingChangeUnitsInPounds() {
+
+        settingsRepositryMock.valuesToReturn[PersistancePositionKeys.capacityPositionKey] = "1"
+        presenter.getData()
+        XCTAssertEqual(mockView.dataFromPresenter[1].items[3], .horizontalInfo(title: "Масса, lb", value: "2"))
     }
 
     func assertEqual(lhs: [Section], rhs: [Section]) {
@@ -84,18 +109,17 @@ final class RocketTest: XCTestCase {
                 case let (.image(url1, rocketName1), .image(url2, rocketName2)):
                     XCTAssertEqual(url1, url2)
                     XCTAssertEqual(rocketName1, rocketName2)
+                case (.button, .button):
+                    continue
                 default:
-
-     // MARK: По дефолту так же у нас приходит пустой "Button", нам там нечего сравнивать. Что в таком случае исполнять в defaults или же в case.button, если его все таки объявлять?
-
-                    print("?")
+                    XCTFail("Unknown item was found")
                 }
             }
         }
     }
 }
 
-private extension RocketTest {
+private extension RocketPresenterTests {
 
     final class MockView: RocketViewProtocol {
 
@@ -103,19 +127,6 @@ private extension RocketTest {
 
         func present(data: [Section]) {
             self.dataFromPresenter = data
-        }
-    }
-
-    final class SettingsRepositoryMock: SettingsRepositoryProtocol {
-
-        var savedValues = [String: String]()
-
-        func get(setting: String) -> String? {
-            savedValues[setting]
-        }
-
-        func set(setting: String, value: String) {
-            savedValues[setting] = value
         }
     }
 
@@ -164,7 +175,7 @@ private extension RocketTest {
                         ),
                         .verticalInfo(
                             title: "Стоимость запуска",
-                            value: "$" + String((1) / 1_000_000) + " млн"
+                            value: "$0 млн"
                         )
                     ]
             ),
@@ -179,11 +190,11 @@ private extension RocketTest {
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: "1" + " тонн"
+                            value: "1 тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: "1" + " сек"
+                            value: "1 сек"
                         )
                     ]
             ),
@@ -198,11 +209,11 @@ private extension RocketTest {
                         ),
                         .verticalInfo(
                             title: "Количество топлива",
-                            value: "1" + " тонн"
+                            value: "1 тонн"
                         ),
                         .verticalInfo(
                             title: "Время сгорания",
-                            value: "1" + " сек"
+                            value: "1 сек"
                         )
                     ]
             ),

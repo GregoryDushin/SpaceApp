@@ -22,6 +22,7 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
     weak var view: SettingsViewProtocol?
     private let defaults = UserDefaults.standard
     private let onUpdateSetting: (() -> Void)
+    private let settingsRepository: SettingsRepositoryProtocol
 
     private let settingsArray = [
         Setting(
@@ -46,12 +47,13 @@ final class SettingsPresenter: SettingsViewPresenterProtocol {
         )
     ]
 
-    init(onUpdateSetting: @escaping (() -> Void)) {
+    init(onUpdateSetting: @escaping (() -> Void), settingsRepository: SettingsRepositoryProtocol) {
         self.onUpdateSetting = onUpdateSetting
+        self.settingsRepository = settingsRepository
     }
 
     func saveData(selectedIndex: Int, indexPath: Int) {
-        defaults.set(selectedIndex, forKey: settingsArray[indexPath].positionKey)
+        settingsRepository.set(setting: settingsArray[indexPath].positionKey, value: String(selectedIndex))
         onUpdateSetting()
     }
 

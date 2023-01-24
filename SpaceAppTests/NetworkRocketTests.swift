@@ -10,10 +10,10 @@ import XCTest
 
 final class NetworkRocketTest: XCTestCase {
     private var rocketLoader: RocketLoader!
-    private var rocketDataFromPresenter = [RocketModelElement]()
-    private var rocketArrayForComparingData = [RocketModelElement]()
-    private let errorForComparing = TestError()
-    private var errorFromLoader: TestError? = nil
+    private var rocketDataFromLoader = [RocketModelElement]()
+    private var mockRocketData = [RocketModelElement]()
+    private let mockError = MockError()
+    private var errorFromLoader: MockError? = nil
     private var mockData = Data()
 
     private func makeMockSession(data: Data?, error: Error?) -> URLSession {
@@ -57,7 +57,7 @@ final class NetworkRocketTest: XCTestCase {
           ]
         """.data(using: .utf8)!
 
-        rocketArrayForComparingData = [
+        mockRocketData = [
             RocketModelElement(
                 height: .init(meters: 22.25, feet: 73),
                 diameter: .init(meters: 1.68, feet: 5.9),
@@ -87,37 +87,37 @@ final class NetworkRocketTest: XCTestCase {
         rocketLoader.rocketDataLoad { rockets in
             switch rockets {
             case .success(let rockets):
-                self.rocketDataFromPresenter = rockets
+                self.rocketDataFromLoader = rockets
             case .failure(let error):
-                self.errorFromLoader = error as? TestError
+                self.errorFromLoader = error as? MockError
             }
             exp.fulfill()
         }
 
         await waitForExpectations(timeout: 3)
 
-        XCTAssertEqual(rocketDataFromPresenter, rocketArrayForComparingData)
+        XCTAssertEqual(rocketDataFromLoader, mockRocketData)
         XCTAssertNil(errorFromLoader)
     }
-    
+
  // MARK: Если я подставляю любой error, отличный от нуля, то в любом случае получаю finished with error [1] Error Domain=SpaceAppTests.TestError Code=1 (даже если data корректная) , не совсем понимаю в каком месте он может анализировать 
-    
+
     func testRocketErrorRecieving() async {
-        rocketLoader = RocketLoader(urlSession: makeMockSession(data: nil, error: errorForComparing))
+        rocketLoader = RocketLoader(urlSession: makeMockSession(data: nil, error: nil))
 
         let exp = expectation(description: "Loading error")
 
         rocketLoader.rocketDataLoad { rockets in
             switch rockets {
             case .success(let rockets):
-                self.rocketDataFromPresenter = rockets
+                self.rocketDataFromLoader = rockets
             case .failure(let error):
-                self.errorFromLoader = error as? TestError
+                self.errorFromLoader = error as? MockError
             }
             exp.fulfill()
         }
 
         await waitForExpectations(timeout: 3)
-        XCTAssertEqual(errorFromLoader, errorForComparing)
+        XCTAssertEqual(errorFromLoader, mockError)
     }
 }
