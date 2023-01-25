@@ -190,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				F30C91AC28F9632200C5D5F6 /* SettingsViewController.swift */,
+				F3EA3E68297172B400230FBD /* SettingsRepository.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -207,7 +208,6 @@
 			children = (
 				F385E7A728FEA3340081166F /* RocketViewController.swift */,
 				F385E7A928FEA41C0081166F /* CustomPageViewController.swift */,
-				F3EA3E68297172B400230FBD /* SettingsRepository.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
