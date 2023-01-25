@@ -13,7 +13,7 @@ final class CustomPagePresenterTests: XCTestCase {
     private var mockView: MockCustomView!
     private var presenter: CustomPagePresenter!
     private var mockRocket = [RocketModelElement]()
-    private var mockError = MockError()
+    private var mockError = ErrorMock()
     private var mockRocketNetworkManager: MockRocketNetworkManager!
 
     override func setUp() {
@@ -62,7 +62,7 @@ private extension CustomPagePresenterTests {
 
     final class MockRocketNetworkManager: RocketLoaderProtocol {
 
-        var mockError: MockError?
+        var mockError: ErrorMock?
         var mockRocket: [RocketModelElement]?
 
         func rocketDataLoad(completion: @escaping (Result<[RocketModelElement], Error>) -> Void) {
@@ -77,10 +77,10 @@ private extension CustomPagePresenterTests {
     final class MockCustomView: CustomPageViewProtocol {
 
         var dataFromPresenter: [RocketModelElement]?
-        var errorFromPresenter: MockError?
+        var errorFromPresenter: ErrorMock?
 
         func failure(error: Error) {
-            self.errorFromPresenter = error as? MockError
+            self.errorFromPresenter = error as? ErrorMock
         }
 
         func success(data: [RocketModelElement]) {

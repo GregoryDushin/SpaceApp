@@ -14,7 +14,7 @@ final class LaunchPresenterTests: XCTestCase {
     private var presenter: LaunchPresenter!
     private var mockLaunchData = [LaunchData]()
     private var mockLaunchNetworkData = [LaunchModelElement]()
-    private var mockError = MockError()
+    private var mockError = ErrorMock()
     private var mockLaunchNetworkManager: MockLaunchNetworkManager!
 
     override func setUp() {
@@ -62,7 +62,7 @@ extension LaunchPresenterTests {
 
     final class MockLaunchNetworkManager: LaunchLoaderProtocol {
 
-        var mockError: MockError?
+        var mockError: ErrorMock?
         var mockData: [LaunchModelElement]?
 
         func launchDataLoad(id: String, completion: @escaping (Result<[LaunchModelElement], Error>) -> Void) {
@@ -77,10 +77,10 @@ extension LaunchPresenterTests {
     final class MockLaunchView: LaunchViewProtocol {
 
         var dataFromPresenter: [LaunchData]?
-        var errorFromPresenter: MockError?
+        var errorFromPresenter: ErrorMock?
 
         func failure(error: Error) {
-            errorFromPresenter = error as? MockError
+            errorFromPresenter = error as? ErrorMock
         }
 
         func success(data: [LaunchData]) {

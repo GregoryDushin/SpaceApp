@@ -8,5 +8,5 @@
 @testable import SpaceApp
 import XCTest
 
-struct MockError: Error, Equatable {
+struct ErrorMock: Error, Equatable {
 }

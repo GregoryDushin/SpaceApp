@@ -13,8 +13,8 @@
 		F30E40DD290AB28B0046189B /* RocketHorizontalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D7290AB28B0046189B /* RocketHorizontalInfoCell.swift */; };
 		F30E40DE290AB28B0046189B /* RocketImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D5290AB28B0046189B /* RocketImageCell.swift */; };
 		F30E40DF290AB28B0046189B /* RocketLaunchButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */; };
-		F32385B0297FF8C50044864C /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32385AF297FF8C50044864C /* MockError.swift */; };
-		F325BD03297FD50000A9CC30 /* SettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325BD02297FD50000A9CC30 /* SettingsMock.swift */; };
+		F32385B0297FF8C50044864C /* ErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32385AF297FF8C50044864C /* ErrorMock.swift */; };
+		F325BD03297FD50000A9CC30 /* SettingsRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325BD02297FD50000A9CC30 /* SettingsRepositoryMock.swift */; };
 		F327818B2935FBC700020C94 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327818A2935FBC700020C94 /* LaunchPresenter.swift */; };
 		F327818D2935FD1C00020C94 /* LaunchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327818C2935FD1C00020C94 /* LaunchData.swift */; };
 		F341396129227813004156C5 /* IdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341396029227813004156C5 /* IdExtensions.swift */; };
@@ -66,8 +66,8 @@
 		F30E40D6290AB28B0046189B /* RocketLaunchButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchButtonCell.swift; sourceTree = "<group>"; };
 		F30E40D7290AB28B0046189B /* RocketHorizontalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketHorizontalInfoCell.swift; sourceTree = "<group>"; };
 		F30E40D8290AB28B0046189B /* RocketVerticalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketVerticalInfoCell.swift; sourceTree = "<group>"; };
-		F32385AF297FF8C50044864C /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
-		F325BD02297FD50000A9CC30 /* SettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMock.swift; sourceTree = "<group>"; };
+		F32385AF297FF8C50044864C /* ErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMock.swift; sourceTree = "<group>"; };
+		F325BD02297FD50000A9CC30 /* SettingsRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryMock.swift; sourceTree = "<group>"; };
 		F327818A2935FBC700020C94 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		F327818C2935FD1C00020C94 /* LaunchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchData.swift; sourceTree = "<group>"; };
 		F341396029227813004156C5 /* IdExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdExtensions.swift; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				F36E0AA4296C279700441587 /* UrlMock.swift */,
-				F325BD02297FD50000A9CC30 /* SettingsMock.swift */,
-				F32385AF297FF8C50044864C /* MockError.swift */,
+				F325BD02297FD50000A9CC30 /* SettingsRepositoryMock.swift */,
+				F32385AF297FF8C50044864C /* ErrorMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -582,14 +582,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F325BD03297FD50000A9CC30 /* SettingsMock.swift in Sources */,
+				F325BD03297FD50000A9CC30 /* SettingsRepositoryMock.swift in Sources */,
 				F3E308B82954448D00163530 /* CustomPagePresenterTests.swift in Sources */,
 				F3DC6E4A295C29820089C735 /* NetworkLaunchTests.swift in Sources */,
 				F3E308BA295444B400163530 /* LaunchPresenterTests.swift in Sources */,
 				F3CF239129597CEA00159EF3 /* NetworkRocketTests.swift in Sources */,
 				F36E0AA5296C279700441587 /* UrlMock.swift in Sources */,
 				F3E308BC295444CB00163530 /* SettingsPresenterTests.swift in Sources */,
-				F32385B0297FF8C50044864C /* MockError.swift in Sources */,
+				F32385B0297FF8C50044864C /* ErrorMock.swift in Sources */,
 				F3E308B629531F0C00163530 /* RocketPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

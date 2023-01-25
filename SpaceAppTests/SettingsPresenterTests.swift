@@ -59,7 +59,7 @@ final class SettingsPresenterTests: XCTestCase {
     }
 
     func testSaveDataWriteToUserDefaults() {
-        let settings = [
+        [
             PersistancePositionKeys.heightPositionKey,
             PersistancePositionKeys.diameterPositionKey,
             PersistancePositionKeys.massPositionKey,

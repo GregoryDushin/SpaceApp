@@ -37,6 +37,7 @@ final class RocketPresenterTests: XCTestCase {
         presenter = nil
         settingsRepositryMock = nil
     }
+
     func testGetDataMapRocketToSections() {
         presenter.getData()
         let expectedSections = makeMockedSetctions()
@@ -48,6 +49,7 @@ final class RocketPresenterTests: XCTestCase {
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[0], .horizontalInfo(title: "Высота, m", value: "1.0"))
     }
+
     func testHeightSettingChangeUnitsInFeets() {
         settingsRepositryMock.valuesToReturn[PersistancePositionKeys.heightPositionKey] = "1"
         presenter.getData()
@@ -71,7 +73,7 @@ final class RocketPresenterTests: XCTestCase {
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[2], .horizontalInfo(title: "Масса, kg", value: "1"))
     }
-    
+
     func testMassSettingChangeUnitsInPounds() {
         settingsRepositryMock.valuesToReturn[PersistancePositionKeys.massPositionKey] = "1"
         presenter.getData()
@@ -84,7 +86,7 @@ final class RocketPresenterTests: XCTestCase {
         presenter.getData()
         XCTAssertEqual(mockView.dataFromPresenter[1].items[3], .horizontalInfo(title: "Масса, kg", value: "1"))
     }
-    
+
     func testCapacitySettingChangeUnitsInPounds() {
 
         settingsRepositryMock.valuesToReturn[PersistancePositionKeys.capacityPositionKey] = "1"

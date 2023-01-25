@@ -12,8 +12,8 @@ final class NetworkRocketTest: XCTestCase {
     private var rocketLoader: RocketLoader!
     private var rocketDataFromLoader = [RocketModelElement]()
     private var mockRocketData = [RocketModelElement]()
-    private let mockError = MockError()
-    private var errorFromLoader: MockError? = nil
+    private let mockError = ErrorMock()
+    private var errorFromLoader: ErrorMock? = nil
     private var mockData = Data()
 
     private func makeMockSession(data: Data?, error: Error?) -> URLSession {
@@ -23,10 +23,10 @@ final class NetworkRocketTest: XCTestCase {
             httpVersion: nil,
             headerFields: nil
         )
-        URLProtocolMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/rockets")!: (error, data, response)]
+        URLMock.mockURLs = [URL(string: "https://api.spacexdata.com/v4/rockets")!: (error, data, response)]
         let sessionConfiguration = URLSessionConfiguration.ephemeral
 
-        sessionConfiguration.protocolClasses = [URLProtocolMock.self]
+        sessionConfiguration.protocolClasses = [URLMock.self]
 
         return URLSession(configuration: sessionConfiguration)
     }
@@ -89,7 +89,7 @@ final class NetworkRocketTest: XCTestCase {
             case .success(let rockets):
                 self.rocketDataFromLoader = rockets
             case .failure(let error):
-                self.errorFromLoader = error as? MockError
+                self.errorFromLoader = error as? ErrorMock
             }
             exp.fulfill()
         }
@@ -110,7 +110,7 @@ final class NetworkRocketTest: XCTestCase {
             case .success(let rockets):
                 self.rocketDataFromLoader = rockets
             case .failure(let error):
-                self.errorFromLoader = error as? MockError
+                self.errorFromLoader = error as? ErrorMock
             }
             exp.fulfill()
         }

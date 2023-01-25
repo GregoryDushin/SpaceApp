@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class URLProtocolMock: URLProtocol {
+final class URLMock: URLProtocol {
 
     static var mockURLs = [URL?: (error: Error?, data: Data?, response: HTTPURLResponse?)]()
 
@@ -20,7 +20,7 @@ final class URLProtocolMock: URLProtocol {
     }
 
     override func startLoading() {
-        guard let url = request.url, let (error, data, response) = URLProtocolMock.mockURLs[url] else { return }
+        guard let url = request.url, let (error, data, response) = URLMock.mockURLs[url] else { return }
 
                 if let response = response {
                     self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
