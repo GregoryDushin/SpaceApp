@@ -13,10 +13,12 @@ final class NetworkRocketTest: XCTestCase {
     private var rocketDataFromLoader = [RocketModelElement]()
     private var mockRocketData = [RocketModelElement]()
     private let mockError = ErrorMock()
-    private var errorFromLoader: ErrorMock? = nil
-    private var mockData = Data()
+    private var errorFromLoader: Error!
+    private var error: Error!
+    private var correctData = Data()
+    private var wrongData = Data()
 
-    private func makeMockSession(data: Data?, error: Error?) -> URLSession {
+    private func makeMockSession(data: Data?) -> URLSession {
         let response = HTTPURLResponse(
             url: URL(string: "https://api.spacexdata.com/v4/rockets")!,
             statusCode: 200,
@@ -32,7 +34,7 @@ final class NetworkRocketTest: XCTestCase {
     }
 
     override func setUp() {
-        mockData = """
+        correctData = """
           [
             {
                 "height":{"meters":22.25,"feet":73},
@@ -56,6 +58,7 @@ final class NetworkRocketTest: XCTestCase {
             }
           ]
         """.data(using: .utf8)!
+        wrongData = "testDataForError".data(using: .utf8)!
 
         mockRocketData = [
             RocketModelElement(
@@ -79,8 +82,8 @@ final class NetworkRocketTest: XCTestCase {
         rocketLoader = nil
     }
 
-    func testRocketDataRecieving() async {
-        rocketLoader = RocketLoader(urlSession: makeMockSession(data: mockData, error: nil))
+    func testRocketDataRecieving() {
+        rocketLoader = RocketLoader(urlSession: makeMockSession(data: correctData))
 
         let exp = expectation(description: "Loading data")
 
@@ -94,14 +97,14 @@ final class NetworkRocketTest: XCTestCase {
             exp.fulfill()
         }
 
-        await waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 3)
 
         XCTAssertEqual(rocketDataFromLoader, mockRocketData)
         XCTAssertNil(errorFromLoader)
     }
 
     func testRocketErrorRecieving() async {
-        rocketLoader = RocketLoader(urlSession: makeMockSession(data: nil, error: nil))
+        rocketLoader = RocketLoader(urlSession: makeMockSession(data: wrongData))
 
         let exp = expectation(description: "Loading error")
 
@@ -110,12 +113,11 @@ final class NetworkRocketTest: XCTestCase {
             case .success(let rockets):
                 self.rocketDataFromLoader = rockets
             case .failure(let error):
-                self.errorFromLoader = error as? ErrorMock
+                self.errorFromLoader = error
             }
             exp.fulfill()
         }
-
         await waitForExpectations(timeout: 3)
-        XCTAssertEqual(errorFromLoader, mockError)
+        XCTAssertNotNil(errorFromLoader)
     }
 }

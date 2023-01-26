@@ -12,7 +12,7 @@ final class NetworkLaunchTest: XCTestCase {
     private var launchLoader: LaunchLoader!
     private var launchDataFromLoader = [LaunchModelElement]()
     private var mockLaunchData = [LaunchModelElement]()
-    private let error: Error? = nil
+    private var error: Error!
     private var errorFromLoader: Error!
     private var correctData = Data()
     private var wrongData = Data()
@@ -57,7 +57,7 @@ final class NetworkLaunchTest: XCTestCase {
         launchLoader = nil
     }
 
-    func testDataRecieving() async {
+    func testDataRecieving() {
         let exp = expectation(description: "Recieving data")
         launchLoader = LaunchLoader(urlSession: makeMockSession(data: correctData))
         launchLoader.launchDataLoad(id: "test") { launches in
@@ -71,7 +71,7 @@ final class NetworkLaunchTest: XCTestCase {
             exp.fulfill()
         }
 
-        await waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 3)
         XCTAssertEqual(launchDataFromLoader, mockLaunchData)
         XCTAssertNil(errorFromLoader)
     }
