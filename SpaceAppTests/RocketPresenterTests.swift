@@ -1,3 +1,9 @@
+//
+//  CustomPageViewTests.swift
+//  SpaceAppTests
+//
+//  Created by Григорий Душин on 22.12.2022.
+//
 
 @testable import SpaceApp
 import XCTest
