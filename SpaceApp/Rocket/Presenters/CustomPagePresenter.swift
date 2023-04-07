@@ -1,7 +1,6 @@
 //
 //  CustomPagePresenter.swift
 //  SpaceApp
-//
 //  Created by Григорий Душин on 10.12.2022.
 //
 

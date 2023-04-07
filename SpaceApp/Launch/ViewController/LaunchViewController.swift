@@ -56,7 +56,7 @@ extension LaunchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Collection View Data Source
+// MARK: - Collection View DataSource
 
 extension LaunchViewController: UICollectionViewDataSource {
 

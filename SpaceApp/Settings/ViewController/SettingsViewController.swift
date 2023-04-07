@@ -49,7 +49,7 @@ extension SettingsViewController: UITableViewDataSource {
             self?.presenter.saveData(selectedIndex: selectedIndex, indexPath: indexPath.row)
         }
 
-        return cell
+        return cell 
     }
 }
 
