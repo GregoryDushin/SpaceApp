@@ -3,7 +3,7 @@
 ### SpaceApp is an open-source app that provides information of SpaceX rockets and their actual launches. ###
 
 **The app contains three screens :** 
- * The **main screen** containing actual picture and basic information about the rocket by url, ability to switch between rockets by swipe and two buttons to toggle to settings and launch screens.
+ * **Main screen** contains actual picture and basic information about the rocket by public url, ability to switch between rockets by swipe and two buttons to toggle to settings and launch screens.
  
  * **Launch screen** with past and current rocket launches information which include showing the success of the start with a picture.
  
